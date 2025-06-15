@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import NetworkAnimation from '@/components/NetworkAnimation';
+import { blogPosts as allBlogPosts } from '@/data/blog';
 
 const Index = () => {
   const services = [
@@ -42,29 +43,7 @@ const Index = () => {
     { number: '1000+', label: 'Կատարված նախագծեր' },
   ];
 
-  const blogPosts = [
-    {
-      title: 'Հարկային բարեփոխումները 2024 թվականին',
-      excerpt: 'Մանրամասն ուսումնասիրություն նոր հարկային օրենսդրության և դրա ազդեցության մասին բիզնեսի վրա',
-      date: '2024-03-15',
-      author: 'Արամ Ամրոյան',
-      category: 'Հարկային իրավունք'
-    },
-    {
-      title: 'Ֆինանսական պլանավորման 10 ոսկե կանոն',
-      excerpt: 'Պարզ և գործնական խորհուրդներ ձեր ֆինանսների արդյունավետ կառավարման համար',
-      date: '2024-03-10',
-      author: 'Մարիամ Գարեգինյան',
-      category: 'Ֆինանսական պլանավորում'
-    },
-    {
-      title: 'Թվային հաշվապահություն. ապագան այսօր',
-      excerpt: 'Ինչպես ժամանակակից տեխնոլոգիաները փոխում են հաշվապահական ծառայությունները',
-      date: '2024-03-08',
-      author: 'Դավիթ Մելքումյան',
-      category: 'Տեխնոլոգիաներ'
-    }
-  ];
+  const blogPosts = allBlogPosts.slice(0, 3);
 
   return (
     <div className="relative">
@@ -229,9 +208,9 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {blogPosts.map((post, index) => (
-              <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
-                <CardContent className="p-6">
+            {blogPosts.map((post) => (
+              <Card key={post.slug} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group flex flex-col">
+                <CardContent className="p-6 flex flex-col flex-grow">
                   <div className="mb-4">
                     <span className="bg-gold-500/20 text-gold-400 px-3 py-1 rounded-full text-sm">
                       {post.category}
@@ -239,10 +218,10 @@ const Index = () => {
                   </div>
                   
                   <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-gold-400 transition-colors">
-                    {post.title}
+                    <Link to={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
                   
-                  <p className="text-gray-300 mb-4 leading-relaxed text-sm">
+                  <p className="text-gray-300 mb-4 leading-relaxed text-sm flex-grow">
                     {post.excerpt}
                   </p>
                   
@@ -257,8 +236,10 @@ const Index = () => {
                     </div>
                   </div>
                   
-                  <Button variant="ghost" className="text-gold-400 hover:text-gold-300 p-0 h-auto text-sm">
-                    Կարդալ ավելին <ArrowRight size={14} className="ml-1" />
+                  <Button asChild variant="ghost" className="text-gold-400 hover:text-gold-300 p-0 h-auto text-sm self-start">
+                    <Link to={`/blog/${post.slug}`}>
+                      Կարդալ ավելին <ArrowRight size={14} className="ml-1" />
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -271,7 +252,7 @@ const Index = () => {
               className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold"
             >
               <Link to="/blog">
-                Բլոգ տեսնել <ArrowRight className="ml-2" size={16} />
+                Տեսնել բոլորը <ArrowRight className="ml-2" size={16} />
               </Link>
             </Button>
           </div>
