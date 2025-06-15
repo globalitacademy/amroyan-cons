@@ -74,6 +74,14 @@ export default {
 					700: '#866138',
 					800: '#6c4e2f',
 					900: '#584028'
+				},
+				logo: {
+					light: '#F4E4A6',
+					'medium-light': '#E8D084',
+					medium: '#D2B999',
+					'medium-dark': '#C3A277',
+					dark: '#A27643',
+					darkest: '#866138'
 				}
 			},
 			borderRadius: {
@@ -129,6 +137,14 @@ export default {
         'loading-bar': {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' },
+        },
+        'logo-pulse': {
+          '0%, 100%': { 
+            filter: 'drop-shadow(0 0 20px rgba(244, 228, 166, 0.3))'
+          },
+          '50%': { 
+            filter: 'drop-shadow(0 0 30px rgba(244, 228, 166, 0.6)) drop-shadow(0 0 50px rgba(210, 185, 153, 0.4))'
+          }
         }
 			},
 			animation: {
@@ -138,6 +154,7 @@ export default {
 				'float': 'float 6s ease-in-out infinite',
 				'fade-in-up': 'fade-in-up 0.6s ease-out',
         'loading-bar': 'loading-bar 1.5s ease-in-out infinite',
+        'logo-pulse': 'logo-pulse 2s ease-in-out infinite',
 			}
 		}
 	},

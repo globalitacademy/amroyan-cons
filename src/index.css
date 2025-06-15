@@ -45,6 +45,14 @@
     --sidebar-accent-foreground: 35 60% 85%;
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 35 60% 47%;
+
+    /* Logo gradient colors - extracted from actual logo */
+    --logo-light: #F4E4A6;
+    --logo-medium-light: #E8D084;
+    --logo-medium: #D2B999;
+    --logo-medium-dark: #C3A277;
+    --logo-dark: #A27643;
+    --logo-darkest: #866138;
   }
 }
 
@@ -72,21 +80,33 @@
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(circle at 20% 30%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.05) 0%, transparent 70%);
+    radial-gradient(circle at 20% 30%, rgba(244, 228, 166, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(210, 185, 153, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(195, 162, 119, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
-/* Gold gradient text */
+/* Logo gradient text - exact colors from logo */
 .gradient-text {
-  background: linear-gradient(45deg, #c3a277, #b48b55, #a27643);
+  background: linear-gradient(135deg, #F4E4A6 0%, #E8D084 25%, #D2B999 50%, #C3A277 75%, #A27643 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Custom scrollbar */
+/* Logo gradient background */
+.logo-gradient {
+  background: linear-gradient(135deg, #F4E4A6 0%, #E8D084 20%, #D2B999 40%, #C3A277 60%, #A27643 80%, #866138 100%);
+}
+
+/* Logo glow effect */
+.logo-glow {
+  filter: drop-shadow(0 0 20px rgba(244, 228, 166, 0.3)) 
+          drop-shadow(0 0 40px rgba(210, 185, 153, 0.2))
+          drop-shadow(0 0 60px rgba(195, 162, 119, 0.1));
+}
+
+/* Custom scrollbar with logo colors */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -96,10 +116,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #c3a277, #b48b55);
+  background: linear-gradient(135deg, #F4E4A6, #D2B999, #A27643);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #b48b55, #a27643);
+  background: linear-gradient(135deg, #E8D084, #C3A277, #866138);
 }
