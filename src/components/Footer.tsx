@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from 'lucide-react';
+import NewsletterSubscription from './NewsletterSubscription';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -22,6 +23,17 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-black to-gray-900 border-t border-gold-500/20">
       <div className="container mx-auto px-4 py-12">
+        {/* Newsletter Section */}
+        <div className="mb-12 text-center">
+          <h3 className="text-2xl font-bold mb-4">
+            <span className="gradient-text">Բաժանորդագրվեք մեր նորություններին</span>
+          </h3>
+          <p className="text-gray-400 mb-6 max-w-md mx-auto">
+            Ստացեք վերջին նորությունները և օգտակար խորհուրդները ֆինանսական ոլորտից
+          </p>
+          <NewsletterSubscription className="max-w-md mx-auto" />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
