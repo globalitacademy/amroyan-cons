@@ -1,5 +1,4 @@
-
-import { ArrowRight, Calculator, TrendingUp, Shield, Users, Award, CheckCircle } from 'lucide-react';
+import { ArrowRight, Calculator, TrendingUp, Shield, Users, Award, CheckCircle, Calendar, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
@@ -41,6 +40,30 @@ const Index = () => {
     { number: '15+', label: 'Տարիների փորձ' },
     { number: '98%', label: 'Բավարարված հաճախորդներ' },
     { number: '1000+', label: 'Կատարված նախագծեր' },
+  ];
+
+  const blogPosts = [
+    {
+      title: 'Հարկային բարեփոխումները 2024 թվականին',
+      excerpt: 'Մանրամասն ուսումնասիրություն նոր հարկային օրենսդրության և դրա ազդեցության մասին բիզնեսի վրա',
+      date: '2024-03-15',
+      author: 'Արամ Ամրոյան',
+      category: 'Հարկային իրավունք'
+    },
+    {
+      title: 'Ֆինանսական պլանավորման 10 ոսկե կանոն',
+      excerpt: 'Պարզ և գործնական խորհուրդներ ձեր ֆինանսների արդյունավետ կառավարման համար',
+      date: '2024-03-10',
+      author: 'Մարիամ Գարեգինյան',
+      category: 'Ֆինանսական պլանավորում'
+    },
+    {
+      title: 'Թվային հաշվապահություն. ապագան այսօր',
+      excerpt: 'Ինչպես ժամանակակից տեխնոլոգիաները փոխում են հաշվապահական ծառայությունները',
+      date: '2024-03-08',
+      author: 'Դավիթ Մելքումյան',
+      category: 'Տեխնոլոգիաներ'
+    }
   ];
 
   return (
@@ -189,6 +212,68 @@ const Index = () => {
                 </Card>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="gradient-text">Մեր բլոգ</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Օգտակար հոդվածներ և խորհուրդներ ֆինանսական և հաշվապահական ոլորտներից
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {blogPosts.map((post, index) => (
+              <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
+                <CardContent className="p-6">
+                  <div className="mb-4">
+                    <span className="bg-gold-500/20 text-gold-400 px-3 py-1 rounded-full text-sm">
+                      {post.category}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-gold-400 transition-colors">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-gray-300 mb-4 leading-relaxed text-sm">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between text-xs text-gray-400 mb-4">
+                    <div className="flex items-center space-x-2">
+                      <User size={14} />
+                      <span>{post.author}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Calendar size={14} />
+                      <span>{post.date}</span>
+                    </div>
+                  </div>
+                  
+                  <Button variant="ghost" className="text-gold-400 hover:text-gold-300 p-0 h-auto text-sm">
+                    Կարդալ ավելին <ArrowRight size={14} className="ml-1" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Button 
+              asChild 
+              className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold"
+            >
+              <Link to="/blog">
+                Բլոգ տեսնել <ArrowRight className="ml-2" size={16} />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
