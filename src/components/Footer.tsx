@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from 'lucide-react';
 import NewsletterSubscription from './NewsletterSubscription';
@@ -14,10 +13,10 @@ const Footer = () => {
   ];
 
   const services = [
-    'Հաշվապահություն',
-    'Ֆինանսական խորհրդատվություն',
-    'Հարկային պլանավորում',
-    'Աուդիտ ծառայություններ',
+    { name: 'Հաշվապահություն', href: '/services#accounting' },
+    { name: 'Ֆինանսական խորհրդատվություն', href: '/services#financial-consulting' },
+    { name: 'Հարկային պլանավորում', href: '/services#tax-planning' },
+    { name: 'Աուդիտ ծառայություններ', href: '/services#audit-services' },
   ];
 
   return (
@@ -81,8 +80,13 @@ const Footer = () => {
             <h3 className="text-white font-semibold mb-4">Ծառայություններ</h3>
             <ul className="space-y-2">
               {services.map((service) => (
-                <li key={service}>
-                  <span className="text-gray-400 text-sm py-1 block min-h-[32px] flex items-center">{service}</span>
+                <li key={service.name}>
+                  <Link 
+                    to={service.href}
+                    className="text-gray-400 hover:text-gold-400 transition-colors text-sm py-1 block min-h-[32px] flex items-center"
+                  >
+                    {service.name}
+                  </Link>
                 </li>
               ))}
             </ul>
