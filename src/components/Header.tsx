@@ -95,13 +95,13 @@ const Header = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent 
                 align="end" 
-                className="bg-black/95 backdrop-blur-md border-gold-500/20 z-50"
+                className="w-14 bg-black/95 backdrop-blur-md border-gold-500/20 z-50"
               >
                 {languages.map((language) => (
                   <DropdownMenuItem
                     key={language.code}
                     onClick={() => handleLanguageChange(language.code)}
-                    className={`cursor-pointer text-white hover:bg-gold-500/20 hover:text-gold-400 ${
+                    className={`justify-center cursor-pointer text-white hover:bg-gold-500/20 hover:text-gold-400 ${
                       currentLanguage === language.code ? 'bg-gold-500/10 text-gold-400' : ''
                     }`}
                   >
