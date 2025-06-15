@@ -92,7 +92,7 @@ const Header = () => {
                 >
                   <Globe size={16} className="mr-2" />
                   <span className="mr-1">{getCurrentLanguage().flag}</span>
-                  {getCurrentLanguage().name}
+                  {getCurrentLanguage().code.toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent 
@@ -108,7 +108,7 @@ const Header = () => {
                     }`}
                   >
                     <span className="mr-2">{language.flag}</span>
-                    {language.name}
+                    {language.code.toUpperCase()}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -156,7 +156,7 @@ const Header = () => {
                   <Globe size={16} className="mr-2" />
                   Լեզու
                 </p>
-                <div className="grid grid-cols-1 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {languages.map((language) => (
                     <button
                       key={language.code}
@@ -164,14 +164,14 @@ const Header = () => {
                         handleLanguageChange(language.code);
                         setIsMenuOpen(false);
                       }}
-                      className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                      className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-lg text-center transition-colors ${
                         currentLanguage === language.code 
                           ? 'bg-gold-500/20 text-gold-400' 
                           : 'text-white hover:bg-gold-500/10 hover:text-gold-400'
                       }`}
                     >
                       <span className="text-lg">{language.flag}</span>
-                      <span className="text-sm font-medium">{language.name}</span>
+                      <span className="text-sm font-medium">{language.code.toUpperCase()}</span>
                     </button>
                   ))}
                 </div>
