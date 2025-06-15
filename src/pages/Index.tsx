@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import NetworkAnimation from '@/components/NetworkAnimation';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
 import { blogPosts as allBlogPosts } from '@/data/blog';
-
 const Index = () => {
   const services = [{
     icon: Calculator,
@@ -39,65 +38,56 @@ const Index = () => {
     label: 'Կատարված նախագծեր'
   }];
   const blogPosts = allBlogPosts.slice(0, 3);
-  return (
-    <div className="relative">
+  return <div className="relative">
       <NetworkAnimation />
-
+      
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center network-bg overflow-hidden">
-        {/* Thematic background image for hero */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1500&q=80"
-            alt="Accounting theme"
-            className="w-full h-full object-cover object-center opacity-50"
-            draggable={false}
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/70 to-black/80" />
-        </div>
-
-        {/* Glassmorphism text container */}
-        <div className="relative z-10 container mx-auto px-4 flex justify-center">
-          <div className="max-w-4xl w-full mx-auto animate-fade-in-up rounded-3xl bg-white/10 backdrop-blur-md border border-gold-200/40 shadow-2xl px-6 py-12 md:px-16 md:py-16 transition-all duration-300">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-md">
+        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80" />
+        
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto animate-fade-in-up">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               <span className="gradient-text">Amroyan</span>
               <br />
               <span className="text-white">Consulting</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed">
+            
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
               Պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ
               <br />
               ձեր բիզնեսի հաջողության համար
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-              <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 py-4 text-lg shadow-lg">
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 py-4 text-lg">
                 <Link to="/services">
                   Ծառայություններ <ArrowRight className="ml-2" size={20} />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-black px-8 py-4 text-lg border-2 shadow-lg">
+              
+              <Button asChild variant="outline" size="lg" className="border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-black px-8 py-4 text-lg">
                 <Link to="/contact">
                   Կապ մեզ հետ
                 </Link>
               </Button>
             </div>
+
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mt-6">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center bg-black/50 rounded-xl p-4 border border-gold-800/20">
-                  <div className="text-3xl md:text-4xl font-bold gradient-text drop-shadow mb-1">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+              {stats.map((stat, index) => <div key={index} className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-gray-200 text-xs md:text-base">
+                  <div className="text-gray-400 text-sm md:text-base">
                     {stat.label}
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-gold-400 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-gold-400 rounded-full mt-2 animate-pulse" />
           </div>
@@ -258,7 +248,6 @@ const Index = () => {
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
 export default Index;
