@@ -13,7 +13,6 @@ const LoadingPage = () => {
             alt="Amroyan Consulting Logo" 
             className="h-24 w-auto animate-logo-pulse"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-logo-light via-logo-medium to-logo-dark opacity-20 blur-xl animate-pulse" />
         </div>
         <div className="w-48 h-1 bg-gradient-to-r from-logo-dark/20 via-logo-medium/30 to-logo-dark/20 rounded-full overflow-hidden">
           <div className="h-full bg-gradient-to-r from-transparent via-logo-light to-transparent animate-loading-bar w-full"></div>
