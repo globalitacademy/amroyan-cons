@@ -3,24 +3,17 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '@/data/blog';
-
 const Blog = () => {
   const featuredPost = blogPosts.find(p => p.featured) || blogPosts[0];
   const otherPosts = blogPosts.filter(p => p.slug !== featuredPost.slug);
-
-  const categories = [
-    'Բոլորը',
-    ...Array.from(new Set(blogPosts.map(p => p.category)))
-  ];
-
-  return (
-    <div className="pt-20">
+  const categories = ['Բոլորը', ...Array.from(new Set(blogPosts.map(p => p.category)))];
+  return <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black network-bg">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-8">
-              <span className="gradient-text">Մեր բլոգը</span>
+              <span className="gradient-text">Նորություննե</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
               Օգտակար հոդվածներ, խորհուրդներ և վերլուծություններ 
@@ -93,18 +86,9 @@ const Blog = () => {
       <section className="py-8 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category, index) => (
-              <Button 
-                key={index}
-                variant={index === 0 ? "default" : "outline"}
-                className={index === 0 
-                  ? "bg-gradient-to-r from-gold-500 to-gold-600 text-black"
-                  : "border-gold-500/30 text-gray-300 hover:bg-gold-500/10 hover:text-gold-400"
-                }
-              >
+            {categories.map((category, index) => <Button key={index} variant={index === 0 ? "default" : "outline"} className={index === 0 ? "bg-gradient-to-r from-gold-500 to-gold-600 text-black" : "border-gold-500/30 text-gray-300 hover:bg-gold-500/10 hover:text-gold-400"}>
                 {category}
-              </Button>
-            ))}
+              </Button>)}
           </div>
         </div>
       </section>
@@ -113,14 +97,11 @@ const Blog = () => {
       <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {otherPosts.map((post) => (
-              <Card key={post.slug} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group flex flex-col">
+            {otherPosts.map(post => <Card key={post.slug} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group flex flex-col">
                 <CardHeader className="pb-4">
-                  {post.icon && (
-                    <div className="w-12 h-12 bg-gradient-to-br from-gold-500 to-gold-600 rounded-lg flex items-center justify-center mb-4 group-hover:animate-pulse">
+                  {post.icon && <div className="w-12 h-12 bg-gradient-to-br from-gold-500 to-gold-600 rounded-lg flex items-center justify-center mb-4 group-hover:animate-pulse">
                       <post.icon size={24} className="text-black" />
-                    </div>
-                  )}
+                    </div>}
                   
                   <div className="flex items-center space-x-3 mb-3">
                     <span className="bg-gold-500/20 text-gold-400 px-2 py-1 rounded text-xs">
@@ -160,8 +141,7 @@ const Blog = () => {
                     </Button>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -178,11 +158,7 @@ const Blog = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Ձեր էլ. հասցեն"
-                className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400"
-              />
+              <input type="email" placeholder="Ձեր էլ. հասցեն" className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400" />
               <Button className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold">
                 Բաժանորդագրվել
               </Button>
@@ -190,8 +166,6 @@ const Blog = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Blog;
