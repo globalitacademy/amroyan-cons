@@ -1,3 +1,4 @@
+
 import { Calculator, TrendingUp, Shield, FileText, Users, BarChart3, Clock, Award } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -67,7 +68,7 @@ const Services = () => {
       {/* Main Services */}
       <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-black to-gray-900 overflow-x-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
-          <div className="grid grid-cols-1 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-7xl mx-auto">
             {mainServices.map((service, index) => (
               <Card key={index} className="bg-gradient-to-br from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group overflow-hidden">
                 <CardHeader className="pb-3 sm:pb-4">
@@ -141,7 +142,7 @@ const Services = () => {
             Կապվեք մեզ հետ և ստացեք անվճար խորհրդատվություն ձեր բիզնեսի համար
           </p>
           
-          <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-6 sm:px-8 lg:px-12 py-3 sm:py-4 text-base sm:text-lg min-h-[48px] max-w-full break-words">
+          <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-4 sm:px-8 lg:px-12 py-3 sm:py-4 text-base sm:text-lg min-h-[48px] max-w-full break-words">
             <Link to="/contact">
               Ստանալ անվճար խորհրդատվություն
             </Link>
