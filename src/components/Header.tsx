@@ -90,9 +90,7 @@ const Header = () => {
                   size="sm"
                   className="text-white hover:text-gold-400 hover:bg-gold-500/10 border border-gold-500/30"
                 >
-                  <Globe size={16} className="mr-2" />
-                  <span className="mr-1">{getCurrentLanguage().flag}</span>
-                  {getCurrentLanguage().code.toUpperCase()}
+                  <span className="text-lg">{getCurrentLanguage().flag}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent 
@@ -107,8 +105,7 @@ const Header = () => {
                       currentLanguage === language.code ? 'bg-gold-500/10 text-gold-400' : ''
                     }`}
                   >
-                    <span className="mr-2">{language.flag}</span>
-                    {language.code.toUpperCase()}
+                    <span className="text-lg">{language.flag}</span>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -164,14 +161,13 @@ const Header = () => {
                         handleLanguageChange(language.code);
                         setIsMenuOpen(false);
                       }}
-                      className={`flex items-center justify-center space-x-2 px-3 py-2 rounded-lg text-center transition-colors ${
+                      className={`flex items-center justify-center px-3 py-2 rounded-lg text-center transition-colors ${
                         currentLanguage === language.code 
                           ? 'bg-gold-500/20 text-gold-400' 
                           : 'text-white hover:bg-gold-500/10 hover:text-gold-400'
                       }`}
                     >
-                      <span className="text-lg">{language.flag}</span>
-                      <span className="text-sm font-medium">{language.code.toUpperCase()}</span>
+                      <span className="text-xl">{language.flag}</span>
                     </button>
                   ))}
                 </div>
