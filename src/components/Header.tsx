@@ -1,12 +1,19 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('hy');
   const location = useLocation();
 
   useEffect(() => {
@@ -17,6 +24,12 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const languages = [
+    { code: 'hy', name: 'Հայերեն', flag: '🇦🇲' },
+    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+    { code: 'en', name: 'English', flag: '🇺🇸' },
+  ];
+
   const navigation = [
     { name: 'Գլխավոր', href: '/' },
     { name: 'Մեր մասին', href: '/about' },
@@ -25,6 +38,16 @@ const Header = () => {
     { name: 'Բլոգ', href: '/blog' },
     { name: 'Կապ', href: '/contact' },
   ];
+
+  const handleLanguageChange = (languageCode: string) => {
+    setCurrentLanguage(languageCode);
+    // TODO: Implement actual language switching logic
+    console.log('Language changed to:', languageCode);
+  };
+
+  const getCurrentLanguage = () => {
+    return languages.find(lang => lang.code === currentLanguage) || languages[0];
+  };
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -58,8 +81,39 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* Language Switcher & CTA Button */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  className="text-white hover:text-gold-400 hover:bg-gold-500/10 border border-gold-500/30"
+                >
+                  <Globe size={16} className="mr-2" />
+                  <span className="mr-1">{getCurrentLanguage().flag}</span>
+                  {getCurrentLanguage().name}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent 
+                align="end" 
+                className="bg-black/95 backdrop-blur-md border-gold-500/20 z-50"
+              >
+                {languages.map((language) => (
+                  <DropdownMenuItem
+                    key={language.code}
+                    onClick={() => handleLanguageChange(language.code)}
+                    className={`cursor-pointer text-white hover:bg-gold-500/20 hover:text-gold-400 ${
+                      currentLanguage === language.code ? 'bg-gold-500/10 text-gold-400' : ''
+                    }`}
+                  >
+                    <span className="mr-2">{language.flag}</span>
+                    {language.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Button 
               asChild 
               className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold"
@@ -95,6 +149,34 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Mobile Language Switcher */}
+              <div className="border-t border-gold-500/20 pt-4">
+                <p className="text-sm text-gray-400 mb-3 flex items-center">
+                  <Globe size={16} className="mr-2" />
+                  Լեզու
+                </p>
+                <div className="grid grid-cols-1 gap-2">
+                  {languages.map((language) => (
+                    <button
+                      key={language.code}
+                      onClick={() => {
+                        handleLanguageChange(language.code);
+                        setIsMenuOpen(false);
+                      }}
+                      className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                        currentLanguage === language.code 
+                          ? 'bg-gold-500/20 text-gold-400' 
+                          : 'text-white hover:bg-gold-500/10 hover:text-gold-400'
+                      }`}
+                    >
+                      <span className="text-lg">{language.flag}</span>
+                      <span className="text-sm font-medium">{language.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <Button 
                 asChild 
                 className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-4"
