@@ -229,20 +229,7 @@ const Index = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">Մնացեք տեղեկացված</span>
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Բաժանորդագրվեք մեր նյութերին և ստացեք անվճար խորհուրդներ ձեր բիզնեսի ֆինանսական կառավարման մասին
-            </p>
-            
-            <NewsletterSubscription className="max-w-lg mx-auto" />
-          </div>
-        </div>
-      </section>
+      
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900">
