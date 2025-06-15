@@ -1,3 +1,4 @@
+
 import { Calendar, User, ArrowRight, Clock } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -145,27 +146,6 @@ const Blog = () => {
                   </div>
                 </CardContent>
               </Card>)}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
-      <section className="py-20 bg-black">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">
-              <span className="gradient-text">Բաժանորդագրվեք մեր նորություններին</span>
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Ստացեք նոր հոդվածների մասին ծանուցումներ և օգտակար խորհուրդներ
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input type="email" placeholder="Ձեր էլ. հասցեն" className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400" />
-              <Button className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold">
-                Բաժանորդագրվել
-              </Button>
-            </div>
           </div>
         </div>
       </section>
