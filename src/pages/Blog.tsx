@@ -3,17 +3,20 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '@/data/blog';
+
 const Blog = () => {
   const featuredPost = blogPosts.find(p => p.featured) || blogPosts[0];
   const otherPosts = blogPosts.filter(p => p.slug !== featuredPost.slug);
   const categories = ['Բոլորը', ...Array.from(new Set(blogPosts.map(p => p.category)))];
-  return <div className="pt-20">
+
+  return (
+    <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black network-bg">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-8">
-              <span className="gradient-text">Նորություննե</span>
+              <span className="gradient-text">Նորություններ</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
               Օգտակար հոդվածներ, խորհուրդներ և վերլուծություններ 
@@ -166,6 +169,8 @@ const Blog = () => {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default Blog;
