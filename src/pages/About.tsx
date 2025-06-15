@@ -1,5 +1,4 @@
-
-import { Users, Target, Award, Clock } from 'lucide-react';
+import { Users, Target, Award, Clock, Mail, Linkedin, GraduationCap } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const About = () => {
@@ -32,6 +31,69 @@ const About = () => {
     { year: '2016', event: 'Ծառայությունների ընդլայնում' },
     { year: '2020', event: 'Թվային տրանսֆորմացիա' },
     { year: '2024', event: '500+ բավարարված հաճախորդ' }
+  ];
+
+  const teamMembers = [
+    {
+      name: 'Արամ Ամրոյան',
+      position: 'Գլխավոր գործադիր տնօրեն',
+      experience: '15+ տարի',
+      education: 'Տնտեսագիտության մագիստրոս',
+      specialization: 'Ֆինանսական կառավարում, ռազմավարական պլանավորում',
+      achievements: ['CPA վավերականություն', 'ACCA անդամություն', '500+ հաջող նախագիծ'],
+      email: 'aram@amroyan.am',
+      linkedin: '#'
+    },
+    {
+      name: 'Մարիամ Գարեգինյան',
+      position: 'Ավագ հաշվապահ',
+      experience: '12+ տարի',
+      education: 'Հաշվապահության մագիստրոս',
+      specialization: 'Հարկային պլանավորում, ֆինանսական հաշվետվություն',
+      achievements: ['Վավերացված հաշվապահ', 'Հարկային խորհրդատու', '300+ հաճախորդ'],
+      email: 'mariam@amroyan.am',
+      linkedin: '#'
+    },
+    {
+      name: 'Դավիթ Մելքումյան',
+      position: 'Ֆինանսական վերլուծաբան',
+      experience: '8+ տարի',
+      education: 'Ֆինանսների մագիստրոս',
+      specialization: 'Ֆինանսական մոդելավորում, ինվեստիցիոն վերլուծություն',
+      achievements: ['CFA վավերականություն', 'Ֆինանսական մոդելավորման մասնագետ', '200+ նախագիծ'],
+      email: 'davit@amroyan.am',
+      linkedin: '#'
+    },
+    {
+      name: 'Լուսինե Ավետիսյան',
+      position: 'Աուդիտի ղեկավար',
+      experience: '10+ տարի',
+      education: 'Աուդիտի մագիստրոս',
+      specialization: 'Ներքին աուդիտ, ռիսկերի կառավարում',
+      achievements: ['CIA վավերականություն', 'Ռիսկերի կառավարման մասնագետ', '150+ աուդիտ'],
+      email: 'lusine@amroyan.am',
+      linkedin: '#'
+    },
+    {
+      name: 'Գագիկ Պողոսյան',
+      position: 'Բիզնես խորհրդատու',
+      experience: '14+ տարի',
+      education: 'MBA գիտական աստիճան',
+      specialization: 'Բիզնես ռազմավարություն, կազմակերպական զարգացում',
+      achievements: ['MBA Harvard', 'Մանաջմենտի խորհրդատու', '100+ ընկերություն'],
+      email: 'gagik@amroyan.am',
+      linkedin: '#'
+    },
+    {
+      name: 'Աննա Սարգսյան',
+      position: 'Հարկային խորհրդատու',
+      experience: '9+ տարի',
+      education: 'Իրավագիտության մագիստրոս',
+      specialization: 'Հարկային իրավունք, միջազգային հարկումաշառություն',
+      achievements: ['Հարկային իրավունքի մասնագետ', 'Միջազգային հարկումամ խորհրդատու', '250+ գործ'],
+      email: 'anna@amroyan.am',
+      linkedin: '#'
+    }
   ];
 
   return (
@@ -157,6 +219,82 @@ const About = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6">
+              <span className="gradient-text">Մեր թիմը</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Հանդիպեք մեր փորձառու մասնագետներին, ովքեր կօգնեն ձեր բիզնեսին հասնել նոր բարձունքների։
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group flex flex-col">
+                <CardContent className="p-8 flex flex-col flex-grow">
+                  <div className="w-24 h-24 bg-gradient-to-br from-gold-500 to-gold-600 rounded-full mx-auto mb-6 flex items-center justify-center text-2xl font-bold text-black flex-shrink-0">
+                    {member.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+
+                  <div className="text-center mb-6">
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      {member.name}
+                    </h3>
+                    <p className="text-gold-400 font-medium mb-2">
+                      {member.position}
+                    </p>
+                    <p className="text-gray-400 text-sm">
+                      {member.experience}
+                    </p>
+                  </div>
+
+                  <div className="space-y-4 text-sm flex-grow">
+                    <div className="flex items-start space-x-3">
+                      <GraduationCap size={16} className="text-gold-400 mt-1 flex-shrink-0" />
+                      <span className="text-gray-300">{member.education}</span>
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <Award size={16} className="text-gold-400 mt-1 flex-shrink-0" />
+                      <span className="text-gray-300">{member.specialization}</span>
+                    </div>
+
+                    <div>
+                      <h4 className="text-white font-medium mb-2">Նվաճումներ:</h4>
+                      <ul className="space-y-1">
+                        {member.achievements.map((achievement, idx) => (
+                          <li key={idx} className="flex items-start space-x-2">
+                            <div className="w-1.5 h-1.5 bg-gold-400 rounded-full mt-2 flex-shrink-0" />
+                            <span className="text-gray-400 text-xs">{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center space-x-4 mt-6 pt-6 border-t border-gray-800">
+                    <a 
+                      href={`mailto:${member.email}`}
+                      className="text-gray-400 hover:text-gold-400 transition-colors"
+                    >
+                      <Mail size={20} />
+                    </a>
+                    <a 
+                      href={member.linkedin}
+                      className="text-gray-400 hover:text-gold-400 transition-colors"
+                    >
+                      <Linkedin size={20} />
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
