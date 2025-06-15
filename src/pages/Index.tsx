@@ -1,4 +1,3 @@
-
 import { ArrowRight, Calculator, TrendingUp, Shield, Users, Award, CheckCircle, Calendar, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,7 +5,6 @@ import { Link } from 'react-router-dom';
 import NetworkAnimation from '@/components/NetworkAnimation';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
 import { blogPosts as allBlogPosts } from '@/data/blog';
-
 const Index = () => {
   const services = [{
     icon: Calculator,
@@ -25,9 +23,7 @@ const Index = () => {
     title: 'Խորհրդատվություն',
     description: 'Բիզնես խորհրդատվություն և ռազմավարական պլանավորում'
   }];
-
   const features = ['Փորձառու մասնագետների թիմ', '24/7 սպասարկում', 'Անվտանգ և գաղտնի', 'Ժամանակակից տեխնոլոգիաներ'];
-
   const stats = [{
     number: '500+',
     label: 'Գործընկերներ'
@@ -41,11 +37,8 @@ const Index = () => {
     number: '1000+',
     label: 'Կատարված նախագծեր'
   }];
-
   const blogPosts = allBlogPosts.slice(0, 3);
-
-  return (
-    <div className="relative">
+  return <div className="relative">
       <NetworkAnimation />
       
       {/* Hero Section */}
@@ -82,16 +75,14 @@ const Index = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-4xl mx-auto px-4">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
+              {stats.map((stat, index) => <div key={index} className="text-center">
                   <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">
                     {stat.number}
                   </div>
                   <div className="text-gray-400 text-xs sm:text-sm lg:text-base">
                     {stat.label}
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -108,7 +99,7 @@ const Index = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
-              <span className="gradient-text">Մեր ծառայությունները</span>
+              <span className="gradient-text">Ծառայություններ</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
               Ամբողջական լուծումներ ձեր բիզնեսի ֆինանսական կարիքների համար
@@ -116,8 +107,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
+            {services.map((service, index) => <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
                 <CardContent className="p-6 sm:p-8 text-center">
                   <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:animate-pulse">
                     <service.icon size={24} className="text-black sm:w-8 sm:h-8" />
@@ -129,8 +119,7 @@ const Index = () => {
                     {service.description}
                   </p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -146,12 +135,10 @@ const Index = () => {
                 </h2>
                 
                 <div className="space-y-3 sm:space-y-4">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-3 sm:space-x-4">
+                  {features.map((feature, index) => <div key={index} className="flex items-center space-x-3 sm:space-x-4">
                       <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
                       <span className="text-base sm:text-lg text-gray-300">{feature}</span>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
 
                 <Button asChild className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-6 sm:mt-8 min-h-[44px] w-full sm:w-auto">
@@ -195,8 +182,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
-            {blogPosts.map(post => (
-              <Card key={post.slug} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group flex flex-col">
+            {blogPosts.map(post => <Card key={post.slug} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group flex flex-col">
                 <CardContent className="p-4 sm:p-6 flex flex-col flex-grow">
                   <div className="mb-3 sm:mb-4">
                     <span className="bg-gold-500/20 text-gold-400 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
@@ -229,8 +215,7 @@ const Index = () => {
                     </Link>
                   </Button>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
 
           <div className="text-center">
@@ -260,8 +245,6 @@ const Index = () => {
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
