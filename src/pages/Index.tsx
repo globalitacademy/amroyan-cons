@@ -2,7 +2,6 @@ import { ArrowRight, Calculator, TrendingUp, Shield, Users, Award, CheckCircle, 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import NetworkAnimation from '@/components/NetworkAnimation';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
 import { blogPosts as allBlogPosts } from '@/data/blog';
 const Index = () => {
@@ -39,10 +38,14 @@ const Index = () => {
   }];
   const blogPosts = allBlogPosts.slice(0, 3);
   return <div className="relative">
-      <NetworkAnimation />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center network-bg overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1554224155-16954435154a?q=80&w=2070&auto=format&fit=crop" 
+          alt="Financial consulting background" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80" />
         
         <div className="relative z-10 container mx-auto px-4 text-center">
