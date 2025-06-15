@@ -1,4 +1,5 @@
 
+import { useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,10 +15,26 @@ import Blog from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPostPage";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import LoadingPage from "./components/LoadingPage";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500); // Simulate loading for 2.5 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <LoadingPage />;
+  }
+  
+  return (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -40,6 +57,6 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
+)};
 
 export default App;
