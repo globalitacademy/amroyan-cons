@@ -21,7 +21,10 @@ const ArticleContent = ({ htmlContent }: { htmlContent: string }) => {
         .replace(/<h3>/g, `<h3 style="font-size: 1.5rem; font-weight: bold; color: #fbbf24; margin-top: 1.6em; margin-bottom: 0.8em;">`)
         .replace(/<p>/g, `<p style="margin-bottom: 1.25em; line-height: 1.75;">`)
         .replace(/<ul>/g, `<ul style="list-style-type: disc; padding-left: 1.5em; margin-bottom: 1.25em; line-height: 1.75;">`)
-        .replace(/<a /g, `<a style="color: #f59e0b; text-decoration: underline;" `);
+        .replace(/<li>/g, `<li style="margin-bottom: 0.5em;">`)
+        .replace(/<a /g, `<a style="color: #f59e0b; text-decoration: underline;" `)
+        .replace(/<img/g, '<img style="width: 100%; height: auto; border-radius: 0.5rem; margin-top: 2em; margin-bottom: 2em;"')
+        .replace(/<iframe/g, '<iframe style="width: 100%; aspect-ratio: 16 / 9; border-radius: 0.5rem; margin-top: 2em; margin-bottom: 2em;"');
 
     return <div dangerouslySetInnerHTML={{ __html: styledHtml }} />;
 };
