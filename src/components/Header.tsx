@@ -53,19 +53,19 @@ const Header = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-black/95 backdrop-blur-md border-b border-gold-500/20' : 'bg-transparent'
     }`}>
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
             <img 
               src="/lovable-uploads/5180109d-84d2-4fc9-aad0-bd08a847311d.png" 
               alt="Amroyan Consulting" 
-              className="h-12 w-auto"
+              className="h-8 sm:h-10 lg:h-12 w-auto"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -88,7 +88,7 @@ const Header = () => {
                 <Button 
                   variant="ghost" 
                   size="sm"
-                  className="text-white hover:text-gold-400 hover:bg-gold-500/10 border border-gold-500/30"
+                  className="text-white hover:text-gold-400 hover:bg-gold-500/10 border border-gold-500/30 min-w-[44px] min-h-[44px]"
                 >
                   <span className="text-lg">{getCurrentLanguage().flag}</span>
                 </Button>
@@ -101,7 +101,7 @@ const Header = () => {
                   <DropdownMenuItem
                     key={language.code}
                     onClick={() => handleLanguageChange(language.code)}
-                    className={`justify-center cursor-pointer text-white hover:bg-gold-500/20 hover:text-gold-400 ${
+                    className={`justify-center cursor-pointer text-white hover:bg-gold-500/20 hover:text-gold-400 min-h-[44px] ${
                       currentLanguage === language.code ? 'bg-gold-500/10 text-gold-400' : ''
                     }`}
                   >
@@ -113,7 +113,7 @@ const Header = () => {
 
             <Button 
               asChild 
-              className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold"
+              className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold min-h-[44px] px-4 lg:px-6"
             >
               <Link to="/contact">Կապ մեզ հետ</Link>
             </Button>
@@ -122,7 +122,7 @@ const Header = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 text-white hover:text-gold-400 transition-colors"
+            className="lg:hidden p-2 text-white hover:text-gold-400 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -131,15 +131,15 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gold-500/20 bg-black/95 backdrop-blur-md">
-            <nav className="flex flex-col space-y-4 px-4 py-6">
+            <nav className="flex flex-col space-y-1 px-4 py-6">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`text-base font-medium transition-colors hover:text-gold-400 ${
+                  className={`text-base font-medium transition-colors hover:text-gold-400 py-3 px-2 rounded-lg min-h-[44px] flex items-center ${
                     location.pathname === item.href 
-                      ? 'text-gold-400' 
+                      ? 'text-gold-400 bg-gold-500/10' 
                       : 'text-white'
                   }`}
                 >
@@ -148,8 +148,8 @@ const Header = () => {
               ))}
               
               {/* Mobile Language Switcher */}
-              <div className="border-t border-gold-500/20 pt-4">
-                <p className="text-sm text-gray-400 mb-3 flex items-center">
+              <div className="border-t border-gold-500/20 pt-4 mt-4">
+                <p className="text-sm text-gray-400 mb-3 flex items-center px-2">
                   <Globe size={16} className="mr-2" />
                   Լեզու
                 </p>
@@ -161,7 +161,7 @@ const Header = () => {
                         handleLanguageChange(language.code);
                         setIsMenuOpen(false);
                       }}
-                      className={`flex items-center justify-center px-3 py-2 rounded-lg text-center transition-colors ${
+                      className={`flex items-center justify-center px-3 py-3 rounded-lg text-center transition-colors min-h-[44px] ${
                         currentLanguage === language.code 
                           ? 'bg-gold-500/20 text-gold-400' 
                           : 'text-white hover:bg-gold-500/10 hover:text-gold-400'
@@ -175,7 +175,7 @@ const Header = () => {
 
               <Button 
                 asChild 
-                className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-4"
+                className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-4 min-h-[44px] w-full"
               >
                 <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
                   Կապ մեզ հետ
