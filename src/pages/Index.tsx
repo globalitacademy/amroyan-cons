@@ -231,7 +231,7 @@ const Index = () => {
       <section className="py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="gradient-text">Պատրա՞ստ եք սկսելու</span>
+            <span className="gradient-text">Պատրա՞ստ եք սկսել</span>
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             Կապվեք մեզ հետ և ստացեք անվճար խորհրդատվություն ձեր բիզնեսի համար
