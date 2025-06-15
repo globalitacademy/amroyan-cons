@@ -4,49 +4,40 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import NetworkAnimation from '@/components/NetworkAnimation';
 import { blogPosts as allBlogPosts } from '@/data/blog';
-
 const Index = () => {
-  const services = [
-    {
-      icon: Calculator,
-      title: 'Հաշվապահություն',
-      description: 'Լիարժեք հաշվապահական ծառայություններ ձեր բիզնեսի համար',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Ֆինանսական վերլուծություն',
-      description: 'Մանրամասն ֆինանսական հաշվետվություններ և վերլուծություններ',
-    },
-    {
-      icon: Shield,
-      title: 'Հարկային խորհրդատվություն',
-      description: 'Պրոֆեսիոնալ հարկային պլանավորում և օպտիմալացում',
-    },
-    {
-      icon: Users,
-      title: 'Խորհրդատվություն',
-      description: 'Բիզնես խորհրդատվություն և ռազմավարական պլանավորում',
-    },
-  ];
-
-  const features = [
-    'Փորձառու մասնագետների թիմ',
-    '24/7 սպասարկում',
-    'Անվտանգ և գաղտնի',
-    'Ժամանակակից տեխնոլոգիաներ',
-  ];
-
-  const stats = [
-    { number: '500+', label: 'Գործընկերներ' },
-    { number: '15+', label: 'Տարիների փորձ' },
-    { number: '98%', label: 'Բավարարված հաճախորդներ' },
-    { number: '1000+', label: 'Կատարված նախագծեր' },
-  ];
-
+  const services = [{
+    icon: Calculator,
+    title: 'Հաշվապահություն',
+    description: 'Լիարժեք հաշվապահական ծառայություններ ձեր բիզնեսի համար'
+  }, {
+    icon: TrendingUp,
+    title: 'Ֆինանսական վերլուծություն',
+    description: 'Մանրամասն ֆինանսական հաշվետվություններ և վերլուծություններ'
+  }, {
+    icon: Shield,
+    title: 'Հարկային խորհրդատվություն',
+    description: 'Պրոֆեսիոնալ հարկային պլանավորում և օպտիմալացում'
+  }, {
+    icon: Users,
+    title: 'Խորհրդատվություն',
+    description: 'Բիզնես խորհրդատվություն և ռազմավարական պլանավորում'
+  }];
+  const features = ['Փորձառու մասնագետների թիմ', '24/7 սպասարկում', 'Անվտանգ և գաղտնի', 'Ժամանակակից տեխնոլոգիաներ'];
+  const stats = [{
+    number: '500+',
+    label: 'Գործընկերներ'
+  }, {
+    number: '15+',
+    label: 'Տարիների փորձ'
+  }, {
+    number: '98%',
+    label: 'Բավարարված հաճախորդներ'
+  }, {
+    number: '1000+',
+    label: 'Կատարված նախագծեր'
+  }];
   const blogPosts = allBlogPosts.slice(0, 3);
-
-  return (
-    <div className="relative">
+  return <div className="relative">
       <NetworkAnimation />
       
       {/* Hero Section */}
@@ -68,22 +59,13 @@ const Index = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 py-4 text-lg"
-              >
+              <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 py-4 text-lg">
                 <Link to="/services">
                   Ծառայություններ <ArrowRight className="ml-2" size={20} />
                 </Link>
               </Button>
               
-              <Button 
-                asChild 
-                variant="outline" 
-                size="lg" 
-                className="border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-black px-8 py-4 text-lg"
-              >
+              <Button asChild variant="outline" size="lg" className="border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-black px-8 py-4 text-lg">
                 <Link to="/contact">
                   Կապ մեզ հետ
                 </Link>
@@ -92,16 +74,14 @@ const Index = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
+              {stats.map((stat, index) => <div key={index} className="text-center">
                   <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
                     {stat.number}
                   </div>
                   <div className="text-gray-400 text-sm md:text-base">
                     {stat.label}
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -126,8 +106,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
+            {services.map((service, index) => <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-pulse">
                     <service.icon size={32} className="text-black" />
@@ -139,8 +118,7 @@ const Index = () => {
                     {service.description}
                   </p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -156,18 +134,13 @@ const Index = () => {
                 </h2>
                 
                 <div className="space-y-4">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-4">
+                  {features.map((feature, index) => <div key={index} className="flex items-center space-x-4">
                       <CheckCircle className="text-gold-400 flex-shrink-0" size={24} />
                       <span className="text-lg text-gray-300">{feature}</span>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
 
-                <Button 
-                  asChild 
-                  className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-8"
-                >
+                <Button asChild className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-8">
                   <Link to="/about">
                     Մեր մասին <ArrowRight className="ml-2" size={16} />
                   </Link>
@@ -200,7 +173,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">Մեր բլոգ</span>
+              <span className="gradient-text">Նորություններ</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Օգտակար հոդվածներ և խորհուրդներ ֆինանսական և հաշվապահական ոլորտներից
@@ -208,8 +181,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {blogPosts.map((post) => (
-              <Card key={post.slug} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group flex flex-col">
+            {blogPosts.map(post => <Card key={post.slug} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group flex flex-col">
                 <CardContent className="p-6 flex flex-col flex-grow">
                   <div className="mb-4">
                     <span className="bg-gold-500/20 text-gold-400 px-3 py-1 rounded-full text-sm">
@@ -242,15 +214,11 @@ const Index = () => {
                     </Link>
                   </Button>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
 
           <div className="text-center">
-            <Button 
-              asChild 
-              className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold"
-            >
+            <Button asChild className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold">
               <Link to="/blog">
                 Տեսնել բոլորը <ArrowRight className="ml-2" size={16} />
               </Link>
@@ -269,19 +237,13 @@ const Index = () => {
             Կապվեք մեզ հետ և ստացեք անվճար խորհրդատվություն ձեր բիզնեսի համար
           </p>
           
-          <Button 
-            asChild 
-            size="lg" 
-            className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-12 py-4 text-lg"
-          >
+          <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-12 py-4 text-lg">
             <Link to="/contact">
               Անվճար խորհրդատվություն <ArrowRight className="ml-2" size={20} />
             </Link>
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
