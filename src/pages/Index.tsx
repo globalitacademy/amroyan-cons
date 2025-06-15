@@ -47,46 +47,58 @@ const Index = () => {
         
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto animate-fade-in-up">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              <span className="gradient-text">Amroyan</span>
-              <br />
-              <span className="text-white">Consulting</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-              Պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ
-              <br />
-              ձեր բիզնեսի հաջողության համար
-            </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 py-4 text-lg">
-                <Link to="/services">
-                  Ծառայություններ <ArrowRight className="ml-2" size={20} />
-                </Link>
-              </Button>
-              
-              <Button asChild variant="outline" size="lg" className="border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-black px-8 py-4 text-lg">
-                <Link to="/contact">
-                  Կապ մեզ հետ
-                </Link>
-              </Button>
-            </div>
+            {/* Նոր Դիզայն Hero */}
+            <div className="flex flex-col items-center gap-8">
+              {/* Title */}
+              <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight gradient-text drop-shadow-xl">
+                Amroyan <span className="block text-white">Consulting</span>
+              </h1>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-              {stats.map((stat, index) => <div key={index} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                    {stat.number}
+              {/* Subtitle Card */}
+              <div className="w-full max-w-2xl mx-auto">
+                <div className="bg-gradient-to-r from-gray-900/90 to-black/80 rounded-xl shadow-2xl p-8 border border-gold-500/30 flex flex-col items-center">
+                  <p className="text-2xl md:text-3xl text-gray-200 leading-relaxed font-medium mb-2">
+                    Պրոֆեսիոնալ հաշվապահական<br />
+                    և ֆինանսական ծառայություններ
+                  </p>
+                  <p className="text-lg text-gold-400 mt-2">
+                    Ձեր բիզնեսի հաջողության համար
+                  </p>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-700 hover:from-gold-600 hover:to-gold-800 text-black font-bold px-10 py-4 text-xl shadow-lg transition-all duration-100 hover:scale-105">
+                  <Link to="/services">
+                    Ծառայություններ <ArrowRight className="ml-2" size={22} />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="border-gold-400 text-gold-400 hover:bg-gold-500 hover:text-black px-10 py-4 text-xl font-semibold shadow-lg transition-all duration-100 hover:scale-105">
+                  <Link to="/contact">
+                    Կապ մեզ հետ
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 w-full max-w-3xl">
+                {stats.map((stat, index) => (
+                  <div key={index} className="flex flex-col rounded-xl bg-gradient-to-br from-gray-900/80 to-black/80 border border-gold-500/10 p-5 items-center shadow-xl hover:shadow-2xl transition-shadow duration-200">
+                    <div className="text-4xl md:text-5xl font-extrabold gradient-text mb-1">
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-400 text-base md:text-lg font-medium text-center">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-gray-400 text-sm md:text-base">
-                    {stat.label}
-                  </div>
-                </div>)}
+                ))}
+              </div>
             </div>
+            {/* /Նոր Դիզայն Hero */}
           </div>
         </div>
-
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-gold-400 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-gold-400 rounded-full mt-2 animate-pulse" />
