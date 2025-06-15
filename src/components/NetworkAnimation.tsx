@@ -25,7 +25,16 @@ const NetworkAnimation = () => {
       vx: number;
       vy: number;
       radius: number;
+      colorIndex: number;
     }> = [];
+
+    // Logo colors for variety
+    const logoColors = [
+      'rgba(210, 185, 153, 0.3)', // #D2B999 - medium
+      'rgba(195, 162, 119, 0.25)', // #C3A277 - medium-dark
+      'rgba(162, 118, 67, 0.2)', // #A27643 - dark
+      'rgba(134, 97, 56, 0.15)' // #866138 - darkest
+    ];
 
     // Create nodes
     for (let i = 0; i < 50; i++) {
@@ -35,6 +44,7 @@ const NetworkAnimation = () => {
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         radius: Math.random() * 2 + 1,
+        colorIndex: Math.floor(Math.random() * logoColors.length),
       });
     }
 
@@ -53,7 +63,7 @@ const NetworkAnimation = () => {
         // Draw node
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(251, 191, 36, 0.6)';
+        ctx.fillStyle = logoColors[node.colorIndex];
         ctx.fill();
 
         // Draw connections
@@ -67,7 +77,7 @@ const NetworkAnimation = () => {
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(251, 191, 36, ${opacity * 0.3})`;
+            ctx.strokeStyle = `rgba(210, 185, 153, ${opacity * 0.15})`;
             ctx.stroke();
           }
         }
