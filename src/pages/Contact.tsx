@@ -1,10 +1,12 @@
 
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -41,20 +43,7 @@ const Contact = () => {
     }
   ];
 
-  const services = [
-    'Հարկային, ֆինանսական և կադրային խորհրդատվություն',
-    'Հաշվապահական հաշվառման վարում',
-    'Հաշվապահական քաղաքականության մշակում',
-    'Ընթացիկ գործունեությանն առնչվող գործառույթներ',
-    'Հարկային և վիճակագրական հաշվետվություններ',
-    'Խմբային և անհատական հաշվապահական դասընթացներ',
-    'Ֆինանսական հաշվետվություններ',
-    'Ֆինանսական վերլուծություններ',
-    'Բիզնես-պլանների կազմում',
-    'Կադրային հաշվապահության վարում',
-    'Հարկային և տեսչական ստուգումների պաշտպանություն',
-    'Այլ'
-  ];
+  const services = (t('services.list') as any[]).map(service => service.title);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -76,10 +65,10 @@ const Contact = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8">
-              <span className="gradient-text">Կապ մեզ հետ</span>
+              <span className="gradient-text">{t('contact.title')}</span>
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed px-4">
-              Պատրա՞ստ եք սկսելու: Կապվեք մեզ հետ և ստացեք անվճար խորհրդատվություն
+              {t('contact.subtitle')}
             </p>
           </div>
         </div>
@@ -117,10 +106,10 @@ const Contact = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">
-                <span className="gradient-text">Ուղարկեք մեզ հաղորդագրություն</span>
+                <span className="gradient-text">{t('contact.form.title')}</span>
               </h2>
               <p className="text-lg sm:text-xl text-gray-300 px-4">
-                Լրացրեք ձևը և մեր մասնագետները կկապվեն ձեզ հետ
+                {t('contact.form.subtitle')}
               </p>
             </div>
 
@@ -130,7 +119,7 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label className="block text-white font-medium mb-2 text-sm sm:text-base">
-                        Անուն Ազգանուն *
+                        {t('contact.form.name')} {t('contact.form.required')}
                       </label>
                       <input
                         type="text"
@@ -139,13 +128,13 @@ const Contact = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 transition-colors text-sm sm:text-base min-h-[48px]"
-                        placeholder="Ձեր անունը"
+                        placeholder={t('contact.form.placeholders.name')}
                       />
                     </div>
 
                     <div>
                       <label className="block text-white font-medium mb-2 text-sm sm:text-base">
-                        Էլ. հասցե *
+                        {t('contact.form.email')} {t('contact.form.required')}
                       </label>
                       <input
                         type="email"
@@ -154,13 +143,13 @@ const Contact = () => {
                         onChange={handleInputChange}
                         required
                         className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 transition-colors text-sm sm:text-base min-h-[48px]"
-                        placeholder="your@email.com"
+                        placeholder={t('contact.form.placeholders.email')}
                       />
                     </div>
 
                     <div>
                       <label className="block text-white font-medium mb-2 text-sm sm:text-base">
-                        Ընկերություն
+                        {t('contact.form.company')}
                       </label>
                       <input
                         type="text"
@@ -168,13 +157,13 @@ const Contact = () => {
                         value={formData.company}
                         onChange={handleInputChange}
                         className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 transition-colors text-sm sm:text-base min-h-[48px]"
-                        placeholder="Ձեր ընկերությունը"
+                        placeholder={t('contact.form.placeholders.company')}
                       />
                     </div>
 
                     <div>
                       <label className="block text-white font-medium mb-2 text-sm sm:text-base">
-                        Հեռախոս
+                        {t('contact.form.phone')}
                       </label>
                       <input
                         type="tel"
@@ -182,14 +171,14 @@ const Contact = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 transition-colors text-sm sm:text-base min-h-[48px]"
-                        placeholder="+374 XX XXX XXX"
+                        placeholder={t('contact.form.placeholders.phone')}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-white font-medium mb-2 text-sm sm:text-base">
-                      Ծառայություն
+                      {t('contact.form.service')}
                     </label>
                     <select
                       name="service"
@@ -197,7 +186,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-gold-400 transition-colors text-sm sm:text-base min-h-[48px]"
                     >
-                      <option value="">Ընտրեք ծառայությունը</option>
+                      <option value="">{t('contact.form.selectService')}</option>
                       {services.map((service, index) => (
                         <option key={index} value={service}>
                           {service}
@@ -208,7 +197,7 @@ const Contact = () => {
 
                   <div>
                     <label className="block text-white font-medium mb-2 text-sm sm:text-base">
-                      Հաղորդագրություն *
+                      {t('contact.form.message')} {t('contact.form.required')}
                     </label>
                     <textarea
                       name="message"
@@ -217,7 +206,7 @@ const Contact = () => {
                       required
                       rows={5}
                       className="w-full px-3 sm:px-4 py-3 sm:py-4 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-gold-400 transition-colors resize-none text-sm sm:text-base"
-                      placeholder="Նկարագրեք ձեր կարիքները..."
+                      placeholder={t('contact.form.placeholders.message')}
                     />
                   </div>
 
@@ -227,7 +216,7 @@ const Contact = () => {
                       size="lg"
                       className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg min-h-[48px] w-full sm:w-auto"
                     >
-                      Ուղարկել հաղորդագրությունը <Send size={18} className="ml-2 sm:w-5 sm:h-5" />
+                      {t('contact.form.submit')} <Send size={18} className="ml-2 sm:w-5 sm:h-5" />
                     </Button>
                   </div>
                 </form>

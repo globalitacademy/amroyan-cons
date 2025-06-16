@@ -1,41 +1,15 @@
 
-import { Calculator, TrendingUp, Shield, FileText, Users, BarChart3, Clock, Award } from 'lucide-react';
+import { Calculator, TrendingUp, Shield, FileText, Users, BarChart3, Clock, Award, BookOpen, Briefcase } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Services = () => {
-  const mainServices = [{
-    icon: Calculator,
-    title: 'Հաշվապահություն',
-    description: 'Լիարժեք հաշվապահական ծառայություններ ձեր բիզնեսի համար',
-    features: ['Ամենօրյա հաշվապահական գրանցումներ', 'Ֆինանսական հաշվետվությունների կազմում', 'Հարկային հաշվետվությունների նախապատրաստում', 'Գանձապահական գործառնություններ']
-  }, {
-    icon: TrendingUp,
-    title: 'Ֆինանսական վերլուծություն',
-    description: 'Մանրամասն ֆինանսական հաշվետվություններ և վերլուծություններ',
-    features: ['Շահույթի և վնասի վերլուծություն', 'Կանխատեսային բյուջետավորում', 'Ֆինանսական ցուցանիշների գնահատում', 'Ինվեստիցիոն նախագծերի գնահատում']
-  }, {
-    icon: Shield,
-    title: 'Հարկային խորհրդատվություն',
-    description: 'Պրոֆեսիոնալ հարկային պլանավորում և օպտիմալացում',
-    features: ['Հարկային պլանավորում', 'Հարկային օպտիմալացում', 'Հարկային ռիսկերի գնահատում', 'Հարկային վեճերի լուծում']
-  }, {
-    icon: FileText,
-    title: 'Աուդիտ ծառայություններ',
-    description: 'Անկախ աուդիտ և ֆինանսական վերլուծություն',
-    features: ['Ֆինանսական աուդիտ', 'Գործառնական աուդիտ', 'Համապատասխանության աուդիտ', 'Ռիսկերի գնահատում']
-  }, {
-    icon: Users,
-    title: 'Բիզնես խորհրդատվություն',
-    description: 'Ռազմավարական խորհրդատվություն և բիզնես պլանավորում',
-    features: ['Բիզնես ռազմավարության մշակում', 'Շուկայական հետազոտություն', 'Կազմակերպական կառուցվածքի օպտիմալացում', 'Գործընթացների բարելավում']
-  }, {
-    icon: BarChart3,
-    title: 'Կառավարչական հաշվապահություն',
-    description: 'Ներքին հաշվետվություններ և վերլուծություններ',
-    features: ['Ծախսերի հաշվարկ', 'Բյուջետավորում և կանխատեսում', 'Կատարողականի գնահատում', 'Ռենտաբելության վերլուծություն']
-  }];
+  const { t } = useLanguage();
+
+  const serviceIcons = [TrendingUp, Calculator, FileText, Briefcase, BarChart3, BookOpen, Shield, Users];
+
   const benefits = [{
     icon: Clock,
     title: 'Ժամանակի խնայողություն',
@@ -49,6 +23,9 @@ const Services = () => {
     title: 'Անվտանգություն',
     description: 'Ձեր տվյալները լիովին պաշտպանված են'
   }];
+
+  const services = t('services.list') as any[];
+
   return (
     <div className="pt-20 overflow-x-hidden max-w-full">
       {/* Hero Section */}
@@ -56,10 +33,10 @@ const Services = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8">
-              <span className="gradient-text">Մեր ծառայությունները</span>
+              <span className="gradient-text">{t('services.title')}</span>
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed px-4">
-              Ամբողջական ֆինանսական լուծումներ ձեր բիզնեսի աճի և զարգացման համար
+              {t('services.subtitle')}
             </p>
           </div>
         </div>
@@ -69,33 +46,36 @@ const Services = () => {
       <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-black to-gray-900 overflow-x-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-7xl mx-auto">
-            {mainServices.map((service, index) => (
-              <Card key={index} className="bg-gradient-to-br from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group overflow-hidden">
-                <CardHeader className="pb-3 sm:pb-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gold-500 to-gold-600 rounded-lg flex items-center justify-center group-hover:animate-pulse mx-auto sm:mx-0 flex-shrink-0">
-                      <service.icon size={24} className="text-black sm:w-7 sm:h-7" />
+            {services.map((service, index) => {
+              const IconComponent = serviceIcons[index];
+              return (
+                <Card key={index} className="bg-gradient-to-br from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group overflow-hidden">
+                  <CardHeader className="pb-3 sm:pb-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gold-500 to-gold-600 rounded-lg flex items-center justify-center group-hover:animate-pulse mx-auto sm:mx-0 flex-shrink-0">
+                        <IconComponent size={24} className="text-black sm:w-7 sm:h-7" />
+                      </div>
+                      <CardTitle className="text-xl sm:text-2xl text-white text-center sm:text-left break-words">
+                        {service.title}
+                      </CardTitle>
                     </div>
-                    <CardTitle className="text-xl sm:text-2xl text-white text-center sm:text-left break-words">
-                      {service.title}
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="px-4 sm:px-6">
-                  <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 leading-relaxed text-center sm:text-left">
-                    {service.description}
-                  </p>
-                  <ul className="space-y-2 sm:space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-xs sm:text-sm text-gray-400 leading-relaxed break-words">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardHeader>
+                  <CardContent className="px-4 sm:px-6">
+                    <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 leading-relaxed text-center sm:text-left">
+                      {service.description}
+                    </p>
+                    <ul className="space-y-2 sm:space-y-3">
+                      {service.features.map((feature: string, idx: number) => (
+                        <li key={idx} className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-gray-400 leading-relaxed break-words">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

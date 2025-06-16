@@ -1,3 +1,4 @@
+
 import { ArrowRight, Calculator, TrendingUp, Shield, Users, Award, CheckCircle, Calendar, User, FileText, BarChart3, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -5,47 +6,28 @@ import { Link } from 'react-router-dom';
 import NetworkAnimation from '@/components/NetworkAnimation';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
 import { blogPosts as allBlogPosts } from '@/data/blog';
+import { useLanguage } from '@/contexts/LanguageContext';
+
 const Index = () => {
-  const services = [{
-    icon: TrendingUp,
-    title: 'Հարկային, ֆինանսական և կադրային խորհրդատվություն',
-    description: 'Պրոֆեսիոնալ խորհրդատվություն բոլոր ֆինանսական հարցերում'
-  }, {
-    icon: Calculator,
-    title: 'Հաշվապահական հաշվառման վարում',
-    description: 'Ամբողջական հաշվապահական ծառայություններ ձեր բիզնեսի համար'
-  }, {
-    icon: FileText,
-    title: 'Հաշվապահական քաղաքականության մշակում',
-    description: 'Պատվիրատուի գործունեությանը համապատասխան քաղաքականություն'
-  }, {
-    icon: Users,
-    title: 'Կադրային հաշվապահության վարում',
-    description: 'Կադրային գործունեության և հաշվապահության լիակատար սպասարկում'
-  }, {
-    icon: BarChart3,
-    title: 'Ֆինանսական վերլուծությունների կատարում',
-    description: 'Մանրամասն ֆինանսական հաշվետվություններ և վերլուծություններ'
-  }, {
-    icon: Shield,
-    title: 'Բիզնես-պլանների կազմում',
-    description: 'Ռազմավարական պլանավորում և բիզնես ռազմավարության մշակում'
-  }];
-  const features = ['Փորձառու մասնագետների թիմ 2020 թվականից', 'Հարկային և տեսչական ստուգումների ընթացքում պաշտպանություն', 'Անվտանգ և գաղտնի', 'Ժամանակակից տեխնոլոգիաներ'];
-  const stats = [{
-    number: '4+',
-    label: 'Տարիների փորձ'
-  }, {
-    number: '200+',
-    label: 'Գործընկերներ'
-  }, {
-    number: '98%',
-    label: 'Բավարարված հաճախորդներ'
-  }, {
-    number: '500+',
-    label: 'Կատարված նախագծեր'
-  }];
+  const { t } = useLanguage();
+
+  const services = (t('services.list') as any[]).slice(0, 6).map((service, index) => ({
+    icon: [TrendingUp, Calculator, FileText, Users, BarChart3, Shield][index],
+    title: service.title,
+    description: service.description
+  }));
+
+  const features = t('home.features.items') as string[];
+
+  const stats = [
+    { number: '4+', label: t('home.hero.stats.experience') },
+    { number: '200+', label: t('home.hero.stats.clients') },
+    { number: '98%', label: t('home.hero.stats.satisfaction') },
+    { number: '500+', label: t('home.hero.stats.projects') }
+  ];
+
   const blogPosts = allBlogPosts.slice(0, 3);
+
   return <div className="relative">
       <NetworkAnimation />
       
@@ -56,29 +38,27 @@ const Index = () => {
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 leading-tight font-bold lg:text-5xl">
-              <span className="gradient-text">Հաշվապահական և Ֆինանսական ծառայություններ</span>
+              <span className="gradient-text">{t('home.hero.title')}</span>
               <br />
-              
               <br />
-              
             </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8 leading-relaxed px-4">
-              <span className="gradient-text">Արհեստավարժություն և պատասխանատվություն</span>
+              <span className="gradient-text">{t('home.hero.subtitle')}</span>
               <br className="hidden sm:block" />
-              ձեր բիզնեսի հաջողության համար
+              {t('home.hero.description')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-12 px-4">
               <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg min-h-[44px] w-full sm:w-auto">
                 <Link to="/services">
-                  Ծառայություններ <ArrowRight className="ml-2" size={20} />
+                  {t('home.hero.servicesBtn')} <ArrowRight className="ml-2" size={20} />
                 </Link>
               </Button>
               
               <Button asChild variant="outline" size="lg" className="border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg min-h-[44px] w-full sm:w-auto">
                 <Link to="/contact">
-                  Դիմել
+                  {t('home.hero.contactBtn')}
                 </Link>
               </Button>
             </div>
@@ -109,10 +89,10 @@ const Index = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
-              <span className="gradient-text">Ծառայություններ</span>
+              <span className="gradient-text">{t('home.services.title')}</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
-              Ամբողջական լուծումներ ձեր բիզնեսի ֆինանսական կարիքների համար
+              {t('home.services.subtitle')}
             </p>
           </div>
 
@@ -141,7 +121,7 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">
-                  <span className="gradient-text">Ինչու՞ մենք</span>
+                  <span className="gradient-text">{t('home.features.title')}</span>
                 </h2>
                 
                 <div className="space-y-3 sm:space-y-4">
@@ -257,4 +237,5 @@ const Index = () => {
       </section>
     </div>;
 };
+
 export default Index;

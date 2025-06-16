@@ -9,12 +9,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState('hy');
   const location = useLocation();
+  const { currentLanguage, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,23 +26,21 @@ const Header = () => {
   }, []);
 
   const languages = [
-    { code: 'hy', name: 'Հայերեն', flag: '🇦🇲' },
-    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'hy' as const, name: 'Հայերեն', flag: '🇦🇲' },
+    { code: 'ru' as const, name: 'Русский', flag: '🇷🇺' },
+    { code: 'en' as const, name: 'English', flag: '🇺🇸' },
   ];
 
   const navigation = [
-    { name: 'Գլխավոր', href: '/' },
-    { name: 'Մեր մասին', href: '/about' },
-    { name: 'Ծառայություններ', href: '/services' },
-    { name: 'Նորություններ', href: '/blog' },
-    { name: 'Կապ', href: '/contact' },
+    { name: t('header.nav.home'), href: '/' },
+    { name: t('header.nav.about'), href: '/about' },
+    { name: t('header.nav.services'), href: '/services' },
+    { name: t('header.nav.blog'), href: '/blog' },
+    { name: t('header.nav.contact'), href: '/contact' },
   ];
 
-  const handleLanguageChange = (languageCode: string) => {
-    setCurrentLanguage(languageCode);
-    // TODO: Implement actual language switching logic
-    console.log('Language changed to:', languageCode);
+  const handleLanguageChange = (languageCode: 'hy' | 'ru' | 'en') => {
+    setLanguage(languageCode);
   };
 
   const getCurrentLanguage = () => {
@@ -114,7 +113,7 @@ const Header = () => {
               asChild 
               className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold min-h-[44px] px-4 lg:px-6"
             >
-              <Link to="/contact">Դիմել</Link>
+              <Link to="/contact">{t('header.cta')}</Link>
             </Button>
           </div>
 
@@ -177,7 +176,7 @@ const Header = () => {
                 className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-4 min-h-[44px] w-full"
               >
                 <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                  Դիմել
+                  {t('header.cta')}
                 </Link>
               </Button>
             </nav>
