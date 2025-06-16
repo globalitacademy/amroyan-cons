@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from 'lucide-react';
 import NewsletterSubscription from './NewsletterSubscription';
@@ -9,14 +10,14 @@ const Footer = () => {
     { name: 'Գլխավոր', href: '/' },
     { name: 'Մեր մասին', href: '/about' },
     { name: 'Ծառայություններ', href: '/services' },
-    { name: 'Բլոգ', href: '/blog' },
+    { name: 'Նորություններ', href: '/blog' },
   ];
 
   const services = [
-    { name: 'Հաշվապահություն', href: '/services#accounting' },
-    { name: 'Ֆինանսական խորհրդատվություն', href: '/services#financial-consulting' },
-    { name: 'Հարկային պլանավորում', href: '/services#tax-planning' },
-    { name: 'Աուդիտ ծառայություններ', href: '/services#audit-services' },
+    { name: 'Հարկային խորհրդատվություն', href: '/services#tax-consulting' },
+    { name: 'Հաշվապահական վարում', href: '/services#accounting' },
+    { name: 'Ֆինանսական վերլուծություն', href: '/services#financial-analysis' },
+    { name: 'Բիզնես պլանավորում', href: '/services#business-planning' },
   ];
 
   return (
@@ -43,7 +44,7 @@ const Footer = () => {
             />
             <p className="text-gray-400 text-sm leading-relaxed">
               Պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ 
-              ձեր բիզնեսի աճի և հաջողության համար:
+              ձեր բիզնեսի աճի և հաջողության համար: Հիմնադրվել է 2020 թվականին:
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-gold-400 transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center">
@@ -98,15 +99,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3 min-h-[32px]">
                 <Phone size={16} className="text-gold-400 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">+374 XX XXX XXX</span>
+                <span className="text-gray-400 text-sm">+374 55 51 71 31</span>
               </div>
               <div className="flex items-center space-x-3 min-h-[32px]">
                 <Mail size={16} className="text-gold-400 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">info@amroyan.am</span>
+                <span className="text-gray-400 text-sm">amroyanconsulting@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3 min-h-[32px]">
                 <MapPin size={16} className="text-gold-400 flex-shrink-0" />
-                <span className="text-gray-400 text-sm">Երևան, Հայաստան</span>
+                <span className="text-gray-400 text-sm">ք․ Երևան, Փիրումյանների 10, 3-րդ հարկ</span>
               </div>
             </div>
           </div>

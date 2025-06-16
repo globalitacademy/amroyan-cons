@@ -1,3 +1,4 @@
+
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -17,35 +18,41 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Հեռախոս',
-      content: '+374 XX XXX XXX',
-      description: 'Երկուշաբթի - Ուրբաթ, 09:00 - 18:00'
+      content: '+374 55 51 71 31',
+      description: 'WhatsApp, Telegram հասանելի'
     },
     {
       icon: Mail,
       title: 'Էլ. հասցե',
-      content: 'info@amroyan.am',
+      content: 'amroyanconsulting@gmail.com',
       description: 'Կպատասխանենք 24 ժամվա ընթացքում'
     },
     {
       icon: MapPin,
       title: 'Հասցե',
-      content: 'Երևան, Հայաստան',
+      content: 'ք․ Երևան, Փիրումյանների 10, 3-րդ հարկ',
       description: 'Կենտրոնական գրասենյակ'
     },
     {
-      icon: Clock,
-      title: 'Աշխատանքային ժամեր',
-      content: '09:00 - 18:00',
-      description: 'Երկուշաբթի - Ուրբաթ'
+      icon: MapPin,
+      title: 'Փոստային հասցե',
+      content: '0008, ք․Երևան, Մուրացանի 69',
+      description: 'Փաստաթղթերի ուղարկման համար'
     }
   ];
 
   const services = [
-    'Հաշվապահություն',
-    'Ֆինանսական վերլուծություն',
-    'Հարկային խորհրդատվություն',
-    'Աուդիտ ծառայություններ',
-    'Բիզնես խորհրդատվություն',
+    'Հարկային, ֆինանսական և կադրային խորհրդատվություն',
+    'Հաշվապահական հաշվառման վարում',
+    'Հաշվապահական քաղաքականության մշակում',
+    'Ընթացիկ գործունեությանն առնչվող գործառույթներ',
+    'Հարկային և վիճակագրական հաշվետվություններ',
+    'Խմբային և անհատական հաշվապահական դասընթացներ',
+    'Ֆինանսական հաշվետվություններ',
+    'Ֆինանսական վերլուծություններ',
+    'Բիզնես-պլանների կազմում',
+    'Կադրային հաշվապահության վարում',
+    'Հարկային և տեսչական ստուգումների պաշտպանություն',
     'Այլ'
   ];
 
@@ -271,6 +278,7 @@ const Contact = () => {
             <Button 
               size="lg" 
               className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg min-h-[48px]"
+              onClick={() => window.open('tel:+37455517131')}
             >
               <Phone size={18} className="mr-2 sm:w-5 sm:h-5" />
               Զանգահարել
@@ -280,6 +288,7 @@ const Contact = () => {
               variant="outline" 
               size="lg" 
               className="border-gold-500 text-gold-400 hover:bg-gold-500 hover:text-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg min-h-[48px]"
+              onClick={() => window.open('mailto:amroyanconsulting@gmail.com')}
             >
               <Mail size={18} className="mr-2 sm:w-5 sm:h-5" />
               Գրել նամակ
@@ -289,6 +298,19 @@ const Contact = () => {
       </section>
     </div>
   );
+
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Handle form submission here
+  }
 };
 
 export default Contact;

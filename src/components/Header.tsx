@@ -34,8 +34,7 @@ const Header = () => {
     { name: 'Գլխավոր', href: '/' },
     { name: 'Մեր մասին', href: '/about' },
     { name: 'Ծառայություններ', href: '/services' },
-    { name: 'Շտեմարան', href: '/team' },
-    { name: 'Բլոգ', href: '/blog' },
+    { name: 'Նորություններ', href: '/blog' },
     { name: 'Կապ', href: '/contact' },
   ];
 
@@ -115,7 +114,7 @@ const Header = () => {
               asChild 
               className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold min-h-[44px] px-4 lg:px-6"
             >
-              <Link to="/contact">Կապ մեզ հետ</Link>
+              <Link to="/contact">Դիմել</Link>
             </Button>
           </div>
 
@@ -178,7 +177,7 @@ const Header = () => {
                 className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-4 min-h-[44px] w-full"
               >
                 <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                  Կապ մեզ հետ
+                  Դիմել
                 </Link>
               </Button>
             </nav>
@@ -187,6 +186,15 @@ const Header = () => {
       </div>
     </header>
   );
+
+  function handleLanguageChange(languageCode: string) {
+    setCurrentLanguage(languageCode);
+    console.log('Language changed to:', languageCode);
+  }
+
+  function getCurrentLanguage() {
+    return languages.find(lang => lang.code === currentLanguage) || languages[0];
+  }
 };
 
 export default Header;
