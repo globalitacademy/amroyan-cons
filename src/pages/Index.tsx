@@ -11,13 +11,17 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const Index = () => {
   const { t } = useLanguage();
 
-  const services = (t('services.list') as any[]).slice(0, 6).map((service, index) => ({
-    icon: [TrendingUp, Calculator, FileText, Users, BarChart3, Shield][index],
-    title: service.title,
-    description: service.description
-  }));
+  const servicesData = t('services.list');
+  const services = Array.isArray(servicesData) 
+    ? servicesData.slice(0, 6).map((service: any, index: number) => ({
+        icon: [TrendingUp, Calculator, FileText, Users, BarChart3, Shield][index],
+        title: service.title,
+        description: service.description
+      }))
+    : [];
 
-  const features = t('home.features.items') as string[];
+  const featuresData = t('home.features.items');
+  const features = Array.isArray(featuresData) ? featuresData : [];
 
   const stats = [
     { number: '4+', label: t('home.hero.stats.experience') },

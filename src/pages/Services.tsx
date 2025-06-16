@@ -24,7 +24,8 @@ const Services = () => {
     description: 'Ձեր տվյալները լիովին պաշտպանված են'
   }];
 
-  const services = t('services.list') as any[];
+  const servicesData = t('services.list');
+  const services = Array.isArray(servicesData) ? servicesData : [];
 
   return (
     <div className="pt-20 overflow-x-hidden max-w-full">
@@ -46,7 +47,7 @@ const Services = () => {
       <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-black to-gray-900 overflow-x-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-7xl mx-auto">
-            {services.map((service, index) => {
+            {services.map((service: any, index: number) => {
               const IconComponent = serviceIcons[index];
               return (
                 <Card key={index} className="bg-gradient-to-br from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group overflow-hidden">
@@ -65,7 +66,7 @@ const Services = () => {
                       {service.description}
                     </p>
                     <ul className="space-y-2 sm:space-y-3">
-                      {service.features.map((feature: string, idx: number) => (
+                      {service.features && service.features.map((feature: string, idx: number) => (
                         <li key={idx} className="flex items-start space-x-3">
                           <div className="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0" />
                           <span className="text-xs sm:text-sm text-gray-400 leading-relaxed break-words">{feature}</span>

@@ -1,4 +1,3 @@
-
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -43,7 +42,8 @@ const Contact = () => {
     }
   ];
 
-  const services = (t('services.list') as any[]).map(service => service.title);
+  const servicesData = t('services.list');
+  const services = Array.isArray(servicesData) ? servicesData.map((service: any) => service.title) : [];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
