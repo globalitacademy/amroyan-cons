@@ -298,19 +298,6 @@ const Contact = () => {
       </section>
     </div>
   );
-
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  }
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
-  }
 };
 
 export default Contact;

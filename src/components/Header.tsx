@@ -186,15 +186,6 @@ const Header = () => {
       </div>
     </header>
   );
-
-  function handleLanguageChange(languageCode: string) {
-    setCurrentLanguage(languageCode);
-    console.log('Language changed to:', languageCode);
-  }
-
-  function getCurrentLanguage() {
-    return languages.find(lang => lang.code === currentLanguage) || languages[0];
-  }
 };
 
 export default Header;
