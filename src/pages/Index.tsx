@@ -1,4 +1,3 @@
-
 import { ArrowRight, Calculator, TrendingUp, Shield, Users, Award, CheckCircle, Calendar, User, FileText, BarChart3, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,71 +5,48 @@ import { Link } from 'react-router-dom';
 import NetworkAnimation from '@/components/NetworkAnimation';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
 import { blogPosts as allBlogPosts } from '@/data/blog';
-
 const Index = () => {
-  const services = [
-    {
-      icon: TrendingUp,
-      title: 'Հարկային, ֆինանսական և կադրային խորհրդատվություն',
-      description: 'Պրոֆեսիոնալ խորհրդատվություն բոլոր ֆինանսական հարցերում'
-    },
-    {
-      icon: Calculator,
-      title: 'Հաշվապահական հաշվառման վարում',
-      description: 'Ամբողջական հաշվապահական ծառայություններ ձեր բիզնեսի համար'
-    },
-    {
-      icon: FileText,
-      title: 'Հաշվապահական քաղաքականության մշակում',
-      description: 'Պատվիրատուի գործունեությանը համապատասխան քաղաքականություն'
-    },
-    {
-      icon: Users,
-      title: 'Կադրային հաշվապահության վարում',
-      description: 'Կադրային գործունեության և հաշվապահության լիակատար սպասարկում'
-    },
-    {
-      icon: BarChart3,
-      title: 'Ֆինանսական վերլուծությունների կատարում',
-      description: 'Մանրամասն ֆինանսական հաշվետվություններ և վերլուծություններ'
-    },
-    {
-      icon: Shield,
-      title: 'Բիզնես-պլանների կազմում',
-      description: 'Ռազմավարական պլանավորում և բիզնես ռազմավարության մշակում'
-    }
-  ];
-
-  const features = [
-    'Փորձառու մասնագետների թիմ 2020 թվականից', 
-    'Հարկային և տեսչական ստուգումների ընթացքում պաշտպանություն', 
-    'Անվտանգ և գաղտնի', 
-    'Ժամանակակից տեխնոլոգիաներ'
-  ];
-
-  const stats = [
-    {
-      number: '4+',
-      label: 'Տարիների փորձ'
-    },
-    {
-      number: '200+',
-      label: 'Գործընկերներ'
-    },
-    {
-      number: '98%',
-      label: 'Բավարարված հաճախորդներ'
-    },
-    {
-      number: '500+',
-      label: 'Կատարված նախագծեր'
-    }
-  ];
-
+  const services = [{
+    icon: TrendingUp,
+    title: 'Հարկային, ֆինանսական և կադրային խորհրդատվություն',
+    description: 'Պրոֆեսիոնալ խորհրդատվություն բոլոր ֆինանսական հարցերում'
+  }, {
+    icon: Calculator,
+    title: 'Հաշվապահական հաշվառման վարում',
+    description: 'Ամբողջական հաշվապահական ծառայություններ ձեր բիզնեսի համար'
+  }, {
+    icon: FileText,
+    title: 'Հաշվապահական քաղաքականության մշակում',
+    description: 'Պատվիրատուի գործունեությանը համապատասխան քաղաքականություն'
+  }, {
+    icon: Users,
+    title: 'Կադրային հաշվապահության վարում',
+    description: 'Կադրային գործունեության և հաշվապահության լիակատար սպասարկում'
+  }, {
+    icon: BarChart3,
+    title: 'Ֆինանսական վերլուծությունների կատարում',
+    description: 'Մանրամասն ֆինանսական հաշվետվություններ և վերլուծություններ'
+  }, {
+    icon: Shield,
+    title: 'Բիզնես-պլանների կազմում',
+    description: 'Ռազմավարական պլանավորում և բիզնես ռազմավարության մշակում'
+  }];
+  const features = ['Փորձառու մասնագետների թիմ 2020 թվականից', 'Հարկային և տեսչական ստուգումների ընթացքում պաշտպանություն', 'Անվտանգ և գաղտնի', 'Ժամանակակից տեխնոլոգիաներ'];
+  const stats = [{
+    number: '4+',
+    label: 'Տարիների փորձ'
+  }, {
+    number: '200+',
+    label: 'Գործընկերներ'
+  }, {
+    number: '98%',
+    label: 'Բավարարված հաճախորդներ'
+  }, {
+    number: '500+',
+    label: 'Կատարված նախագծեր'
+  }];
   const blogPosts = allBlogPosts.slice(0, 3);
-
-  return (
-    <div className="relative">
+  return <div className="relative">
       <NetworkAnimation />
       
       {/* Hero Section */}
@@ -79,12 +55,12 @@ const Index = () => {
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto animate-fade-in-up">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-              <span className="gradient-text">Հաշվապահական</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 leading-tight font-bold lg:text-5xl">
+              <span className="gradient-text">Հաշվապահական և Ֆինանսական ծառայություններ</span>
               <br />
-              <span className="text-white">և</span>
+              
               <br />
-              <span className="gradient-text">Ֆինանսական ծառայություններ</span>
+              
             </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8 leading-relaxed px-4">
@@ -109,16 +85,14 @@ const Index = () => {
 
             {/* Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-4xl mx-auto px-4">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
+              {stats.map((stat, index) => <div key={index} className="text-center">
                   <div className="text-2xl sm:text-3xl lg:text-4xl font-bold gradient-text mb-1 sm:mb-2">
                     {stat.number}
                   </div>
                   <div className="text-gray-400 text-xs sm:text-sm lg:text-base">
                     {stat.label}
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -143,8 +117,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
+            {services.map((service, index) => <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
                 <CardContent className="p-6 sm:p-8 text-center">
                   <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:animate-pulse">
                     <service.icon size={24} className="text-black sm:w-8 sm:h-8" />
@@ -156,8 +129,7 @@ const Index = () => {
                     {service.description}
                   </p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -173,12 +145,10 @@ const Index = () => {
                 </h2>
                 
                 <div className="space-y-3 sm:space-y-4">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-3 sm:space-x-4">
+                  {features.map((feature, index) => <div key={index} className="flex items-center space-x-3 sm:space-x-4">
                       <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
                       <span className="text-base sm:text-lg text-gray-300">{feature}</span>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
 
                 <Button asChild className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-6 sm:mt-8 min-h-[44px] w-full sm:w-auto">
@@ -285,8 +255,6 @@ const Index = () => {
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
