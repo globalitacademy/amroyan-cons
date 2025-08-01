@@ -313,7 +313,14 @@ const Admin = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button className="w-full">
+                  <Button 
+                    className="w-full"
+                    onClick={() => {
+                      // Switch to documents tab and scroll to upload
+                      const tabsTrigger = document.querySelector('[data-value="documents"]') as HTMLElement;
+                      tabsTrigger?.click();
+                    }}
+                  >
                     Ֆայլ վերբեռնել
                   </Button>
                 </CardContent>
