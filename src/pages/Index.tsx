@@ -4,20 +4,35 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import NetworkAnimation from '@/components/NetworkAnimation';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
-import { blogPosts as allBlogPosts } from '@/data/blog';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { supabase } from '@/integrations/supabase/client';
+import { useEffect, useState } from 'react';
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  category: string;
+  created_at: string;
+  slug: string;
+}
+
 const Index = () => {
-  const {
-    t
-  } = useLanguage();
+  const { t } = useLanguage();
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const servicesData = t('services.list');
   const services = Array.isArray(servicesData) ? (servicesData as any[]).slice(0, 6).map((service: any, index: number) => ({
     icon: [TrendingUp, Calculator, FileText, Users, BarChart3, Shield][index],
     title: service.title,
     description: service.description
   })) : [];
+  
   const featuresData = t('home.features.items');
   const features = Array.isArray(featuresData) ? featuresData : [];
+  
   const stats = [{
     number: '35+',
     label: 'գործընկերեներ'
@@ -31,7 +46,32 @@ const Index = () => {
     number: '120+',
     label: 'կատարված նախագծեր'
   }];
-  const blogPosts = allBlogPosts.slice(0, 3);
+
+  useEffect(() => {
+    fetchBlogPosts();
+  }, []);
+
+  const fetchBlogPosts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('id, title, excerpt, content, author, category, created_at, slug')
+        .eq('published', true)
+        .order('created_at', { ascending: false })
+        .limit(3);
+
+      if (error) {
+        console.error('Error fetching blog posts:', error);
+        return;
+      }
+
+      setBlogPosts(data || []);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return <div className="relative">
       <NetworkAnimation />
       
@@ -201,16 +241,16 @@ const Index = () => {
                     {post.excerpt}
                   </p>
                   
-                  <div className="flex items-center justify-between text-xs text-gray-400 mb-3 sm:mb-4">
-                    <div className="flex items-center space-x-2">
-                      <User size={12} />
-                      <span>{post.author}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar size={12} />
-                      <span>{post.date}</span>
-                    </div>
-                  </div>
+                    <div className="flex items-center justify-between text-xs text-gray-400 mb-3 sm:mb-4">
+                     <div className="flex items-center space-x-2">
+                       <User size={12} />
+                       <span>{post.author}</span>
+                     </div>
+                     <div className="flex items-center space-x-2">
+                       <Calendar size={12} />
+                       <span>{new Date(post.created_at).toLocaleDateString('hy-AM')}</span>
+                     </div>
+                   </div>
                   
                   <Button asChild variant="ghost" className="text-gold-400 hover:text-gold-300 p-0 h-auto text-sm self-start min-h-[44px] flex items-center">
                     <Link to={`/blog/${post.slug}`}>
