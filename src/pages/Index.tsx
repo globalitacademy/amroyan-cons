@@ -28,7 +28,7 @@ const Index = () => {
     number: '98%',
     label: t('home.hero.stats.satisfaction')
   }, {
-    number: '500+',
+    number: '120+',
     label: t('home.hero.stats.projects')
   }];
   const blogPosts = allBlogPosts.slice(0, 3);
