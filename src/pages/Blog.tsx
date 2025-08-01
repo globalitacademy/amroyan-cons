@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-
 interface BlogPost {
   id: string;
   title: string;
@@ -19,26 +18,25 @@ interface BlogPost {
   published: boolean;
   created_at: string;
 }
-
 const Blog = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   useEffect(() => {
     fetchBlogPosts();
     checkAdminStatus();
   }, []);
-
   const fetchBlogPosts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .eq('published', true)
-        .order('created_at', { ascending: false });
-
+      const {
+        data,
+        error
+      } = await supabase.from('blog_posts').select('*').eq('published', true).order('created_at', {
+        ascending: false
+      });
       if (error) throw error;
       setBlogPosts(data || []);
     } catch (error) {
@@ -46,42 +44,37 @@ const Blog = () => {
       toast({
         title: "Սխալ",
         description: "Չհաջողվեց բեռնել բլոգի գրառումները",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setLoading(false);
     }
   };
-
   const checkAdminStatus = async () => {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: {
+          user
+        }
+      } = await supabase.auth.getUser();
       if (user) {
-        const { data: profile } = await supabase
-          .from('profiles')
-          .select('role')
-          .eq('user_id', user.id)
-          .single();
-        
+        const {
+          data: profile
+        } = await supabase.from('profiles').select('role').eq('user_id', user.id).single();
         setIsAdmin(profile?.role === 'admin');
       }
     } catch (error) {
       console.error('Error checking admin status:', error);
     }
   };
-
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
+    return <div className="min-h-screen flex items-center justify-center">
         <div className="text-lg">Բեռնում...</div>
-      </div>
-    );
+      </div>;
   }
-
   const featuredPost = blogPosts.find(p => p.featured) || blogPosts[0];
   const otherPosts = blogPosts.filter(p => p.slug !== featuredPost?.slug);
   const categories = ['Բոլորը', ...Array.from(new Set(blogPosts.map(p => p.category)))];
-
   return <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black network-bg">
@@ -91,35 +84,27 @@ const Blog = () => {
               <h1 className="text-5xl md:text-6xl font-bold">
                 <span className="gradient-text text-4xl">Նորություններ</span>
               </h1>
-              {isAdmin && (
-                <Link to="/admin/blog/new">
-                  <Button>
-                    <Plus className="w-4 h-4 mr-2" />
-                    Նոր գրառում
-                  </Button>
-                </Link>
-              )}
+              {isAdmin && <Link to="/admin/blog/new">
+                  
+                </Link>}
             </div>
             <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
               Օգտակար հոդվածներ, խորհուրդներ և վերլուծություններ 
               ֆինանսական և հաշվապահական ոլորտներից
             </p>
-            {isAdmin && (
-              <div className="mt-6">
+            {isAdmin && <div className="mt-6">
                 <Link to="/admin/blog-management">
                   <Button variant="outline">
                     Կառավարել բլոգը
                   </Button>
                 </Link>
-              </div>
-            )}
+              </div>}
           </div>
         </div>
       </section>
 
       {/* Featured Post */}
-      {featuredPost && (
-        <section className="py-20 bg-black">
+      {featuredPost && <section className="py-20 bg-black">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-3xl font-bold mb-12 text-center">
@@ -175,8 +160,7 @@ const Blog = () => {
               </Card>
             </div>
           </div>
-        </section>
-      )}
+        </section>}
 
       {/* Categories Filter */}
       <section className="py-8 bg-gradient-to-b from-black to-gray-900">
