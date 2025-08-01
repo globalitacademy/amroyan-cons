@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram } from 'lucide-react';
 import NewsletterSubscription from './NewsletterSubscription';
 
 const Footer = () => {
@@ -54,7 +54,7 @@ const Footer = () => {
                 <Linkedin size={20} />
               </a>
               <a href="#" className="text-gray-400 hover:text-gold-400 transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center">
-                <Twitter size={20} />
+                <Instagram size={20} />
               </a>
             </div>
           </div>
