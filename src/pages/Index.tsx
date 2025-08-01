@@ -47,11 +47,7 @@ const Index = () => {
               <br />
             </h1>
             
-            <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed px-4 text-center font-medium md:text-2xl -mt-4">
-              
-              <br className="hidden sm:block" />
-              {t('home.hero.description')}
-            </p>
+            
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-12 px-4">
               <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg min-h-[44px] w-full sm:w-auto">
