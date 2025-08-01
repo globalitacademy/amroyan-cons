@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Shield } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,6 +15,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [user, setUser] = useState<any>(null);
   const location = useLocation();
   const { currentLanguage, setLanguage, t } = useLanguage();
 
@@ -23,6 +26,50 @@ const Header = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Check auth status and admin role
+    const checkAuthStatus = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setUser(session?.user || null);
+      
+      if (session?.user) {
+        // Check if user is admin
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('user_id', session.user.id)
+          .single();
+        
+        setIsAdmin(profile?.role === 'admin');
+      } else {
+        setIsAdmin(false);
+      }
+    };
+
+    checkAuthStatus();
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setUser(session?.user || null);
+        
+        if (session?.user) {
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('role')
+            .eq('user_id', session.user.id)
+            .single();
+          
+          setIsAdmin(profile?.role === 'admin');
+        } else {
+          setIsAdmin(false);
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const languages = [
@@ -78,6 +125,19 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
+            {isAdmin && (
+              <Link
+                to="/admin"
+                className={`text-sm font-medium transition-colors hover:text-gold-400 flex items-center gap-1 ${
+                  location.pathname === '/admin' 
+                    ? 'text-gold-400' 
+                    : 'text-white'
+                }`}
+              >
+                <Shield size={16} />
+                Ադմին
+              </Link>
+            )}
           </nav>
 
           {/* Language Switcher & CTA Button */}
@@ -145,6 +205,21 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
+              
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`text-base font-medium transition-colors hover:text-gold-400 py-3 px-2 rounded-lg min-h-[44px] flex items-center gap-2 ${
+                    location.pathname === '/admin' 
+                      ? 'text-gold-400 bg-gold-500/10' 
+                      : 'text-white'
+                  }`}
+                >
+                  <Shield size={16} />
+                  Ադմին
+                </Link>
+              )}
               
               {/* Mobile Language Switcher */}
               <div className="border-t border-gold-500/20 pt-4 mt-4">
