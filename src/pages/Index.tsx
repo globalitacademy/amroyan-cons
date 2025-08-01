@@ -47,7 +47,7 @@ const Index = () => {
               <br />
             </h1>
             
-            <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed px-4 text-center font-medium md:text-2xl">
+            <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed px-4 text-center font-medium md:text-2xl -mt-4">
               
               <br className="hidden sm:block" />
               {t('home.hero.description')}
