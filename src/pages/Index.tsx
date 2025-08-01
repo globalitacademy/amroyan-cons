@@ -122,14 +122,26 @@ const Index = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">
-                  <span className="gradient-text">{t('home.features.title')}</span>
+                  <span className="gradient-text">Ինչու՞ մենք</span>
                 </h2>
                 
                 <div className="space-y-3 sm:space-y-4">
-                  {features.map((feature, index) => <div key={index} className="flex items-center space-x-3 sm:space-x-4">
-                      <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
-                      <span className="text-base sm:text-lg text-gray-300">{feature}</span>
-                    </div>)}
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
+                    <span className="text-base sm:text-lg text-gray-300">Փորձառու մասնագետների թիմ</span>
+                  </div>
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
+                    <span className="text-base sm:text-lg text-gray-300">Հարկային և տեսչական ստուգումների ընթացքում պատվիրատուի շահերի պաշտպանում</span>
+                  </div>
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
+                    <span className="text-base sm:text-lg text-gray-300">Օրենսդրական փոփոխություններին համահունչ աշխատանք</span>
+                  </div>
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
+                    <span className="text-base sm:text-lg text-gray-300">Ժամանակակից տեխնոլոգիաներև գործիքակազմի կիրառում</span>
+                  </div>
                 </div>
 
                 <Button asChild className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-6 sm:mt-8 min-h-[44px] w-full sm:w-auto">
