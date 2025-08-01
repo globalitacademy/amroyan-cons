@@ -140,7 +140,7 @@ const Index = () => {
                   </div>
                   <div className="flex items-center space-x-3 sm:space-x-4">
                     <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
-                    <span className="text-base sm:text-lg text-gray-300">Ժամանակակից տեխնոլոգիաներև գործիքակազմի կիրառում</span>
+                    <span className="text-base sm:text-lg text-gray-300">Ժամանակակից տեխնոլոգիաներ և գործիքակազմի կիրառում</span>
                   </div>
                 </div>
 
