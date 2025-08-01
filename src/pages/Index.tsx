@@ -43,9 +43,10 @@ const Index = () => {
           <div className="max-w-4xl mx-auto animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 leading-tight font-bold lg:text-5xl">
               <span className="gradient-text py-0 px-0 mx-0 my-[8px] font-semibold leading-relaxed">Պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ</span>
-              <br />
-              <br />
             </h1>
+            <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8">
+              Ձեր բիզնեսի հաջողության համար
+            </p>
             
             
 
