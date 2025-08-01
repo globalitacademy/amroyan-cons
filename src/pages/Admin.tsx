@@ -7,6 +7,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { FileText, Users, Upload, MessageSquare, Settings, PenTool, BarChart3, Database, Eye, Edit, Trash2, Mail, Phone, Calendar, ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import DocumentUpload from "@/components/admin/DocumentUpload";
+import UserManagement from "@/components/admin/UserManagement";
+import SystemSettings from "@/components/admin/SystemSettings";
 
 const Admin = () => {
   const { toast } = useToast();
@@ -513,151 +516,75 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="documents" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Փաստաթղթերի կառավարում</CardTitle>
-                <CardDescription>
-                  Վերբեռնված փաստաթղթերի ցանկ
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {documents.length === 0 ? (
-                    <p className="text-center text-muted-foreground py-8">
-                      Փաստաթղթեր չկան
-                    </p>
-                  ) : (
-                    documents.map((doc) => (
-                      <div key={doc.id} className="border rounded-lg p-4">
-                        <div className="flex justify-between items-start mb-3">
-                          <div className="space-y-1">
-                            <h4 className="font-medium">{doc.title}</h4>
-                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                              <Badge variant={doc.is_published ? "default" : "secondary"}>
-                                {doc.is_published ? "Հրապարակված" : "Սևագիր"}
-                              </Badge>
-                              <span>{doc.category}</span>
-                              <span>{new Date(doc.created_at).toLocaleDateString('hy-AM')}</span>
+            <div className="grid gap-6">
+              <DocumentUpload onSuccess={() => fetchDocuments()} />
+              
+              <Card>
+                <CardHeader>
+                  <CardTitle>Վերջին փաստաթղթերը</CardTitle>
+                  <CardDescription>
+                    Վերջերս վերբեռնված փաստաթղթերի ցանկ
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {documents.length === 0 ? (
+                      <p className="text-center text-muted-foreground py-8">
+                        Փաստաթղթեր չկան
+                      </p>
+                    ) : (
+                      documents.map((doc) => (
+                        <div key={doc.id} className="border rounded-lg p-4">
+                          <div className="flex justify-between items-start mb-3">
+                            <div className="space-y-1">
+                              <h4 className="font-medium">{doc.title}</h4>
+                              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Badge variant={doc.is_published ? "default" : "secondary"}>
+                                  {doc.is_published ? "Հրապարակված" : "Սևագիր"}
+                                </Badge>
+                                <span>{doc.category}</span>
+                                <span>{new Date(doc.created_at).toLocaleDateString('hy-AM')}</span>
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex gap-2">
-                            {doc.file_url && (
+                            <div className="flex gap-2">
+                              {doc.file_url && (
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => window.open(doc.file_url, '_blank')}
+                                >
+                                  <ExternalLink className="h-4 w-4" />
+                                </Button>
+                              )}
                               <Button
                                 size="sm"
-                                variant="outline"
-                                onClick={() => window.open(doc.file_url, '_blank')}
+                                variant={doc.is_published ? "secondary" : "default"}
+                                onClick={() => toggleDocumentStatus(doc.id, doc.is_published)}
                               >
-                                <ExternalLink className="h-4 w-4" />
+                                {doc.is_published ? "Թաքցնել" : "Հրապարակել"}
                               </Button>
-                            )}
-                            <Button
-                              size="sm"
-                              variant={doc.is_published ? "secondary" : "default"}
-                              onClick={() => toggleDocumentStatus(doc.id, doc.is_published)}
-                            >
-                              {doc.is_published ? "Թաքցնել" : "Հրապարակել"}
-                            </Button>
+                            </div>
                           </div>
+                          {doc.description && (
+                            <p className="text-sm text-muted-foreground">
+                              {doc.description}
+                            </p>
+                          )}
                         </div>
-                        {doc.description && (
-                          <p className="text-sm text-muted-foreground">
-                            {doc.description}
-                          </p>
-                        )}
-                      </div>
-                    ))
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+                      ))
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="users" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Օգտատերերի կառավարում</CardTitle>
-                <CardDescription>
-                  Գրանցված օգտատերերի ցանկ
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {users.length === 0 ? (
-                    <p className="text-center text-muted-foreground py-8">
-                      Օգտատերեր չկան
-                    </p>
-                  ) : (
-                    users.map((user) => (
-                      <div key={user.id} className="border rounded-lg p-4">
-                        <div className="flex justify-between items-center">
-                          <div className="space-y-1">
-                            <div className="flex items-center gap-2">
-                              <span className="font-medium">{user.email}</span>
-                              <Badge variant={user.role === 'admin' ? "destructive" : "default"}>
-                                {user.role === 'admin' ? 'Ադմին' : 'Օգտատեր'}
-                              </Badge>
-                            </div>
-                            <p className="text-sm text-muted-foreground">
-                              Գրանցման ամսաթիվ: {new Date(user.created_at).toLocaleDateString('hy-AM')}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+            <UserManagement />
           </TabsContent>
 
           <TabsContent value="settings" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Համակարգի կարգավորումներ</CardTitle>
-                <CardDescription>
-                  Ընդհանուր կարգավորումներ և պարամետրեր
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-medium">Ապահով ռեժիմ</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Միացնել լրացուցիչ անվտանգության միջոցները
-                      </p>
-                    </div>
-                    <Button variant="outline" disabled>
-                      Կարգավորել
-                    </Button>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-medium">Վիճակագրության հավաքում</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Հավաքել տվյալներ կայքի օգտագործման մասին
-                      </p>
-                    </div>
-                    <Button variant="outline" disabled>
-                      Կարգավորել
-                    </Button>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-medium">Զանգվածային ուղարկում</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Կարգավորել էլ. նամակների զանգվածային ուղարկում
-                      </p>
-                    </div>
-                    <Button variant="outline" disabled>
-                      Կարգավորել
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <SystemSettings />
           </TabsContent>
         </Tabs>
       </div>
