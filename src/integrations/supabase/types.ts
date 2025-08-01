@@ -14,6 +14,90 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          is_read: boolean | null
+          message: string
+          name: string
+          phone: string | null
+          service: string | null
+          subject: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          is_read?: boolean | null
+          message: string
+          name: string
+          phone?: string | null
+          service?: string | null
+          subject: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          is_read?: boolean | null
+          message?: string
+          name?: string
+          phone?: string | null
+          service?: string | null
+          subject?: string
+        }
+        Relationships: []
+      }
+      documents: {
+        Row: {
+          category: Database["public"]["Enums"]["document_category"]
+          created_at: string
+          description: string | null
+          file_name: string | null
+          file_size: number | null
+          file_url: string | null
+          id: string
+          is_published: boolean | null
+          mime_type: string | null
+          title: string
+          updated_at: string
+          uploaded_by: string | null
+          view_count: number | null
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["document_category"]
+          created_at?: string
+          description?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_url?: string | null
+          id?: string
+          is_published?: boolean | null
+          mime_type?: string | null
+          title: string
+          updated_at?: string
+          uploaded_by?: string | null
+          view_count?: number | null
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["document_category"]
+          created_at?: string
+          description?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_url?: string | null
+          id?: string
+          is_published?: boolean | null
+          mime_type?: string | null
+          title?: string
+          updated_at?: string
+          uploaded_by?: string | null
+          view_count?: number | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -46,10 +130,23 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_document_view_count: {
+        Args: { document_id: string }
+        Returns: undefined
+      }
     }
     Enums: {
-      [_ in never]: never
+      document_category:
+        | "tax_laws"
+        | "tax_clarifications"
+        | "tax_discussions"
+        | "tax_hhms"
+        | "tax_fhms"
+        | "personnel_laws"
+        | "personnel_clarifications"
+        | "personnel_discussions"
+        | "personnel_hhms"
+        | "personnel_fhms"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -176,6 +273,19 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      document_category: [
+        "tax_laws",
+        "tax_clarifications",
+        "tax_discussions",
+        "tax_hhms",
+        "tax_fhms",
+        "personnel_laws",
+        "personnel_clarifications",
+        "personnel_discussions",
+        "personnel_hhms",
+        "personnel_fhms",
+      ],
+    },
   },
 } as const
