@@ -13,7 +13,7 @@ const Index = () => {
 
   const servicesData = t('services.list');
   const services = Array.isArray(servicesData) 
-    ? servicesData.slice(0, 6).map((service: any, index: number) => ({
+    ? (servicesData as any[]).slice(0, 6).map((service: any, index: number) => ({
         icon: [TrendingUp, Calculator, FileText, Users, BarChart3, Shield][index],
         title: service.title,
         description: service.description
