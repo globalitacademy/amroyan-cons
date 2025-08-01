@@ -42,7 +42,7 @@ const Index = () => {
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 leading-tight font-bold lg:text-5xl">
-              <span className="gradient-text">{t('home.hero.title')}</span>
+              <span className="gradient-text">Պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ Ձեր բիզնեսի հաջողության համար</span>
               <br />
               <br />
             </h1>
