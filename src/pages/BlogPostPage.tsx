@@ -1,7 +1,5 @@
-
 import { useParams, Link } from 'react-router-dom';
-import { blogPosts } from '@/data/blog';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, Calendar, User, Clock } from 'lucide-react';
 import {
@@ -11,8 +9,24 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from "@/components/ui/breadcrumb";
 import NotFound from './NotFound';
+import { supabase } from "@/integrations/supabase/client";
+import { useEffect, useState } from "react";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: string;
+  author: string;
+  read_time: string;
+  slug: string;
+  featured: boolean;
+  published: boolean;
+  created_at: string;
+}
 
 // A component to render the HTML with inline styles to mimic prose
 const ArticleContent = ({ htmlContent }: { htmlContent: string }) => {
@@ -31,13 +45,58 @@ const ArticleContent = ({ htmlContent }: { htmlContent: string }) => {
 
 const BlogPostPage = () => {
   const { slug } = useParams();
-  const post = blogPosts.find((p) => p.slug === slug);
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (slug) {
+      fetchPost();
+    }
+  }, [slug]);
+
+  const fetchPost = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('slug', slug)
+        .eq('published', true)
+        .single();
+
+      if (error) throw error;
+      setPost(data);
+
+      // Fetch related posts
+      if (data) {
+        const { data: related } = await supabase
+          .from('blog_posts')
+          .select('*')
+          .eq('category', data.category)
+          .eq('published', true)
+          .neq('id', data.id)
+          .limit(2);
+        
+        setRelatedPosts(related || []);
+      }
+    } catch (error) {
+      console.error('Error fetching post:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-lg">Բեռնում...</div>
+      </div>
+    );
+  }
 
   if (!post) {
     return <NotFound />;
   }
-  
-  const relatedPosts = blogPosts.filter((p) => p.slug !== slug && p.category === post.category).slice(0, 2);
 
   return (
     <div className="pt-20 bg-black text-white">
@@ -60,11 +119,11 @@ const BlogPostPage = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Calendar size={16} />
-                <span>{post.date}</span>
+                <span>{new Date(post.created_at).toLocaleDateString('hy-AM')}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Clock size={16} />
-                <span>{post.readTime}</span>
+                <span>{post.read_time}</span>
               </div>
             </div>
           </div>
@@ -95,7 +154,7 @@ const BlogPostPage = () => {
           </Breadcrumb>
           
           <article>
-            <ArticleContent htmlContent={post.fullContent} />
+            <ArticleContent htmlContent={post.content} />
           </article>
 
           <hr className="my-12 border-gold-500/20" />

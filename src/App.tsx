@@ -17,6 +17,8 @@ import Blog from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPostPage";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
+import BlogEditor from "./pages/BlogEditor";
+import BlogManagement from "./pages/BlogManagement";
 import NotFound from "./pages/NotFound";
 import LoadingPage from "./components/LoadingPage";
 import AdminProtectedRoute from "./components/auth/AdminProtectedRoute";
@@ -58,6 +60,16 @@ const App = () => {
                 <Route path="/admin" element={
                   <AdminProtectedRoute>
                     <Admin />
+                  </AdminProtectedRoute>
+                } />
+                <Route path="/admin/blog/:id" element={
+                  <AdminProtectedRoute>
+                    <BlogEditor />
+                  </AdminProtectedRoute>
+                } />
+                <Route path="/admin/blog-management" element={
+                  <AdminProtectedRoute>
+                    <BlogManagement />
                   </AdminProtectedRoute>
                 } />
                 <Route path="*" element={<NotFound />} />
