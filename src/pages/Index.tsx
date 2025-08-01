@@ -1,4 +1,3 @@
-
 import { ArrowRight, Calculator, TrendingUp, Shield, Users, Award, CheckCircle, Calendar, User, FileText, BarChart3, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,31 +6,32 @@ import NetworkAnimation from '@/components/NetworkAnimation';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
 import { blogPosts as allBlogPosts } from '@/data/blog';
 import { useLanguage } from '@/contexts/LanguageContext';
-
 const Index = () => {
-  const { t } = useLanguage();
-
+  const {
+    t
+  } = useLanguage();
   const servicesData = t('services.list');
-  const services = Array.isArray(servicesData) 
-    ? (servicesData as any[]).slice(0, 6).map((service: any, index: number) => ({
-        icon: [TrendingUp, Calculator, FileText, Users, BarChart3, Shield][index],
-        title: service.title,
-        description: service.description
-      }))
-    : [];
-
+  const services = Array.isArray(servicesData) ? (servicesData as any[]).slice(0, 6).map((service: any, index: number) => ({
+    icon: [TrendingUp, Calculator, FileText, Users, BarChart3, Shield][index],
+    title: service.title,
+    description: service.description
+  })) : [];
   const featuresData = t('home.features.items');
   const features = Array.isArray(featuresData) ? featuresData : [];
-
-  const stats = [
-    { number: '4+', label: t('home.hero.stats.experience') },
-    { number: '200+', label: t('home.hero.stats.clients') },
-    { number: '98%', label: t('home.hero.stats.satisfaction') },
-    { number: '500+', label: t('home.hero.stats.projects') }
-  ];
-
+  const stats = [{
+    number: '4+',
+    label: t('home.hero.stats.experience')
+  }, {
+    number: '200+',
+    label: t('home.hero.stats.clients')
+  }, {
+    number: '98%',
+    label: t('home.hero.stats.satisfaction')
+  }, {
+    number: '500+',
+    label: t('home.hero.stats.projects')
+  }];
   const blogPosts = allBlogPosts.slice(0, 3);
-
   return <div className="relative">
       <NetworkAnimation />
       
@@ -42,13 +42,13 @@ const Index = () => {
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 leading-tight font-bold lg:text-5xl">
-              <span className="gradient-text">Պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ Ձեր բիզնեսի հաջողության համար</span>
+              <span className="gradient-text">Պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ</span>
               <br />
               <br />
             </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8 leading-relaxed px-4">
-              <span className="gradient-text">{t('home.hero.subtitle')}</span>
+              
               <br className="hidden sm:block" />
               {t('home.hero.description')}
             </p>
@@ -241,5 +241,4 @@ const Index = () => {
       </section>
     </div>;
 };
-
 export default Index;
