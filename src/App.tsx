@@ -16,8 +16,10 @@ import Archive from "./pages/Archive";
 import Blog from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPostPage";
 import Contact from "./pages/Contact";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import LoadingPage from "./components/LoadingPage";
+import AdminProtectedRoute from "./components/auth/AdminProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +55,11 @@ const App = () => {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/admin" element={
+                  <AdminProtectedRoute>
+                    <Admin />
+                  </AdminProtectedRoute>
+                } />
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <Footer />
