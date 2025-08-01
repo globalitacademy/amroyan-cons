@@ -19,17 +19,17 @@ const Index = () => {
   const featuresData = t('home.features.items');
   const features = Array.isArray(featuresData) ? featuresData : [];
   const stats = [{
-    number: '4+',
-    label: t('home.hero.stats.experience')
+    number: '35+',
+    label: 'գործընկերեներ'
   }, {
-    number: '200+',
-    label: t('home.hero.stats.clients')
+    number: '5+',
+    label: 'տարիների փորձ'
   }, {
-    number: '98%',
-    label: t('home.hero.stats.satisfaction')
+    number: '20%',
+    label: 'տարեկան աճ'
   }, {
     number: '120+',
-    label: t('home.hero.stats.projects')
+    label: 'կատարված նախագծեր'
   }];
   const blogPosts = allBlogPosts.slice(0, 3);
   return <div className="relative">
