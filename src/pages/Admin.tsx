@@ -26,6 +26,7 @@ const Admin = () => {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [documents, setDocuments] = useState<any[]>([]);
   const [users, setUsers] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState("overview");
 
   useEffect(() => {
     fetchStats();
@@ -263,7 +264,7 @@ const Admin = () => {
           </Card>
         </div>
 
-        <Tabs defaultValue="overview" className="space-y-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
           <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="overview">Ընդհանուր</TabsTrigger>
             <TabsTrigger value="messages">Հաղորդագրություններ</TabsTrigger>
@@ -315,11 +316,7 @@ const Admin = () => {
                 <CardContent>
                   <Button 
                     className="w-full"
-                    onClick={() => {
-                      // Switch to documents tab and scroll to upload
-                      const tabsTrigger = document.querySelector('[data-value="documents"]') as HTMLElement;
-                      tabsTrigger?.click();
-                    }}
+                    onClick={() => setActiveTab("documents")}
                   >
                     Ֆայլ վերբեռնել
                   </Button>
