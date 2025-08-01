@@ -62,12 +62,12 @@ const App = () => {
                     <Admin />
                   </AdminProtectedRoute>
                 } />
-                <Route path="/admin/blog/:id" element={
+                <Route path="/blog-editor" element={
                   <AdminProtectedRoute>
                     <BlogEditor />
                   </AdminProtectedRoute>
                 } />
-                <Route path="/admin/blog-management" element={
+                <Route path="/blog-management" element={
                   <AdminProtectedRoute>
                     <BlogManagement />
                   </AdminProtectedRoute>
