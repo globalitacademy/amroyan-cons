@@ -45,9 +45,9 @@ const About = () => {
                       <Target className="text-black" size={40} aria-hidden="true" />
                     </div>
                     <h3 className="text-xl sm:text-2xl font-semibold">Մեր առաքելությունը</h3>
-                    <p className="text-sm sm:text-base text-gray-300 max-w-md">
-                      Ֆինանսական կայունություն և աճ՝ պրոֆեսիոնալ հաշվապահական ու ֆինանսական լուծումներով:
-                    </p>
+                    <p className="text-sm sm:text-base text-gray-300 max-w-md px-0 mx-0 my-0 py-0">Մեր նպատակն է օգնել բիզնեսներին հասնել ֆինանսական կայունության և աճի՝ տրամադրելով պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ:
+
+Մենք հավատում ենք, որ յուրաքանչյուր բիզնես արժանի է որակյալ ֆինանսական աջակցության՝ անկախ գործունեության ոլորտից և իր մեծությունից:</p>
                   </CardContent>
                 </Card>
               </div>
