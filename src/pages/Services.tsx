@@ -1,4 +1,4 @@
-import { Calculator, TrendingUp, Shield, FileText, Users, BarChart3, Clock, Award, BookOpen, Briefcase } from 'lucide-react';
+import { Calculator, TrendingUp, Shield, FileText, Users, BarChart3, Clock, Award, BookOpen, Briefcase, CheckCircle, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -93,32 +93,50 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Benefits Section (Why Us) - match homepage style */}
       <section className="py-12 sm:py-16 lg:py-20 bg-black overflow-x-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">
-              <span className="gradient-text">Ինչու՞ ընտրել մեզ</span>
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
-              Մեր ծառայությունների հիմնական առավելությունները
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-            {benefits.map((benefit, index) => <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 text-center overflow-hidden">
-                <CardContent className="p-6 sm:p-8">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                    <benefit.icon size={28} className="text-black sm:w-8 sm:h-8" />
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">
+                  <span className="gradient-text">Ինչու՞ մենք</span>
+                </h2>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
+                    <span className="text-base sm:text-lg text-gray-300">Փորձառու մասնագետների թիմ</span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4 break-words">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </CardContent>
-              </Card>)}
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
+                    <span className="text-base sm:text-lg text-gray-300">Հարկային և տեսչական ստուգումների ընթացքում պատվիրատուի շահերի պաշտպանում</span>
+                  </div>
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
+                    <span className="text-base sm:text-lg text-gray-300">Հուսալի և վստահելի</span>
+                  </div>
+                  <div className="flex items-center space-x-3 sm:space-x-4">
+                    <CheckCircle className="text-gold-400 flex-shrink-0" size={20} />
+                    <span className="text-base sm:text-lg text-gray-300">Ժամանակակից տեխնոլոգիաներ և գործիքակազմի կիրառում</span>
+                  </div>
+                </div>
+                <Button asChild className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold mt-6 sm:mt-8 min-h-[44px] w-full sm:w-auto">
+                  <Link to="/about">
+                    Մեր մասին <ArrowRight className="ml-2" size={16} />
+                  </Link>
+                </Button>
+              </div>
+              <div className="relative order-1 lg:order-2">
+                <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 to-gold-600/20 rounded-3xl blur-3xl" />
+                <Card className="relative bg-gradient-to-br from-gray-900 to-black border-gold-500/20">
+                  <CardContent className="p-6 sm:p-8">
+                    <Award className="text-gold-400 mb-4 sm:mb-6" size={40} />
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Մենք ապահովում ենք</h3>
+                    <p className="text-gray-300 leading-relaxed text-sm sm:text-base">Պրոֆեսիոնալ ծառայությունների մատուցումը, ինչը նպաստում է Ձեր բիզնեսի աճին։</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
