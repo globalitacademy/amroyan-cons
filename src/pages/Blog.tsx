@@ -88,10 +88,7 @@ const Blog = () => {
                   
                 </Link>}
             </div>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-              Օգտակար հոդվածներ, խորհուրդներ և վերլուծություններ 
-              ֆինանսական և հաշվապահական ոլորտներից
-            </p>
+            
             {isAdmin && <div className="mt-6">
                 <Link to="/admin/blog-management">
                   <Button variant="outline">
