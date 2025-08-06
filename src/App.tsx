@@ -16,6 +16,13 @@ import Archive from "./pages/Archive";
 import Blog from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPostPage";
 import Contact from "./pages/Contact";
+import ArchiveStandards from "./pages/archive/Standards";
+import ArchiveNotifications from "./pages/archive/Notifications";
+import ArchiveClarificationsTax from "./pages/archive/ClarificationsTax";
+import ArchiveClarificationsLabor from "./pages/archive/ClarificationsLabor";
+import ArchiveDiscussions from "./pages/archive/Discussions";
+import ArchiveTestsAccounting from "./pages/archive/TestsAccounting";
+import ArchiveTestsHR from "./pages/archive/TestsHR";
 import Admin from "./pages/Admin";
 import BlogEditor from "./pages/BlogEditor";
 import BlogManagement from "./pages/BlogManagement";
@@ -60,6 +67,13 @@ const App = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/archive" element={<Archive />} />
+                <Route path="/archive/standards" element={<ArchiveStandards />} />
+                <Route path="/archive/notifications" element={<ArchiveNotifications />} />
+                <Route path="/archive/clarifications/tax-law" element={<ArchiveClarificationsTax />} />
+                <Route path="/archive/clarifications/labor-law" element={<ArchiveClarificationsLabor />} />
+                <Route path="/archive/discussions" element={<ArchiveDiscussions />} />
+                <Route path="/archive/tests/accounting" element={<ArchiveTestsAccounting />} />
+                <Route path="/archive/tests/hr" element={<ArchiveTestsHR />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/contact" element={<Contact />} />
