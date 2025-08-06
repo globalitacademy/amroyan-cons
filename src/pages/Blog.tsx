@@ -94,7 +94,7 @@ const Blog = () => {
             </div>
             
             {isAdmin && <div className="mt-6">
-                <Link to="/admin/blog-management">
+                <Link to="/blog-management">
                   <Button variant="outline">
                     Կառավարել բլոգը
                   </Button>
