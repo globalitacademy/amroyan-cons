@@ -22,6 +22,7 @@ const Blog = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>('Բոլորը');
   const {
     toast
   } = useToast();
@@ -72,9 +73,12 @@ const Blog = () => {
         <div className="text-lg">Բեռնում...</div>
       </div>;
   }
-  const featuredPost = blogPosts.find(p => p.featured) || blogPosts[0];
-  const otherPosts = blogPosts.filter(p => p.slug !== featuredPost?.slug);
-  const categories = ['Բոլորը', ...Array.from(new Set(blogPosts.map(p => p.category)))];
+  const filteredPosts = selectedCategory === 'Բոլորը'
+    ? blogPosts
+    : blogPosts.filter(p => p.category === selectedCategory);
+  const featuredPost = filteredPosts.find(p => p.featured) || filteredPosts[0];
+  const otherPosts = featuredPost ? filteredPosts.filter(p => p.slug !== featuredPost.slug) : filteredPosts;
+  const categories = ['Բոլորը', 'Հարկային', 'Ֆինանսներ', 'Տեխնոլոգիաներ', 'Բիզնես', 'Տնտեսություն', 'HR', 'Հեղինակային'];
   return <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black network-bg">
@@ -163,9 +167,18 @@ const Blog = () => {
       <section className="py-8 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category, index) => <Button key={index} variant={index === 0 ? "default" : "outline"} className={index === 0 ? "bg-gradient-to-r from-gold-500 to-gold-600 text-black" : "border-gold-500/30 text-gray-300 hover:bg-gold-500/10 hover:text-gold-400"}>
+            {categories.map((category, index) => (
+              <Button
+                key={index}
+                onClick={() => setSelectedCategory(category)}
+                variant={selectedCategory === category ? "default" : "outline"}
+                className={selectedCategory === category
+                  ? "bg-gradient-to-r from-gold-500 to-gold-600 text-black"
+                  : "border-gold-500/30 text-gray-300 hover:bg-gold-500/10 hover:text-gold-400"}
+              >
                 {category}
-              </Button>)}
+              </Button>
+            ))}
           </div>
         </div>
       </section>
