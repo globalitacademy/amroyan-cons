@@ -42,7 +42,7 @@ const About = () => {
                 <Card className="relative h-full bg-gradient-to-br from-gray-900 to-black border-gold-500/20 flex items-center justify-center overflow-hidden">
                   <CardContent className="p-8 sm:p-10 flex flex-col items-center text-center gap-4">
                     <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center shadow-md">
-                      <Target className="text-black" size={40} aria-hidden="true" />
+                      <GraduationCap className="text-black" size={40} aria-hidden="true" />
                     </div>
                     <h3 className="text-xl sm:text-2xl font-semibold">Մեր առաքելությունը</h3>
                     <p className="text-sm sm:text-base text-gray-300 max-w-md px-0 mx-0 my-0 py-0">Մեր նպատակն է օգնել բիզնեսներին հասնել ֆինանսական կայունության և աճի՝ տրամադրելով պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ:
