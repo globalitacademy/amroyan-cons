@@ -18,6 +18,7 @@ const Header = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
+  const [isCalculatorsOpen, setIsCalculatorsOpen] = useState(false);
   const location = useLocation();
   const { currentLanguage, setLanguage, t } = useLanguage();
 
@@ -115,7 +116,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navigation
-              .filter((item) => !['/blog', '/contact'].includes(item.href))
+              .filter((item) => !['/blog', '/contact', '/calculators'].includes(item.href))
               .map((item) => (
                 <Link
                   key={item.name}
@@ -129,7 +130,37 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
+            {/* Calculators dropdown */}
+            <div className="relative">
+              <Link
+                to="/calculators"
+                onClick={(e) => { e.preventDefault(); setIsCalculatorsOpen((v) => !v); }}
+                aria-haspopup="menu"
+                aria-expanded={isCalculatorsOpen}
+                className={`text-sm font-medium transition-colors hover:text-gold-400 flex items-center gap-1 ${
+                  location.pathname.startsWith('/calculators') ? 'text-gold-400' : 'text-white'
+                }`}
+              >
+                <span>Հաշվիչներ</span>
+                <ChevronDown size={16} className={`transition-transform ${isCalculatorsOpen ? 'rotate-180' : 'rotate-0'}`} />
+              </Link>
+              <div className={`absolute left-0 mt-2 ${isCalculatorsOpen ? 'block' : 'hidden'} bg-black/95 border border-gold-500/20 rounded-md shadow-lg min-w-[260px] p-2 z-50`}
+                   role="menu">
+                <div className="flex flex-col">
+                  <Link to="/calculators" className="px-3 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">Բոլոր հաշվիչները</Link>
+                  <div className="px-3 py-2 text-xs uppercase tracking-wide text-gray-400">Հիմնական</div>
+                  <Link to="/calculators/salary" className="px-5 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">Աշխատավարձի հաշվիչ</Link>
+                  <Link to="/calculators/vat" className="px-5 py-2 text-sm text-white hover:text-gոլд-500/10 rounded">Շրջհարկի (ԱԱՀ) հաշվիչ</Link>
+                  <Link to="/calculators/profit-tax" className="px-5 py-2 text-sm text-white hover:text-gոլд-500/10 rounded">Շահութահարկի հաշվիչ</Link>
+                  <div className="px-3 py-2 text-xs uppercase tracking-wide text-gray-400">Այլ</div>
+                  <Link to="/calculators/benefit" className="px-5 py-2 text-sm text-white hover:text-gոլд-500/10 rounded">Նպաստի հաշվիչ</Link>
+                  <Link to="/calculators/estimate" className="px-5 py-2 text-sm text-white hover:text-gոլд-500/10 rounded">Նախագծերի հաշվիչ (Սմետա)</Link>
+                </div>
+              </div>
+            </div>
+
             {/* Archive dropdown */}
+
             <div className="relative">
               <Link
                 to="/archive"
