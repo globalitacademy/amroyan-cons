@@ -226,6 +226,36 @@ const Admin = () => {
     }
   };
 
+  const handleDeleteDocument = async (docId: string, fileUrl?: string) => {
+    try {
+      const confirmed = window.confirm('Ջնջե՞լ փաստաթուղթը բոլորովին. Այս գործողությունը անդառնալի է.');
+      if (!confirmed) return;
+
+      const { error } = await supabase
+        .from('documents')
+        .delete()
+        .eq('id', docId);
+      if (error) throw error;
+
+      // Best-effort: try to remove from storage if we can derive the path
+      if (fileUrl) {
+        const marker = '/object/public/documents/';
+        const idx = fileUrl.indexOf(marker);
+        if (idx !== -1) {
+          const storagePath = fileUrl.substring(idx + marker.length);
+          if (storagePath) {
+            await supabase.storage.from('documents').remove([storagePath]);
+          }
+        }
+      }
+
+      setDocuments(prev => prev.filter(d => d.id !== docId));
+      toast({ title: 'Փաստաթուղթը ջնջվեց' });
+    } catch (err) {
+      console.error('Error deleting document:', err);
+      toast({ title: 'Սխալ', description: 'Չհաջողվեց ջնջել փաստաթուղթը', variant: 'destructive' });
+    }
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black pt-32 px-4">
       <div className="max-w-7xl mx-auto">
@@ -593,6 +623,14 @@ const Admin = () => {
                                 onClick={() => toggleDocumentStatus(doc.id, doc.is_published)}
                               >
                                 {doc.is_published ? "Թաքցնել" : "Հրապարակել"}
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => handleDeleteDocument(doc.id, doc.file_url)}
+                                title="Ջնջել փաստաթուղթը"
+                              >
+                                <Trash2 className="h-4 w-4" />
                               </Button>
                             </div>
                           </div>

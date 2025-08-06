@@ -22,7 +22,7 @@ const DocumentUpload = ({ onSuccess }: DocumentUploadProps) => {
     title: "",
     description: "",
     category: "" as DocumentCategory | "",
-    file: null as File | null
+    files: [] as File[]
   });
 
   const categories = [
@@ -36,82 +36,64 @@ const DocumentUpload = ({ onSuccess }: DocumentUploadProps) => {
   ] as const;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      if (file.type !== 'application/pdf') {
-        toast({
-          title: "Սխալ",
-          description: "Միայն PDF ֆայլեր են ընդունվում",
-          variant: "destructive"
-        });
-        return;
-      }
-      setFormData(prev => ({ ...prev, file }));
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+
+    const nonPdf = files.find(f => f.type !== 'application/pdf');
+    if (nonPdf) {
+      toast({ title: "Սխալ", description: "Միայն PDF ֆայլեր են ընդունվում", variant: "destructive" });
+      return;
     }
+    setFormData(prev => ({ ...prev, files }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.file || !formData.title || !formData.category) {
-      toast({
-        title: "Սխալ",
-        description: "Խնդրում ենք լրացնել բոլոր պարտադիր դաշտերը",
-        variant: "destructive"
-      });
+    if (!formData.category || formData.files.length === 0) {
+      toast({ title: "Սխալ", description: "Ընտրեք կատեգորիան և առնվազն մեկ PDF ֆայլ", variant: "destructive" });
+      return;
+    }
+    if (formData.files.length === 1 && !formData.title) {
+      toast({ title: "Սխալ", description: "Մեկ ֆայլի դեպքում անհրաժեշտ է վերնագիր", variant: "destructive" });
       return;
     }
 
     setUploading(true);
-    
     try {
-      // Upload file to storage
-      const fileExt = formData.file.name.split('.').pop();
-      const fileName = `${Math.random()}.${fileExt}`;
-      const filePath = `documents/${fileName}`;
+      const userId = (await supabase.auth.getUser()).data.user?.id;
+      for (const file of formData.files) {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Math.random().toString(36).slice(2)}.${fileExt}`;
+        const filePath = `documents/${fileName}`;
+        const { error: uploadError } = await supabase.storage
+          .from('documents')
+          .upload(filePath, file);
+        if (uploadError) throw uploadError;
 
-      const { error: uploadError } = await supabase.storage
-        .from('documents')
-        .upload(filePath, formData.file);
+        const { data: { publicUrl } } = supabase.storage
+          .from('documents')
+          .getPublicUrl(filePath);
 
-      if (uploadError) throw uploadError;
-
-      // Get public URL
-      const { data: { publicUrl } } = supabase.storage
-        .from('documents')
-        .getPublicUrl(filePath);
-
-      // Save document record
-      const { error: dbError } = await supabase
-        .from('documents')
-        .insert({
-          title: formData.title,
+        const title = formData.title || file.name.replace(/\.[^/.]+$/, "");
+        const { error: dbError } = await supabase.from('documents').insert({
+          title,
           description: formData.description,
           category: formData.category as DocumentCategory,
           file_url: publicUrl,
-          file_name: formData.file.name,
-          file_size: formData.file.size,
-          mime_type: formData.file.type,
-          uploaded_by: (await supabase.auth.getUser()).data.user?.id
+          file_name: file.name,
+          file_size: file.size,
+          mime_type: file.type,
+          uploaded_by: userId
         });
+        if (dbError) throw dbError;
+      }
 
-      if (dbError) throw dbError;
-
-      toast({
-        title: "Հաջողություն",
-        description: "Փաստաթուղթը հաջողությամբ վերբեռնվեց"
-      });
-
-      setFormData({ title: "", description: "", category: "", file: null });
+      toast({ title: "Հաջողություն", description: `${formData.files.length} ֆայլ${formData.files.length>1?"եր":""} վերբեռնվեց` });
+      setFormData({ title: "", description: "", category: "", files: [] });
       onSuccess?.();
-      
     } catch (error) {
-      console.error('Error uploading document:', error);
-      toast({
-        title: "Սխալ",
-        description: "Չհաջողվեց վերբեռնել փաստաթուղթը",
-        variant: "destructive"
-      });
+      console.error('Error uploading document(s):', error);
+      toast({ title: "Սխալ", description: "Չհաջողվեց վերբեռնել ֆայլ(երը)", variant: "destructive" });
     } finally {
       setUploading(false);
     }
@@ -131,13 +113,12 @@ const DocumentUpload = ({ onSuccess }: DocumentUploadProps) => {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="title">Վերնագիր *</Label>
+            <Label htmlFor="title">Վերնագիր {formData.files.length <= 1 ? '*' : ''}</Label>
             <Input
               id="title"
               value={formData.title}
               onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-              placeholder="Փաստաթղթի վերնագիր"
-              required
+              placeholder={formData.files.length > 1 ? "Կկիրառվի, եթե թողնեք" : "Փաստաթղթի վերնագիր"}
             />
           </div>
 
@@ -172,28 +153,38 @@ const DocumentUpload = ({ onSuccess }: DocumentUploadProps) => {
           </div>
 
           <div>
-            <Label htmlFor="file">PDF ֆայլ *</Label>
+            <Label htmlFor="files">PDF ֆայլ(եր) *</Label>
             <div className="mt-2">
               <Input
-                id="file"
+                id="files"
                 type="file"
                 accept=".pdf"
+                multiple
                 onChange={handleFileChange}
                 className="cursor-pointer"
                 required
               />
-              {formData.file && (
-                <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
-                  <FileText className="h-4 w-4" />
-                  <span>{formData.file.name}</span>
-                  <span>({(formData.file.size / 1024 / 1024).toFixed(2)} MB)</span>
+              {formData.files.length > 0 && (
+                <div className="mt-2 text-sm text-muted-foreground space-y-1">
+                  <div className="flex items-center gap-2">
+                    <FileText className="h-4 w-4" />
+                    <span>{formData.files.length} ընտրված ֆայլ</span>
+                  </div>
+                  <ul className="list-disc pl-5">
+                    {formData.files.slice(0,3).map((f, i) => (
+                      <li key={i}>{f.name} ({(f.size/1024/1024).toFixed(2)} MB)</li>
+                    ))}
+                    {formData.files.length > 3 && (
+                      <li>… և ևս {formData.files.length - 3} ֆայլ</li>
+                    )}
+                  </ul>
                 </div>
               )}
             </div>
           </div>
 
           <Button type="submit" disabled={uploading} className="w-full">
-            {uploading ? "Վերբեռնում..." : "Վերբեռնել փաստաթուղթ"}
+            {uploading ? "Վերբեռնում..." : "Վերբեռնել ֆայլ(եր)"}
           </Button>
         </form>
       </CardContent>
