@@ -206,7 +206,7 @@ const Archive = () => {
               </Card>
             </Link>
 
-            {/* 3. Պաշտոնական պարզաբանումներ (ներսում՝ 3.1 և 3.2) */}
+            {/* 3. Պաշտոնական պարզաբանումներ (ներսում՝ ենթալինքեր) */}
             <Card className="border-gray-800 bg-gray-900/50">
               <CardHeader>
                 <CardTitle className="text-white">Պաշտոնական պարզաբանումներ</CardTitle>
@@ -215,16 +215,16 @@ const Archive = () => {
               <CardContent className="pt-0">
                 <nav aria-label="Պարզաբանումների ենթակատեգորիաներ" className="grid gap-2">
                   <Link to="/archive/clarifications/tax-law" className="text-gold-400 hover:text-gold-300 transition-colors">
-                    3.1. Հարկային օրենսդրություն
+                    Հարկային օրենսդրություն
                   </Link>
                   <Link to="/archive/clarifications/labor-law" className="text-gold-400 hover:text-gold-300 transition-colors">
-                    3.2. Աշխատանքային օրենսդրություն
+                    Աշխատանքային օրենսդրություն
                   </Link>
                 </nav>
               </CardContent>
             </Card>
 
-            {/* 5. Թեստեր (ներսում՝ 5.1 և 5.2) */}
+            {/* 5. Թեստեր (ներսում՝ ենթալինքեր) */}
             <Card className="border-gray-800 bg-gray-900/50">
               <CardHeader>
                 <CardTitle className="text-white">Թեստեր</CardTitle>
@@ -233,10 +233,10 @@ const Archive = () => {
               <CardContent className="pt-0">
                 <nav aria-label="Թեստերի ենթակատեգորիաներ" className="grid gap-2">
                   <Link to="/archive/tests/accounting" className="text-gold-400 hover:text-gold-300 transition-colors">
-                    5.1. Հաշվապահական և ֆինանսկան ոլորտ
+                    Հաշվապահական և ֆինանսկան ոլորտ
                   </Link>
                   <Link to="/archive/tests/hr" className="text-gold-400 hover:text-gold-300 transition-colors">
-                    5.2. HR, կադրային ոլորտ
+                    HR, կադրային ոլորտ
                   </Link>
                 </nav>
               </CardContent>
