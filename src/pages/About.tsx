@@ -1,22 +1,22 @@
-import { Users, Target, Award, Clock, Mail, Linkedin, GraduationCap } from 'lucide-react';
+import { Users, Target, Award, Clock, Mail, Linkedin, GraduationCap, ShieldCheck } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 const About = () => {
   const values = [{
-    icon: Target,
-    title: 'Նպատակայնություն',
-    description: 'Մենք կենտրոնացած ենք ձեր բիզնեսի հաջողության վրա և աշխատում ենք հասնել լավագույն արդյունքների:'
-  }, {
-    icon: Users,
-    title: 'Թիմային աշխատանք',
-    description: 'Մեր փորձառու մասնագետների թիմը միավորված է ընդհանուր նպատակով՝ օգնել ձեր բիզնեսին:'
+    icon: ShieldCheck,
+    title: 'Հուսալիություն',
+    description: 'Մեր պատվիրատուները վստահ են իրենց ֆինանսական և հաշվապահական կառավարման մեջ'
   }, {
     icon: Award,
     title: 'Որակ',
-    description: 'Մենք հավատում ենք բարձրակարգ ծառայությունների և անսարսափ որակի:'
+    description: 'Միայն բարձրակարգ և արհեստավարժ ծառայությունների մատուցում'
+  }, {
+    icon: Target,
+    title: 'Նպատակայնություն',
+    description: 'Մենք կենտրոնացած ենք Ձեր բիզնեսի հաջողության վրա և աշխատում ենք հասնել լավագույն արդյունքների:'
   }, {
     icon: Clock,
     title: 'Արդյունավետություն',
-    description: 'Ժամանակը գումար է, և մենք գնահատում ենք ձեր ժամանակը ու աշխատում ենք արդյունավետ:'
+    description: 'Ժամանակը արժեք է, և մենք գնահատում ենք Ձեր ժամանակը խնայելով այն։'
   }];
   return <div className="pt-20">
       {/* Hero Section */}
