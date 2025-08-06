@@ -255,7 +255,7 @@ const BlogEditor = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">
-            <Link to="/admin/blog">
+            <Link to="/blog-management">
               <Button variant="outline" size="sm">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Վերադառնալ
@@ -449,7 +449,7 @@ const BlogEditor = () => {
         </Tabs>
 
         <div className="flex justify-end space-x-2 mt-8 pb-8">
-          <Link to="/admin/blog">
+          <Link to="/blog-management">
             <Button variant="outline">Չեղարկել</Button>
           </Link>
           <Button onClick={handleSave} disabled={saving}>
