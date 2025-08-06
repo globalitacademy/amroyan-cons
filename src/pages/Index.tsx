@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+
 import { Link } from 'react-router-dom';
 import NetworkAnimation from '@/components/NetworkAnimation';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
@@ -28,7 +28,7 @@ const Index = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [applyOpen, setApplyOpen] = useState(false);
-  const [appForm, setAppForm] = useState({ full_name: '', phone: '', email: '', message: '' });
+  const [appForm, setAppForm] = useState({ full_name: '', phone: '', email: '' });
   const [submitting, setSubmitting] = useState(false);
   const services = [{
     icon: Calculator,
@@ -95,12 +95,11 @@ const Index = () => {
         full_name: appForm.full_name,
         phone: appForm.phone,
         email: appForm.email,
-        message: appForm.message,
         submitted_from: 'accounting_course_card'
       });
       if (error) throw error;
       setApplyOpen(false);
-      setAppForm({ full_name: '', phone: '', email: '', message: '' });
+      setAppForm({ full_name: '', phone: '', email: '' });
     } catch (e) {
       console.error('Application submit error', e);
     } finally {
@@ -303,6 +302,38 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Application Dialog */}
+      <Dialog open={applyOpen} onOpenChange={setApplyOpen}>
+        <DialogContent className="bg-black border-gold-500/20">
+          <DialogHeader>
+            <DialogTitle className="text-white">Դիմում դասընթացներին</DialogTitle>
+            <DialogDescription className="text-gray-400">
+              Լրացրեք տվյալները, մենք կհետադարձկանենք Ձեզ հետ:
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="full_name">Անուն Ազգանուն</Label>
+              <Input id="full_name" value={appForm.full_name} onChange={(e) => setAppForm({ ...appForm, full_name: e.target.value })} placeholder="Ձեր անուն ազգանունը" />
+            </div>
+            <div>
+              <Label htmlFor="phone">Հեռախոսահամար</Label>
+              <Input id="phone" value={appForm.phone} onChange={(e) => setAppForm({ ...appForm, phone: e.target.value })} placeholder="+374 ..." />
+            </div>
+            <div>
+              <Label htmlFor="email">Էլ. փոստ</Label>
+              <Input id="email" type="email" value={appForm.email} onChange={(e) => setAppForm({ ...appForm, email: e.target.value })} placeholder="name@example.com" />
+            </div>
+          </div>
+          <DialogFooter className="flex gap-2 justify-end">
+            <Button variant="outline" onClick={() => setApplyOpen(false)}>Փակել</Button>
+            <Button onClick={submitApplication} disabled={submitting} className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black">
+              {submitting ? 'Ուղարկվում է...' : 'Ուղարկել հայտը'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
     </div>
 };
