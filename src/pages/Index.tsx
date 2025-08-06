@@ -17,24 +17,33 @@ interface BlogPost {
   created_at: string;
   slug: string;
 }
-
 const Index = () => {
-  const { t } = useLanguage();
+  const {
+    t
+  } = useLanguage();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const services = [
-    { icon: Calculator, title: "Հաշվապահական հաշվառում" },
-    { icon: Users, title: "Հարկային, ֆինանսական և կադրային խորհրդատվություն" },
-    { icon: BarChart3, title: "Ֆինանսական վերլուծություն" },
-    { icon: FileText, title: "Ֆինանսական հաշվետվություն" },
-    { icon: TrendingUp, title: "Բիզնես Խորհրդատվություն" },
-    { icon: GraduationCap, title: "Խմբային և անհատական հաշվապահական դասընթացներ" },
-  ];
-  
+  const services = [{
+    icon: Calculator,
+    title: "Հաշվապահական հաշվառում"
+  }, {
+    icon: Users,
+    title: "Հարկային, ֆինանսական և կադրային խորհրդատվություն"
+  }, {
+    icon: BarChart3,
+    title: "Ֆինանսական վերլուծություն"
+  }, {
+    icon: FileText,
+    title: "Ֆինանսական հաշվետվություն"
+  }, {
+    icon: TrendingUp,
+    title: "Բիզնես Խորհրդատվություն"
+  }, {
+    icon: GraduationCap,
+    title: "Խմբային և անհատական հաշվապահական դասընթացներ"
+  }];
   const featuresData = t('home.features.items');
   const features = Array.isArray(featuresData) ? featuresData : [];
-  
   const stats = [{
     number: '35+',
     label: 'գործընկերեներ'
@@ -48,25 +57,21 @@ const Index = () => {
     number: '120+',
     label: 'կատարված նախագծեր'
   }];
-
   useEffect(() => {
     fetchBlogPosts();
   }, []);
-
   const fetchBlogPosts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('id, title, excerpt, content, author, category, created_at, slug')
-        .eq('published', true)
-        .order('created_at', { ascending: false })
-        .limit(3);
-
+      const {
+        data,
+        error
+      } = await supabase.from('blog_posts').select('id, title, excerpt, content, author, category, created_at, slug').eq('published', true).order('created_at', {
+        ascending: false
+      }).limit(3);
       if (error) {
         console.error('Error fetching blog posts:', error);
         return;
       }
-
       setBlogPosts(data || []);
     } catch (error) {
       console.error('Error fetching blog posts:', error);
@@ -198,11 +203,7 @@ const Index = () => {
                     <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                       Մենք ապահովում ենք
                     </h3>
-                    <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
-                      Բարձրակարգ պրոֆեսիոնալ ծառայություններ, 
-                      որոնք օգնում են ձեր բիզնեսին աճել և զարգանալ 
-                      ժամանակակից շուկայական պայմաններում:
-                    </p>
+                    <p className="text-gray-300 leading-relaxed text-sm sm:text-base">Պրոֆեսիոնալ ծառայությունների մատուցումը, ինչը նպաստում է Ձեր բիզնեսի աճին։</p>
                   </CardContent>
                 </Card>
               </div>
