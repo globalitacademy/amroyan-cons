@@ -133,7 +133,7 @@ const Index = () => {
               <span className="gradient-text">{t('home.services.title')}</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
-              {t('home.services.subtitle')}
+              Առաջարկում ենք ամբողջական լուծումներ Ձեր բիզնեսի ֆինանսական կարիքների համար
             </p>
           </div>
 
