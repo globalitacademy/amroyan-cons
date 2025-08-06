@@ -271,6 +271,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      has_role: {
+        Args: { _user_id: string; _role: string }
+        Returns: boolean
+      }
       increment_document_view_count: {
         Args: { document_id: string }
         Returns: undefined
