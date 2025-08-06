@@ -17,6 +17,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
   const location = useLocation();
   const { currentLanguage, setLanguage, t } = useLanguage();
 
@@ -129,16 +130,20 @@ const Header = () => {
                 </Link>
               ))}
             {/* Archive dropdown */}
-            <div className="relative group">
+            <div className="relative">
               <Link
                 to="/archive"
+                onClick={(e) => { e.preventDefault(); setIsArchiveOpen((v) => !v); }}
+                aria-haspopup="menu"
+                aria-expanded={isArchiveOpen}
                 className={`text-sm font-medium transition-colors hover:text-gold-400 ${
                   location.pathname.startsWith('/archive') ? 'text-gold-400' : 'text-white'
                 }`}
               >
                 Շտեմարան
               </Link>
-              <div className="absolute left-0 mt-2 hidden group-hover:block bg-black/95 border border-gold-500/20 rounded-md shadow-lg min-w-[260px] p-2">
+              <div className={`absolute left-0 mt-2 ${isArchiveOpen ? 'block' : 'hidden'} bg-black/95 border border-gold-500/20 rounded-md shadow-lg min-w-[260px] p-2 z-50`}
+                   role="menu">
                 <div className="flex flex-col">
                   <Link to="/archive/standards" className="px-3 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">ՀՀՄՍ / ՖՀՄՍ</Link>
                   <Link to="/archive/notifications" className="px-3 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">ՊԵԿ իրազեկումներ</Link>
