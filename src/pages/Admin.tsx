@@ -27,6 +27,7 @@ const Admin = () => {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [documents, setDocuments] = useState<any[]>([]);
   const [users, setUsers] = useState<any[]>([]);
+  const [courseApplications, setCourseApplications] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState("overview");
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const Admin = () => {
     fetchBlogPosts();
     fetchDocuments();
     fetchUsers();
+    fetchCourseApplications();
   }, []);
 
   const fetchStats = async () => {
@@ -117,6 +119,19 @@ const Admin = () => {
     }
   };
 
+  const fetchCourseApplications = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('course_applications')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(25);
+      if (error) throw error;
+      setCourseApplications(data || []);
+    } catch (error) {
+      console.error('Error fetching applications:', error);
+    }
+  };
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     toast({
@@ -256,9 +271,41 @@ const Admin = () => {
       toast({ title: 'Սխալ', description: 'Չհաջողվեց ջնջել փաստաթուղթը', variant: 'destructive' });
     }
   };
+
+  const updateCourseApplicationStatus = async (id: string, status: 'approved' | 'rejected') => {
+    try {
+      const { error } = await supabase
+        .from('course_applications')
+        .update({ status })
+        .eq('id', id);
+      if (error) throw error;
+      setCourseApplications(prev => prev.map(a => a.id === id ? { ...a, status } : a));
+      toast({ title: status === 'approved' ? 'Հայտը հաստատվեց' : 'Հայտը մերժվեց' });
+    } catch (error) {
+      console.error('Error updating application:', error);
+      toast({ title: 'Սխալ', description: 'Չհաջողվեց թարմացնել հայտը', variant: 'destructive' });
+    }
+  };
+
+  const deleteCourseApplication = async (id: string) => {
+    try {
+      const confirmed = window.confirm('Ջնջե՞լ դիմումը բոլորովին.');
+      if (!confirmed) return;
+      const { error } = await supabase
+        .from('course_applications')
+        .delete()
+        .eq('id', id);
+      if (error) throw error;
+      setCourseApplications(prev => prev.filter(a => a.id !== id));
+      toast({ title: 'Դիմումը ջնջվեց' });
+    } catch (error) {
+      console.error('Error deleting application:', error);
+      toast({ title: 'Սխալ', description: 'Չհաջողվեց ջնջել դիմումը', variant: 'destructive' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black pt-32 px-4">
-      <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-12">
           <h1 className="text-4xl font-bold text-white">Ադմինիստրատորի վահանակ</h1>
           <Button variant="outline" onClick={handleSignOut}>
@@ -313,11 +360,12 @@ const Admin = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-7">
+          <TabsList className="grid w-full grid-cols-8">
             <TabsTrigger value="overview">Ընդհանուր</TabsTrigger>
             <TabsTrigger value="messages">Հաղորդագրություններ</TabsTrigger>
             <TabsTrigger value="blog">Բլոգ</TabsTrigger>
             <TabsTrigger value="documents">Շտեմարան</TabsTrigger>
+            <TabsTrigger value="applications">Դիմումներ</TabsTrigger>
             <TabsTrigger value="calculators">Հաշվիչներ</TabsTrigger>
             <TabsTrigger value="users">Օգտատերեր</TabsTrigger>
             <TabsTrigger value="settings">Կարգավորումներ</TabsTrigger>
@@ -646,6 +694,54 @@ const Admin = () => {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+
+          <TabsContent value="applications" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Դիմումներ դասընթացների համար</CardTitle>
+                <CardDescription>Վերջին ուղարկված դիմումները</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {courseApplications.length === 0 ? (
+                    <p className="text-center text-muted-foreground py-8">Դիմումներ չկան</p>
+                  ) : (
+                    courseApplications.map((app) => (
+                      <div key={app.id} className="border rounded-lg p-4">
+                        <div className="flex justify-between items-start mb-3">
+                          <div className="space-y-1">
+                            <h4 className="font-medium">{app.full_name}</h4>
+                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Badge variant={app.status === 'approved' ? 'default' : app.status === 'rejected' ? 'destructive' : 'secondary'}>
+                                {app.status}
+                              </Badge>
+                              <span>{new Date(app.created_at).toLocaleDateString('hy-AM')}</span>
+                              {app.submitted_from && <span className="italic">{app.submitted_from}</span>}
+                            </div>
+                            <div className="text-sm text-muted-foreground">
+                              <div>Հեռ.: {app.phone}</div>
+                              <div>Էլ. փոստ: {app.email}</div>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button size="sm" variant="outline" onClick={() => updateCourseApplicationStatus(app.id, 'approved')} title="Հաստատել">
+                              <Check className="h-4 w-4" />
+                            </Button>
+                            <Button size="sm" variant="outline" onClick={() => updateCourseApplicationStatus(app.id, 'rejected')} title="Մերժել">
+                              <X className="h-4 w-4" />
+                            </Button>
+                            <Button size="sm" variant="destructive" onClick={() => deleteCourseApplication(app.id)} title="Ջնջել">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="users" className="space-y-6">
