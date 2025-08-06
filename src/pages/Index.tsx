@@ -23,12 +23,14 @@ const Index = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const servicesData = t('services.list');
-  const services = Array.isArray(servicesData) ? (servicesData as any[]).slice(0, 6).map((service: any, index: number) => ({
-    icon: [TrendingUp, Calculator, FileText, Users, BarChart3, Shield][index],
-    title: service.title,
-    description: service.description
-  })) : [];
+  const services = [
+    { icon: TrendingUp, title: "Հաշվապահական հաշվառում" },
+    { icon: Calculator, title: "Հարկային, ֆինանսական և կադրային խորհրդատվություն" },
+    { icon: FileText, title: "Ֆինանսական վերլուծություն" },
+    { icon: Users, title: "Ֆինանսական հաշվետվություն" },
+    { icon: BarChart3, title: "Բիզնես Խորհրդատվություն" },
+    { icon: Shield, title: "Խմբային և անհատական հաշվապահական դասընթացներ" },
+  ];
   
   const featuresData = t('home.features.items');
   const features = Array.isArray(featuresData) ? featuresData : [];
@@ -146,9 +148,6 @@ const Index = () => {
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">
                     {service.title}
                   </h3>
-                  <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
-                    {service.description}
-                  </p>
                 </CardContent>
               </Card>)}
           </div>
