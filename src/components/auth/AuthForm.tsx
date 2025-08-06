@@ -45,7 +45,7 @@ const AuthForm = ({ isLogin, onToggle }: AuthFormProps) => {
 
         toast({
           title: "Գրանցումը կատարված է",
-          description: "Ստուգեք ձեր էլ. փոստը հաստատման համար:",
+          description: "Ստուգեք Ձեր էլ. փոստը հաստատման համար:",
         });
       }
     } catch (error: any) {
@@ -64,7 +64,7 @@ const AuthForm = ({ isLogin, onToggle }: AuthFormProps) => {
       <CardHeader>
         <CardTitle>{isLogin ? "Մուտք" : "Գրանցում"}</CardTitle>
         <CardDescription>
-          {isLogin ? "Մուտքագրեք ձեր տվյալները" : "Ստեղծեք նոր հաշիվ"}
+          {isLogin ? "Մուտքագրեք Ձեր տվյալները" : "Ստեղծեք նոր հաշիվ"}
         </CardDescription>
       </CardHeader>
       <CardContent>

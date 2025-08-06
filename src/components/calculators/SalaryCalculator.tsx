@@ -55,7 +55,7 @@ const SalaryCalculator = () => {
       <CardHeader>
         <CardTitle className="gradient-text">Աշխատավարձի հաշվիչ</CardTitle>
         <CardDescription className="text-gray-400">
-          Մուտքագրեք ձեր բրուտո աշխատավարձը՝ հարկերից հետո մաքուր գումարը հաշվելու համար։
+          Մուտքագրեք Ձեր բրուտո աշխատավարձը՝ հարկերից հետո մաքուր գումարը հաշվելու համար։
         </CardDescription>
       </CardHeader>
       <CardContent>

@@ -44,7 +44,7 @@ const Footer = () => {
             />
             <p className="text-gray-400 text-sm leading-relaxed">
               Պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ 
-              ձեր բիզնեսի աճի և հաջողության համար: Հիմնադրվել է 2020 թվականին:
+              Ձեր բիզնեսի աճի և հաջողության համար: Հիմնադրվել է 2020 թվականին:
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-gold-400 transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center">
