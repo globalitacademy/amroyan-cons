@@ -129,7 +129,7 @@ const SalaryCalculator = () => {
       <CardHeader>
         <CardTitle className="gradient-text">Աշխատավարձի հաշվիչ</CardTitle>
         <CardDescription className="text-gray-400">
-          Հաշվեք բրուտո ↔ նեթ աշխատավարձը՝ հաշվի առնելով եկամտային հարկը, կուտակային վճարներն ու դրոշմանիշային վճարը։
+          Հաշվեք գրանցված ↔ մաքուր աշխատավարձը՝ հաշվի առնելով եկամտային հարկը, կուտակային վճարներն ու դրոշմանիշային վճարը։
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -148,8 +148,8 @@ const SalaryCalculator = () => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="grossToNet">Բրուտո → Նեթ</SelectItem>
-                      <SelectItem value="netToGross">Նեթ → Բրուտո</SelectItem>
+                      <SelectItem value="grossToNet">Գրանցված → Մաքուր</SelectItem>
+                      <SelectItem value="netToGross">Մաքուր → Գրանցված</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -162,7 +162,7 @@ const SalaryCalculator = () => {
               name="amount"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gold-400">{values.mode === 'grossToNet' ? 'Բրուտո աշխատավարձ' : 'Նեթ աշխատավարձ'}</FormLabel>
+                  <FormLabel className="text-gold-400">{values.mode === 'grossToNet' ? 'Գրանցված աշխատավարձ' : 'Մաքուր աշխատավարձ'}</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder="Օրինակ՝ 300000" {...field} className="bg-gray-800 border-gray-700 text-white" />
                   </FormControl>
@@ -233,7 +233,7 @@ const SalaryCalculator = () => {
                 <p className="text-lg font-semibold text-red-400">- {formatAMD(results.stamp)}</p>
               </div>
               <div className="bg-green-600/20 border border-green-500/50 p-4 rounded-md sm:col-span-2 text-center">
-                <p className="text-lg text-green-300">{values.mode === 'grossToNet' ? 'Մաքուր (նեթ) աշխատավարձ' : 'Անհրաժեշտ բրուտո աշխատավարձ'}</p>
+                <p className="text-lg text-green-300">{values.mode === 'grossToNet' ? 'Մաքուր աշխատավարձ' : 'Անհրաժեշտ գրանցված աշխատավարձ'}</p>
                 <p className="text-3xl font-bold text-green-400">{values.mode === 'grossToNet' ? formatAMD(results.net) : formatAMD(results.gross)}</p>
               </div>
             </div>
