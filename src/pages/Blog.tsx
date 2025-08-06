@@ -93,13 +93,6 @@ const Blog = () => {
                 </Link>}
             </div>
             
-            {isAdmin && <div className="mt-6">
-                <Link to="/blog-management">
-                  <Button variant="outline">
-                    Կառավարել բլոգը
-                  </Button>
-                </Link>
-              </div>}
           </div>
         </div>
       </section>
