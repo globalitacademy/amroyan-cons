@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import DocumentUpload from "@/components/admin/DocumentUpload";
 import UserManagement from "@/components/admin/UserManagement";
 import SystemSettings from "@/components/admin/SystemSettings";
+import CalculatorsManagement from "@/components/admin/CalculatorsManagement";
 
 const Admin = () => {
   const { toast } = useToast();
@@ -265,11 +266,12 @@ const Admin = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6">
+          <TabsList className="grid w-full grid-cols-7">
             <TabsTrigger value="overview">Ընդհանուր</TabsTrigger>
             <TabsTrigger value="messages">Հաղորդագրություններ</TabsTrigger>
             <TabsTrigger value="blog">Բլոգ</TabsTrigger>
             <TabsTrigger value="documents">Փաստաթղթեր</TabsTrigger>
+            <TabsTrigger value="calculators">Հաշվիչներ</TabsTrigger>
             <TabsTrigger value="users">Օգտատերեր</TabsTrigger>
             <TabsTrigger value="settings">Կարգավորումներ</TabsTrigger>
           </TabsList>
@@ -589,6 +591,11 @@ const Admin = () => {
 
           <TabsContent value="settings" className="space-y-6">
             <SystemSettings />
+          </TabsContent>
+
+          <TabsContent value="calculators" className="space-y-6">
+            <h2 className="text-2xl font-bold text-white">Հաշվիչների կառավարում</h2>
+            <CalculatorsManagement />
           </TabsContent>
         </Tabs>
       </div>
