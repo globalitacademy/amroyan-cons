@@ -176,6 +176,7 @@ const Archive = () => {
         {/* Ենթաբաժինների արագ մուտքեր */}
         <section aria-label="Շտեմարանի ենթաբաժիններ" className="mb-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* 1. ՀՀՄՍ / ՖՀՄՍ */}
             <Link to="/archive/standards">
               <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
                 <CardHeader>
@@ -184,6 +185,8 @@ const Archive = () => {
                 </CardHeader>
               </Card>
             </Link>
+
+            {/* 2. ՊԵԿ իրազեկումներ */}
             <Link to="/archive/notifications">
               <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
                 <CardHeader>
@@ -192,22 +195,26 @@ const Archive = () => {
                 </CardHeader>
               </Card>
             </Link>
-            <Link to="/archive/clarifications/tax-law">
-              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-white">Պարզաբանումներ — Հարկային</CardTitle>
-                  <CardDescription className="text-gray-400">Հսկիչ մարմինների մեկնաբանություններ</CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
-            <Link to="/archive/clarifications/labor-law">
-              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-white">Պարզաբանումներ — Աշխատանքային</CardTitle>
-                  <CardDescription className="text-gray-400">Պաշտոնական պարզաբանումներ</CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
+
+            {/* 3. Պաշտոնական պարզաբանումներ (ներսում՝ 3.1 և 3.2) */}
+            <Card className="border-gray-800 bg-gray-900/50">
+              <CardHeader>
+                <CardTitle className="text-white">Պաշտոնական պարզաբանումներ</CardTitle>
+                <CardDescription className="text-gray-400">Հղումներ ըստ օրենսդրության</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <nav aria-label="Պարզաբանումների ենթակատեգորիաներ" className="grid gap-2">
+                  <Link to="/archive/clarifications/tax-law" className="text-gold-400 hover:text-gold-300 transition-colors">
+                    3.1. Հարկային օրենսդրություն
+                  </Link>
+                  <Link to="/archive/clarifications/labor-law" className="text-gold-400 hover:text-gold-300 transition-colors">
+                    3.2. Աշխատանքային օրենսդրություն
+                  </Link>
+                </nav>
+              </CardContent>
+            </Card>
+
+            {/* 4. Քննարկումներ */}
             <Link to="/archive/discussions">
               <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
                 <CardHeader>
@@ -216,22 +223,24 @@ const Archive = () => {
                 </CardHeader>
               </Card>
             </Link>
-            <Link to="/archive/tests/accounting">
-              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-white">Թեստեր — Հաշվապահական/Ֆինանսկան</CardTitle>
-                  <CardDescription className="text-gray-400">Գիտելիքների ստուգում</CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
-            <Link to="/archive/tests/hr">
-              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-white">Թեստեր — HR, կադրային</CardTitle>
-                  <CardDescription className="text-gray-400">Հմտությունների գնահատում</CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
+
+            {/* 5. Թեստեր (ներսում՝ 5.1 և 5.2) */}
+            <Card className="border-gray-800 bg-gray-900/50">
+              <CardHeader>
+                <CardTitle className="text-white">Թեստեր</CardTitle>
+                <CardDescription className="text-gray-400">Գիտելիքների և հմտությունների ստուգում</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <nav aria-label="Թեստերի ենթակատեգորիաներ" className="grid gap-2">
+                  <Link to="/archive/tests/accounting" className="text-gold-400 hover:text-gold-300 transition-colors">
+                    5.1. Հաշվապահական և ֆինանսկան ոլորտ
+                  </Link>
+                  <Link to="/archive/tests/hr" className="text-gold-400 hover:text-gold-300 transition-colors">
+                    5.2. HR, կադրային ոլորտ
+                  </Link>
+                </nav>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
