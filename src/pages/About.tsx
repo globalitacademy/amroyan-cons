@@ -1,33 +1,24 @@
 import { Users, Target, Award, Clock, Mail, Linkedin, GraduationCap } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-
 const About = () => {
-  const values = [
-    {
-      icon: Target,
-      title: 'Նպատակայնություն',
-      description: 'Մենք կենտրոնացած ենք ձեր բիզնեսի հաջողության վրա և աշխատում ենք հասնել լավագույն արդյունքների:'
-    },
-    {
-      icon: Users,
-      title: 'Թիմային աշխատանք',
-      description: 'Մեր փորձառու մասնագետների թիմը միավորված է ընդհանուր նպատակով՝ օգնել ձեր բիզնեսին:'
-    },
-    {
-      icon: Award,
-      title: 'Որակ',
-      description: 'Մենք հավատում ենք բարձրակարգ ծառայությունների և անսարսափ որակի:'
-    },
-    {
-      icon: Clock,
-      title: 'Արդյունավետություն',
-      description: 'Ժամանակը գումար է, և մենք գնահատում ենք ձեր ժամանակը ու աշխատում ենք արդյունավետ:'
-    }
-  ];
-
-
-  return (
-    <div className="pt-20">
+  const values = [{
+    icon: Target,
+    title: 'Նպատակայնություն',
+    description: 'Մենք կենտրոնացած ենք ձեր բիզնեսի հաջողության վրա և աշխատում ենք հասնել լավագույն արդյունքների:'
+  }, {
+    icon: Users,
+    title: 'Թիմային աշխատանք',
+    description: 'Մեր փորձառու մասնագետների թիմը միավորված է ընդհանուր նպատակով՝ օգնել ձեր բիզնեսին:'
+  }, {
+    icon: Award,
+    title: 'Որակ',
+    description: 'Մենք հավատում ենք բարձրակարգ ծառայությունների և անսարսափ որակի:'
+  }, {
+    icon: Clock,
+    title: 'Արդյունավետություն',
+    description: 'Ժամանակը գումար է, և մենք գնահատում ենք ձեր ժամանակը ու աշխատում ենք արդյունավետ:'
+  }];
+  return <div className="pt-20">
       {/* Hero Section */}
       <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-black via-gray-900 to-black network-bg">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,10 +26,7 @@ const About = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8">
               <span className="gradient-text">Մեր մասին</span>
             </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed px-4">
-              Amroyan Consulting-ը առաջատար ընկերություն է հաշվապահական և 
-              ֆինանսական ծառայությունների ոլորտում՝ 15+ տարվա փորձով:
-            </p>
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed px-4">Amroyan Consulting-ը առաջատար ընկերություն է հաշվապահական և ֆինանսական ծառայությունների ոլորտում՝ 5+ տարվա փորձով:</p>
           </div>
         </div>
       </section>
@@ -93,8 +81,7 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group">
+            {values.map((value, index) => <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group">
                 <CardContent className="p-6 sm:p-8 text-center">
                   <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:animate-pulse">
                     <value.icon size={28} className="text-black sm:w-8 sm:h-8" />
@@ -106,14 +93,11 @@ const About = () => {
                     {value.description}
                   </p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
 
-    </div>
-  );
+    </div>;
 };
-
 export default About;
