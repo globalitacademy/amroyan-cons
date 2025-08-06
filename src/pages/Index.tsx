@@ -270,22 +270,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
-            <span className="gradient-text">Պատրա՞ստ եք սկսել</span>
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-            Կապվեք մեզ հետ և ստացեք անվճար խորհրդատվություն ձեր բիզնեսի համար
-          </p>
-          
-          <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg min-h-[44px] w-full sm:w-auto max-w-sm mx-auto">
-            <Link to="/contact">
-              Անվճար խորհրդատվություն <ArrowRight className="ml-2" size={20} />
-            </Link>
-          </Button>
-        </div>
-      </section>
+      
     </div>;
 };
 export default Index;
