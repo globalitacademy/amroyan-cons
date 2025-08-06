@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { FileText, Users, Upload, MessageSquare, Settings, PenTool, BarChart3, Database, Eye, Edit, Trash2, Mail, Phone, Calendar, ExternalLink } from "lucide-react";
+import { FileText, Users, Upload, MessageSquare, Settings, PenTool, BarChart3, Database, Eye, Edit, Trash2, Mail, Phone, Calendar, ExternalLink, Check, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import DocumentUpload from "@/components/admin/DocumentUpload";
 import UserManagement from "@/components/admin/UserManagement";

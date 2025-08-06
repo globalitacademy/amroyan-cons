@@ -152,6 +152,45 @@ export type Database = {
         }
         Relationships: []
       }
+      course_applications: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          message: string | null
+          phone: string
+          processed_by: string | null
+          status: string
+          submitted_from: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          message?: string | null
+          phone: string
+          processed_by?: string | null
+          status?: string
+          submitted_from?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          message?: string | null
+          phone?: string
+          processed_by?: string | null
+          status?: string
+          submitted_from?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       documents: {
         Row: {
           category: Database["public"]["Enums"]["document_category"]

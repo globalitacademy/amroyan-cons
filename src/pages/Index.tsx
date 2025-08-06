@@ -1,6 +1,10 @@
 import { ArrowRight, Calculator, TrendingUp, Shield, Users, Award, CheckCircle, Calendar, User, FileText, BarChart3, GraduationCap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { Link } from 'react-router-dom';
 import NetworkAnimation from '@/components/NetworkAnimation';
 import NewsletterSubscription from '@/components/NewsletterSubscription';
@@ -23,6 +27,9 @@ const Index = () => {
   } = useLanguage();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [applyOpen, setApplyOpen] = useState(false);
+  const [appForm, setAppForm] = useState({ full_name: '', phone: '', email: '', message: '' });
+  const [submitting, setSubmitting] = useState(false);
   const services = [{
     icon: Calculator,
     title: "Հաշվապահական հաշվառում"
@@ -79,6 +86,28 @@ const Index = () => {
       setLoading(false);
     }
   };
+
+  const submitApplication = async () => {
+    if (!appForm.full_name || !appForm.phone || !appForm.email) return;
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from('course_applications').insert({
+        full_name: appForm.full_name,
+        phone: appForm.phone,
+        email: appForm.email,
+        message: appForm.message,
+        submitted_from: 'accounting_course_card'
+      });
+      if (error) throw error;
+      setApplyOpen(false);
+      setAppForm({ full_name: '', phone: '', email: '', message: '' });
+    } catch (e) {
+      console.error('Application submit error', e);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return <div className="relative">
       <NetworkAnimation />
       
@@ -94,8 +123,7 @@ const Index = () => {
             <p className="text-lg text-gray-300 mb-6 sm:mb-8 my-0 py-[20px] sm:text-2xl">
               Ձեր բիզնեսի հաջողության համար
             </p>
-            
-            
+
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-12 px-0 py-[20px]">
               <Button asChild size="lg" className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg min-h-[44px] w-full sm:w-auto">
@@ -145,7 +173,8 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {services.map((service, index) => <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
+            {services.map((service, index) => (
+              <Card key={index} className="bg-gradient-to-b from-gray-900 to-black border-gold-500/20 hover:border-gold-400/40 transition-all duration-300 group hover:transform hover:scale-105">
                 <CardContent className="p-6 sm:p-8 text-center">
                   <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-gold-500 to-gold-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:animate-pulse">
                     <service.icon size={24} className="text-black sm:w-8 sm:h-8" />
@@ -153,8 +182,14 @@ const Index = () => {
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4">
                     {service.title}
                   </h3>
+                  {service.title.includes('դասընթացներ') && (
+                    <Button onClick={() => setApplyOpen(true)} className="mt-2 min-h-[44px] w-full sm:w-auto bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black">
+                      Դիմել
+                    </Button>
+                  )}
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -269,8 +304,41 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      
-    </div>;
+      {/* Application Dialog */}
+      <Dialog open={applyOpen} onOpenChange={setApplyOpen}>
+        <DialogContent className="bg-black border-gold-500/20">
+          <DialogHeader>
+            <DialogTitle className="text-white">Դիմում դասընթացներին</DialogTitle>
+            <DialogDescription className="text-gray-400">
+              Լրացրեք տվյալները, մենք կհետադարձկանենք Ձեզ հետ:
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="full_name">Անուն Ազգանուն</Label>
+              <Input id="full_name" value={appForm.full_name} onChange={(e) => setAppForm({ ...appForm, full_name: e.target.value })} placeholder="Ձեր անուն ազգանունը" />
+            </div>
+            <div>
+              <Label htmlFor="phone">Հեռախոսահամար</Label>
+              <Input id="phone" value={appForm.phone} onChange={(e) => setAppForm({ ...appForm, phone: e.target.value })} placeholder="+374 ..." />
+            </div>
+            <div>
+              <Label htmlFor="email">Էլ. փոստ</Label>
+              <Input id="email" type="email" value={appForm.email} onChange={(e) => setAppForm({ ...appForm, email: e.target.value })} placeholder="name@example.com" />
+            </div>
+            <div>
+              <Label htmlFor="message">Նշումներ (ըստ ցանկության)</Label>
+              <Textarea id="message" rows={3} value={appForm.message} onChange={(e) => setAppForm({ ...appForm, message: e.target.value })} placeholder="Ցանկության դեպքում ավելացրեք մեկնաբանություն" />
+            </div>
+          </div>
+          <DialogFooter className="flex gap-2 justify-end">
+            <Button variant="outline" onClick={() => setApplyOpen(false)}>Փակել</Button>
+            <Button onClick={submitApplication} disabled={submitting} className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black">
+              {submitting ? 'Ուղարկվում է...' : 'Ուղարկել հայտը'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
 };
 export default Index;
