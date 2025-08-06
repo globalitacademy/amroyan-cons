@@ -181,7 +181,6 @@ const Archive = () => {
               <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
                 <CardHeader>
                   <CardTitle className="text-white">ՀՀՄՍ / ՖՀՄՍ</CardTitle>
-                  <CardDescription className="text-gray-400">Ստանդարտների հավաքածու</CardDescription>
                 </CardHeader>
               </Card>
             </Link>
@@ -191,7 +190,6 @@ const Archive = () => {
               <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
                 <CardHeader>
                   <CardTitle className="text-white">ՊԵԿ իրազեկումներ</CardTitle>
-                  <CardDescription className="text-gray-400">Վերջին հայտարարությունները</CardDescription>
                 </CardHeader>
               </Card>
             </Link>
@@ -201,7 +199,6 @@ const Archive = () => {
               <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
                 <CardHeader>
                   <CardTitle className="text-white">Քննարկումներ</CardTitle>
-                  <CardDescription className="text-gray-400">Մասնագիտական քննարկումներ</CardDescription>
                 </CardHeader>
               </Card>
             </Link>
@@ -210,7 +207,6 @@ const Archive = () => {
             <Card className="border-gray-800 bg-gray-900/50">
               <CardHeader>
                 <CardTitle className="text-white">Պաշտոնական պարզաբանումներ</CardTitle>
-                <CardDescription className="text-gray-400">Հղումներ ըստ օրենսդրության</CardDescription>
               </CardHeader>
               <CardContent className="pt-0">
                 <nav aria-label="Պարզաբանումների ենթակատեգորիաներ" className="grid gap-2">
@@ -228,7 +224,6 @@ const Archive = () => {
             <Card className="border-gray-800 bg-gray-900/50">
               <CardHeader>
                 <CardTitle className="text-white">Թեստեր</CardTitle>
-                <CardDescription className="text-gray-400">Գիտելիքների և հմտությունների ստուգում</CardDescription>
               </CardHeader>
               <CardContent className="pt-0">
                 <nav aria-label="Թեստերի ենթակատեգորիաներ" className="grid gap-2">
