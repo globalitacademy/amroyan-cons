@@ -196,6 +196,16 @@ const Archive = () => {
               </Card>
             </Link>
 
+            {/* 4. Քննարկումներ (բերված առաջ) */}
+            <Link to="/archive/discussions">
+              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-white">Քննարկումներ</CardTitle>
+                  <CardDescription className="text-gray-400">Մասնագիտական քննարկումներ</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+
             {/* 3. Պաշտոնական պարզաբանումներ (ներսում՝ 3.1 և 3.2) */}
             <Card className="border-gray-800 bg-gray-900/50">
               <CardHeader>
@@ -213,16 +223,6 @@ const Archive = () => {
                 </nav>
               </CardContent>
             </Card>
-
-            {/* 4. Քննարկումներ */}
-            <Link to="/archive/discussions">
-              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-white">Քննարկումներ</CardTitle>
-                  <CardDescription className="text-gray-400">Մասնագիտական քննարկումներ</CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
 
             {/* 5. Թեստեր (ներսում՝ 5.1 և 5.2) */}
             <Card className="border-gray-800 bg-gray-900/50">
