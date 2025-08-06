@@ -55,16 +55,7 @@ const About = () => {
               
               <div className="relative mt-8 lg:mt-0">
                 <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 to-gold-600/20 rounded-3xl blur-3xl" />
-                <Card className="relative bg-gradient-to-br from-gray-900 to-black border-gold-500/20">
-                  <CardContent className="p-6 sm:p-8">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Մեր տեսլականը</h3>
-                    <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                      Լինել Հայաստանի ամենավստահելի և նորարարական 
-                      հաշվապահական ընկերությունը, որը հայտնի է իր 
-                      պրոֆեսիոնալիզմով և հաճախորդակենտրոն մոտեցմամբ:
-                    </p>
-                  </CardContent>
-                </Card>
+                
               </div>
             </div>
           </div>
