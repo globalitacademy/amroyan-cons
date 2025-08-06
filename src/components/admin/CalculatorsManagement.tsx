@@ -22,7 +22,7 @@ const emptyForm: Omit<CalculatorRow, "id" | "sort_order"> & { sort_order?: numbe
   title: "",
   slug: "",
   description: "",
-  icon_name: "Calculator",
+  icon_name: "calculator",
   visible: true,
 };
 
@@ -58,7 +58,7 @@ const CalculatorsManagement = () => {
       title: row.title,
       slug: row.slug,
       description: row.description || "",
-      icon_name: row.icon_name || "Calculator",
+      icon_name: row.icon_name || "calculator",
       visible: !!row.visible,
     });
   };
@@ -136,7 +136,6 @@ const CalculatorsManagement = () => {
     await load();
   };
 
-  const iconPreviewName = (form.icon_name || "Calculator") as keyof typeof import("lucide-react/dynamicIconImports").default;
 
   return (
     <div className="space-y-8">
@@ -160,10 +159,10 @@ const CalculatorsManagement = () => {
               <Input id="description" value={form.description || ""} onChange={e => setForm({ ...form, description: e.target.value })} />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="icon">Իկոնի անունը (lucide, օրինակ՝ Calculator, Percent)</Label>
+              <Label htmlFor="icon">Իկոնի անունը (lucide, kebab-case՝ օրինակ՝ calculator, percent)</Label>
               <div className="flex items-center gap-3">
                 <Input id="icon" value={form.icon_name} onChange={e => setForm({ ...form, icon_name: e.target.value })} />
-                <DynamicIcon name={form.icon_name as any} size={22} />
+                <DynamicIcon name={form.icon_name} size={22} />
               </div>
             </div>
             <div className="flex items-center gap-3">
