@@ -7,6 +7,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { FileText, Download, Eye, ChevronDown, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 interface Document {
   id: string;
   title: string;
@@ -171,6 +172,68 @@ const Archive = () => {
           <h1 className="text-4xl font-bold text-white mb-4">Շտեմարան</h1>
           <p className="text-xl text-gray-300">Օգտակար նյութեր և տեղեկատվություն</p>
         </div>
+
+        {/* Ենթաբաժինների արագ մուտքեր */}
+        <section aria-label="Շտեմարանի ենթաբաժիններ" className="mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Link to="/archive/standards">
+              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-white">ՀՀՄՍ / ՖՀՄՍ</CardTitle>
+                  <CardDescription className="text-gray-400">Ստանդարտների հավաքածու</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Link to="/archive/notifications">
+              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-white">ՊԵԿ իրազեկումներ</CardTitle>
+                  <CardDescription className="text-gray-400">Վերջին հայտարարությունները</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Link to="/archive/clarifications/tax-law">
+              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-white">Պարզաբանումներ — Հարկային</CardTitle>
+                  <CardDescription className="text-gray-400">Հսկիչ մարմինների մեկնաբանություններ</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Link to="/archive/clarifications/labor-law">
+              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-white">Պարզաբանումներ — Աշխատանքային</CardTitle>
+                  <CardDescription className="text-gray-400">Պաշտոնական պարզաբանումներ</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Link to="/archive/discussions">
+              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-white">Քննարկումներ</CardTitle>
+                  <CardDescription className="text-gray-400">Մասնագիտական քննարկումներ</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Link to="/archive/tests/accounting">
+              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-white">Թեստեր — Հաշվապահական/Ֆինանսկան</CardTitle>
+                  <CardDescription className="text-gray-400">Գիտելիքների ստուգում</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Link to="/archive/tests/hr">
+              <Card className="border-gray-800 bg-gray-900/50 hover:border-gold-500/40 transition-colors">
+                <CardHeader>
+                  <CardTitle className="text-white">Թեստեր — HR, կադրային</CardTitle>
+                  <CardDescription className="text-gray-400">Հմտությունների գնահատում</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+          </div>
+        </section>
 
         <div className="space-y-8">
           {/* Հարկային օրենսդրություն */}
