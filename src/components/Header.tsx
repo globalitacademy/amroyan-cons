@@ -113,19 +113,21 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`text-sm font-medium transition-colors hover:text-gold-400 ${
-                  location.pathname === item.href 
-                    ? 'text-gold-400' 
-                    : 'text-white'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation
+              .filter((item) => !['/blog', '/contact'].includes(item.href))
+              .map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`text-sm font-medium transition-colors hover:text-gold-400 ${
+                    location.pathname === item.href 
+                      ? 'text-gold-400' 
+                      : 'text-white'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
             {/* Archive dropdown */}
             <div className="relative group">
               <Link
@@ -150,6 +152,21 @@ const Header = () => {
                 </div>
               </div>
             </div>
+            {navigation
+              .filter((item) => ['/blog', '/contact'].includes(item.href))
+              .map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`text-sm font-medium transition-colors hover:text-gold-400 ${
+                    location.pathname === item.href 
+                      ? 'text-gold-400' 
+                      : 'text-white'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
             {isAdmin && (
               <Link
                 to="/admin"
@@ -216,20 +233,22 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gold-500/20 bg-black/95 backdrop-blur-md">
             <nav className="flex flex-col space-y-1 px-4 py-6">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className={`text-base font-medium transition-colors hover:text-gold-400 py-3 px-2 rounded-lg min-h-[44px] flex items-center ${
-                  location.pathname === item.href 
-                    ? 'text-gold-400 bg-gold-500/10' 
-                    : 'text-white'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation
+              .filter((item) => !['/blog', '/contact'].includes(item.href))
+              .map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`text-base font-medium transition-colors hover:text-gold-400 py-3 px-2 rounded-lg min-h-[44px] flex items-center ${
+                    location.pathname === item.href 
+                      ? 'text-gold-400 bg-gold-500/10' 
+                      : 'text-white'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
 
             {/* Archive submenu (mobile) */}
             <div className="mt-2">
@@ -257,6 +276,24 @@ const Header = () => {
               </div>
             </div>
               
+              {/* Blog and Contact after Archive (mobile) */}
+              {navigation
+                .filter((item) => ['/blog', '/contact'].includes(item.href))
+                .map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`text-base font-medium transition-colors hover:text-gold-400 py-3 px-2 rounded-lg min-h-[44px] flex items-center ${
+                      location.pathname === item.href 
+                        ? 'text-gold-400 bg-gold-500/10' 
+                        : 'text-white'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+
               {isAdmin && (
                 <Link
                   to="/admin"
