@@ -116,7 +116,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navigation
-              .filter((item) => !['/blog', '/contact', '/calculators'].includes(item.href))
+              .filter((item) => !['/blog', '/contact'].includes(item.href))
               .map((item) => (
                 <Link
                   key={item.name}
@@ -130,65 +130,27 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-            {/* Calculators dropdown */}
-            <div className="relative">
-              <Link
-                to="/calculators"
-                onClick={(e) => { e.preventDefault(); setIsCalculatorsOpen((v) => !v); }}
-                aria-haspopup="menu"
-                aria-expanded={isCalculatorsOpen}
-                className={`text-sm font-medium transition-colors hover:text-gold-400 flex items-center gap-1 ${
-                  location.pathname.startsWith('/calculators') ? 'text-gold-400' : 'text-white'
-                }`}
-              >
-                <span>Հաշվիչներ</span>
-                <ChevronDown size={16} className={`transition-transform ${isCalculatorsOpen ? 'rotate-180' : 'rotate-0'}`} />
-              </Link>
-              <div className={`absolute left-0 mt-2 ${isCalculatorsOpen ? 'block' : 'hidden'} bg-black/95 border border-gold-500/20 rounded-md shadow-lg min-w-[260px] p-2 z-50`}
-                   role="menu">
-                <div className="flex flex-col">
-                  <Link to="/calculators" className="px-3 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">Բոլոր հաշվիչները</Link>
-                  <div className="px-3 py-2 text-xs uppercase tracking-wide text-gray-400">Հիմնական</div>
-                  <Link to="/calculators/salary" className="px-5 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">Աշխատավարձի հաշվիչ</Link>
-                  <Link to="/calculators/vat" className="px-5 py-2 text-sm text-white hover:text-gոլд-500/10 rounded">Շրջհարկի (ԱԱՀ) հաշվիչ</Link>
-                  <Link to="/calculators/profit-tax" className="px-5 py-2 text-sm text-white hover:text-gոլд-500/10 rounded">Շահութահարկի հաշվիչ</Link>
-                  <div className="px-3 py-2 text-xs uppercase tracking-wide text-gray-400">Այլ</div>
-                  <Link to="/calculators/benefit" className="px-5 py-2 text-sm text-white hover:text-gոլд-500/10 rounded">Նպաստի հաշվիչ</Link>
-                  <Link to="/calculators/estimate" className="px-5 py-2 text-sm text-white hover:text-gոլд-500/10 rounded">Նախագծերի հաշվիչ (Սմետա)</Link>
-                </div>
-              </div>
-            </div>
+            {/* Calculators link (no dropdown) */}
+            <Link
+              to="/calculators"
+              className={`text-sm font-medium transition-colors hover:text-gold-400 ${
+                location.pathname.startsWith('/calculators') ? 'text-gold-400' : 'text-white'
+              }`}
+            >
+              Հաշվիչներ
+            </Link>
 
             {/* Archive dropdown */}
 
-            <div className="relative" onMouseEnter={() => setIsArchiveOpen(true)} onMouseLeave={() => setIsArchiveOpen(false)}>
-              <Link
-                to="/archive"
-                aria-haspopup="menu"
-                aria-expanded={isArchiveOpen}
-                className={`text-sm font-medium transition-colors hover:text-gold-400 flex items-center gap-1 ${
-                  location.pathname.startsWith('/archive') ? 'text-gold-400' : 'text-white'
-                }`}
-              >
-                <span>Շտեմարան</span>
-                <ChevronDown size={16} className={`transition-transform ${isArchiveOpen ? 'rotate-180' : 'rotate-0'}`} />
-              </Link>
-              <div className={`absolute left-0 mt-2 ${isArchiveOpen ? 'block' : 'hidden'} bg-black/95 border border-gold-500/20 rounded-md shadow-lg min-w-[260px] p-2 z-50`}
-                   role="menu">
-                <div className="flex flex-col">
-                  <Link to="/archive" className="px-3 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">Շտեմարանի գլխավոր էջ</Link>
-                  <Link to="/archive/standards" className="px-3 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">ՀՀՄՍ / ՖՀՄՍ</Link>
-                  <Link to="/archive/notifications" className="px-3 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">ՊԵԿ իրազեկումներ</Link>
-                  <div className="px-3 py-2 text-xs uppercase tracking-wide text-gray-400">Պաշտոնական պարզաբանումներ</div>
-                  <Link to="/archive/clarifications/tax-law" className="px-5 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">Հարկային օրենսդրություն</Link>
-                  <Link to="/archive/clarifications/labor-law" className="px-5 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">Աշխատանքային օրենսդրություն</Link>
-                  <Link to="/archive/discussions" className="px-3 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">Քննարկումներ</Link>
-                  <div className="px-3 py-2 text-xs uppercase tracking-wide text-gray-400">Թեստեր</div>
-                  <Link to="/archive/tests/accounting" className="px-5 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">Հաշվապահական և ֆինանսական ոլորտ</Link>
-                  <Link to="/archive/tests/hr" className="px-5 py-2 text-sm text-white hover:text-gold-400 hover:bg-gold-500/10 rounded">HR, կադրային ոլորտ</Link>
-                </div>
-              </div>
-            </div>
+            {/* Archive link (no dropdown) */}
+            <Link
+              to="/archive"
+              className={`text-sm font-medium transition-colors hover:text-gold-400 ${
+                location.pathname.startsWith('/archive') ? 'text-gold-400' : 'text-white'
+              }`}
+            >
+              Շտեմարան
+            </Link>
             {navigation
               .filter((item) => ['/blog', '/contact'].includes(item.href))
               .map((item) => (
@@ -287,7 +249,7 @@ const Header = () => {
                 </Link>
               ))}
 
-            {/* Archive submenu (mobile) */}
+            {/* Archive link (mobile, no submenu) */}
             <div className="mt-2">
               <Link
                 to="/archive"
@@ -300,17 +262,6 @@ const Header = () => {
               >
                 Շտեմարան
               </Link>
-              <div className="ml-3 mt-1 flex flex-col">
-                <Link to="/archive/standards" onClick={() => setIsMenuOpen(false)} className="py-2 px-2 text-sm text-white hover:text-gold-400 rounded">• ՀՀՄՍ / ՖՀՄՍ</Link>
-                <Link to="/archive/notifications" onClick={() => setIsMenuOpen(false)} className="py-2 px-2 text-sm text-white hover:text-gold-400 rounded">• ՊԵԿ իրազեկումներ</Link>
-                <div className="py-2 px-2 text-xs uppercase tracking-wide text-gray-400">Պաշտոնական պարզաբանումներ</div>
-                <Link to="/archive/clarifications/tax-law" onClick={() => setIsMenuOpen(false)} className="py-2 px-4 text-sm text-white hover:text-gold-400 rounded">- Հարկային օրենսդրություն</Link>
-                <Link to="/archive/clarifications/labor-law" onClick={() => setIsMenuOpen(false)} className="py-2 px-4 text-sm text-white hover:text-gold-400 rounded">- Աշխատանքային օրենսդրություն</Link>
-                <Link to="/archive/discussions" onClick={() => setIsMenuOpen(false)} className="py-2 px-2 text-sm text-white hover:text-gold-400 rounded">• Քննարկումներ</Link>
-                <div className="py-2 px-2 text-xs uppercase tracking-wide text-gray-400">Թեստեր</div>
-                <Link to="/archive/tests/accounting" onClick={() => setIsMenuOpen(false)} className="py-2 px-4 text-sm text-white hover:text-gold-400 rounded">- Հաշվապահական և ֆինանսական ոլորտ</Link>
-                <Link to="/archive/tests/hr" onClick={() => setIsMenuOpen(false)} className="py-2 px-4 text-sm text-white hover:text-gold-400 rounded">- HR, կադրային ոլորտ</Link>
-              </div>
             </div>
               
               {/* Blog and Contact after Archive (mobile) */}
