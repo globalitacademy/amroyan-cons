@@ -55,7 +55,17 @@ const About = () => {
               
               <div className="relative h-full mt-8 lg:mt-0">
                 <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 to-gold-600/20 rounded-3xl blur-3xl" />
-                
+                <Card className="relative h-full bg-gradient-to-br from-gray-900 to-black border-gold-500/20 flex items-center justify-center overflow-hidden">
+                  <CardContent className="p-8 sm:p-10 flex flex-col items-center text-center gap-4">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center shadow-md">
+                      <Target className="text-black" size={40} aria-hidden="true" />
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-semibold">Մեր առաքելությունը</h3>
+                    <p className="text-sm sm:text-base text-gray-300 max-w-md">
+                      Ֆինանսական կայունություն և աճ՝ պրոֆեսիոնալ հաշվապահական ու ֆինանսական լուծումներով:
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
