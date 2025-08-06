@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe, Shield } from 'lucide-react';
+import { Menu, X, Globe, Shield, ChevronDown } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import {
@@ -136,11 +136,12 @@ const Header = () => {
                 onClick={(e) => { e.preventDefault(); setIsArchiveOpen((v) => !v); }}
                 aria-haspopup="menu"
                 aria-expanded={isArchiveOpen}
-                className={`text-sm font-medium transition-colors hover:text-gold-400 ${
+                className={`text-sm font-medium transition-colors hover:text-gold-400 flex items-center gap-1 ${
                   location.pathname.startsWith('/archive') ? 'text-gold-400' : 'text-white'
                 }`}
               >
-                Շտեմարան
+                <span>Շտեմարան</span>
+                <ChevronDown size={16} className={`transition-transform ${isArchiveOpen ? 'rotate-180' : 'rotate-0'}`} />
               </Link>
               <div className={`absolute left-0 mt-2 ${isArchiveOpen ? 'block' : 'hidden'} bg-black/95 border border-gold-500/20 rounded-md shadow-lg min-w-[260px] p-2 z-50`}
                    role="menu">
