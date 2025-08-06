@@ -53,7 +53,7 @@ const Calculators = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <header className="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text">Հաշվիչներ</h1>
-            <p className="text-gray-300 mt-4">Ընտրեք հաշվիչը՝ բացելու համար իր առանձնահատկություններով</p>
+            
           </header>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             {items.map(({
