@@ -130,15 +130,6 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-            {/* Calculators link (no dropdown) */}
-            <Link
-              to="/calculators"
-              className={`text-sm font-medium transition-colors hover:text-gold-400 ${
-                location.pathname.startsWith('/calculators') ? 'text-gold-400' : 'text-white'
-              }`}
-            >
-              Հաշվիչներ
-            </Link>
 
             {/* Archive dropdown */}
 
