@@ -24,12 +24,12 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   const services = [
-    { icon: TrendingUp, title: "Հաշվապահական հաշվառում" },
-    { icon: Calculator, title: "Հարկային, ֆինանսական և կադրային խորհրդատվություն" },
-    { icon: FileText, title: "Ֆինանսական վերլուծություն" },
-    { icon: Users, title: "Ֆինանսական հաշվետվություն" },
-    { icon: BarChart3, title: "Բիզնես Խորհրդատվություն" },
-    { icon: Shield, title: "Խմբային և անհատական հաշվապահական դասընթացներ" },
+    { icon: Calculator, title: "Հաշվապահական հաշվառում" },
+    { icon: Users, title: "Հարկային, ֆինանսական և կադրային խորհրդատվություն" },
+    { icon: BarChart3, title: "Ֆինանսական վերլուծություն" },
+    { icon: FileText, title: "Ֆինանսական հաշվետվություն" },
+    { icon: TrendingUp, title: "Բիզնես Խորհրդատվություն" },
+    { icon: GraduationCap, title: "Խմբային և անհատական հաշվապահական դասընթացներ" },
   ];
   
   const featuresData = t('home.features.items');
