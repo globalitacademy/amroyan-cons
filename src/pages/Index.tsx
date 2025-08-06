@@ -304,41 +304,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Application Dialog */}
-      <Dialog open={applyOpen} onOpenChange={setApplyOpen}>
-        <DialogContent className="bg-black border-gold-500/20">
-          <DialogHeader>
-            <DialogTitle className="text-white">Դիմում դասընթացներին</DialogTitle>
-            <DialogDescription className="text-gray-400">
-              Լրացրեք տվյալները, մենք կհետադարձկանենք Ձեզ հետ:
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="full_name">Անուն Ազգանուն</Label>
-              <Input id="full_name" value={appForm.full_name} onChange={(e) => setAppForm({ ...appForm, full_name: e.target.value })} placeholder="Ձեր անուն ազգանունը" />
-            </div>
-            <div>
-              <Label htmlFor="phone">Հեռախոսահամար</Label>
-              <Input id="phone" value={appForm.phone} onChange={(e) => setAppForm({ ...appForm, phone: e.target.value })} placeholder="+374 ..." />
-            </div>
-            <div>
-              <Label htmlFor="email">Էլ. փոստ</Label>
-              <Input id="email" type="email" value={appForm.email} onChange={(e) => setAppForm({ ...appForm, email: e.target.value })} placeholder="name@example.com" />
-            </div>
-            <div>
-              <Label htmlFor="message">Նշումներ (ըստ ցանկության)</Label>
-              <Textarea id="message" rows={3} value={appForm.message} onChange={(e) => setAppForm({ ...appForm, message: e.target.value })} placeholder="Ցանկության դեպքում ավելացրեք մեկնաբանություն" />
-            </div>
-          </div>
-          <DialogFooter className="flex gap-2 justify-end">
-            <Button variant="outline" onClick={() => setApplyOpen(false)}>Փակել</Button>
-            <Button onClick={submitApplication} disabled={submitting} className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black">
-              {submitting ? 'Ուղարկվում է...' : 'Ուղարկել հայտը'}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
 };
 export default Index;
