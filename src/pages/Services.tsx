@@ -7,7 +7,7 @@ const Services = () => {
   const {
     t
   } = useLanguage();
-  const serviceIcons = [TrendingUp, Calculator, FileText, Briefcase, BarChart3, BookOpen, Shield, Users];
+  const serviceIcons = [Calculator, Users, Briefcase, BarChart3, Shield, BookOpen];
   const benefits = [{
     icon: Clock,
     title: 'Ժամանակի խնայողություն',
@@ -80,7 +80,7 @@ const Services = () => {
                   </CardHeader>
                   <CardContent className="px-4 sm:px-6">
                     
-                    <ul className="space-y-2 sm:space-y-3">
+                    <ul className="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
                       {service.features && service.features.map((feature: string, idx: number) => <li key={idx} className="flex items-start space-x-3">
                           <div className="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0" />
                           <span className="text-xs sm:text-sm text-gray-400 leading-relaxed break-words">{feature}</span>
