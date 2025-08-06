@@ -80,6 +80,53 @@ export type Database = {
         }
         Relationships: []
       }
+      calculator_rates: {
+        Row: {
+          calculator_id: string
+          created_at: string
+          effective_from: string | null
+          effective_to: string | null
+          id: string
+          label: string
+          rate: number
+          sort_order: number
+          updated_at: string
+          visible: boolean
+        }
+        Insert: {
+          calculator_id: string
+          created_at?: string
+          effective_from?: string | null
+          effective_to?: string | null
+          id?: string
+          label: string
+          rate: number
+          sort_order?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Update: {
+          calculator_id?: string
+          created_at?: string
+          effective_from?: string | null
+          effective_to?: string | null
+          id?: string
+          label?: string
+          rate?: number
+          sort_order?: number
+          updated_at?: string
+          visible?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "calculator_rates_calculator_id_fkey"
+            columns: ["calculator_id"]
+            isOneToOne: false
+            referencedRelation: "calculators"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       calculators: {
         Row: {
           created_at: string

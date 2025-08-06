@@ -8,7 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import DynamicIcon from "@/components/ui/DynamicIcon";
 import { ExternalLink } from "lucide-react";
-
+import CalculatorRatesManager from "@/components/admin/CalculatorRatesManager";
 interface CalculatorRow {
   id: string;
   title: string;
@@ -179,6 +179,10 @@ const CalculatorsManagement = () => {
           </div>
         </CardContent>
       </Card>
+
+      {editing && (
+        <CalculatorRatesManager calculatorId={editing.id} calculatorTitle={editing.title} />
+      )}
 
       <Card>
         <CardHeader>
