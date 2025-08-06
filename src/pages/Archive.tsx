@@ -7,7 +7,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { FileText, Download, Eye, ChevronDown, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-
 interface Document {
   id: string;
   title: string;
@@ -19,46 +18,44 @@ interface Document {
   view_count: number;
   created_at: string;
 }
-
 const Archive = () => {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     tax: true,
-    personnel: true,
+    personnel: true
   });
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   useEffect(() => {
     fetchDocuments();
   }, []);
-
   const fetchDocuments = async () => {
     try {
-      const { data, error } = await supabase
-        .from("documents")
-        .select("*")
-        .eq("is_published", true)
-        .order("created_at", { ascending: false });
-
+      const {
+        data,
+        error
+      } = await supabase.from("documents").select("*").eq("is_published", true).order("created_at", {
+        ascending: false
+      });
       if (error) throw error;
       setDocuments(data || []);
     } catch (error: any) {
       toast({
         title: "Սխալ",
         description: "Չհաջողվեց բեռնել փաստաթղթերը",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setLoading(false);
     }
   };
-
   const handleDocumentView = async (doc: Document) => {
     try {
       // Increment view count
       await supabase.rpc("increment_document_view_count", {
-        document_id: doc.id,
+        document_id: doc.id
       });
 
       // Open document
@@ -69,17 +66,15 @@ const Archive = () => {
       toast({
         title: "Սխալ",
         description: "Չհաջողվեց բացել փաստաթուղթը",
-        variant: "destructive",
+        variant: "destructive"
       });
     }
   };
-
   const formatFileSize = (bytes?: number) => {
     if (!bytes) return "";
     const mb = bytes / (1024 * 1024);
     return `${mb.toFixed(1)} MB`;
   };
-
   const getCategoryTitle = (category: string) => {
     const titles: Record<string, string> = {
       tax_laws: "Օրենքներ",
@@ -91,52 +86,50 @@ const Archive = () => {
       personnel_clarifications: "Պարզաբանումներ",
       personnel_discussions: "Քննարկումներ",
       personnel_hhms: "ՀՀՄՍ",
-      personnel_fhms: "ՖՀՄՍ",
+      personnel_fhms: "ՖՀՄՍ"
     };
     return titles[category] || category;
   };
-
   const filterDocumentsByCategory = (prefix: string) => {
-    return documents.filter((doc) => doc.category.startsWith(prefix));
+    return documents.filter(doc => doc.category.startsWith(prefix));
   };
-
   const renderDocumentsBySubcategory = (prefix: string) => {
-    const subcategories = [
-      { key: `${prefix}_laws`, title: "Օրենքներ" },
-      { key: `${prefix}_clarifications`, title: "Պարզաբանումներ" },
-      { key: `${prefix}_discussions`, title: "Քննարկումներ" },
-      { key: `${prefix}_hhms`, title: "ՀՀՄՍ" },
-      { key: `${prefix}_fhms`, title: "ՖՀՄՍ" },
-    ];
-
-    return subcategories.map((subcategory) => {
-      const docs = documents.filter((doc) => doc.category === subcategory.key);
-      
+    const subcategories = [{
+      key: `${prefix}_laws`,
+      title: "Օրենքներ"
+    }, {
+      key: `${prefix}_clarifications`,
+      title: "Պարզաբանումներ"
+    }, {
+      key: `${prefix}_discussions`,
+      title: "Քննարկումներ"
+    }, {
+      key: `${prefix}_hhms`,
+      title: "ՀՀՄՍ"
+    }, {
+      key: `${prefix}_fhms`,
+      title: "ՖՀՄՍ"
+    }];
+    return subcategories.map(subcategory => {
+      const docs = documents.filter(doc => doc.category === subcategory.key);
       if (docs.length === 0) return null;
-
-      return (
-        <div key={subcategory.key} className="mb-6">
+      return <div key={subcategory.key} className="mb-6">
           <h4 className="text-lg font-semibold text-gold-400 mb-3 flex items-center">
             <FileText className="w-5 h-5 mr-2" />
             {subcategory.title}
           </h4>
           <div className="grid gap-4">
-            {docs.map((doc) => (
-              <Card key={doc.id} className="border-gray-800 bg-gray-900/50">
+            {docs.map(doc => <Card key={doc.id} className="border-gray-800 bg-gray-900/50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <h5 className="font-medium text-white mb-1">{doc.title}</h5>
-                      {doc.description && (
-                        <p className="text-sm text-gray-400 mb-2">{doc.description}</p>
-                      )}
+                      {doc.description && <p className="text-sm text-gray-400 mb-2">{doc.description}</p>}
                       <div className="flex items-center gap-3 text-xs text-gray-500">
-                        {doc.file_size && (
-                          <span className="flex items-center">
+                        {doc.file_size && <span className="flex items-center">
                             <FileText className="w-3 h-3 mr-1" />
                             {formatFileSize(doc.file_size)}
-                          </span>
-                        )}
+                          </span>}
                         <span className="flex items-center">
                           <Eye className="w-3 h-3 mr-1" />
                           {doc.view_count} դիտում
@@ -144,54 +137,39 @@ const Archive = () => {
                       </div>
                     </div>
                     <div className="flex gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleDocumentView(doc)}
-                        disabled={!doc.file_url}
-                      >
+                      <Button size="sm" variant="outline" onClick={() => handleDocumentView(doc)} disabled={!doc.file_url}>
                         <Download className="w-4 h-4 mr-1" />
                         Բացել
                       </Button>
                     </div>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
-        </div>
-      );
+        </div>;
     }).filter(Boolean);
   };
-
   const toggleSection = (section: string) => {
-    setOpenSections((prev) => ({
+    setOpenSections(prev => ({
       ...prev,
-      [section]: !prev[section],
+      [section]: !prev[section]
     }));
   };
-
   if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black pt-20 px-4">
+    return <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black pt-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center py-12">
             <div className="animate-spin w-8 h-8 border-2 border-gold-400 border-t-transparent rounded-full mx-auto"></div>
             <p className="text-gray-400 mt-4">Բեռնում...</p>
           </div>
         </div>
-      </div>
-    );
+      </div>;
   }
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black pt-32 px-4">
+  return <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black pt-32 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-4">Շտեմարան</h1>
-          <p className="text-xl text-gray-300">
-            Գտեք անհրաժեշտ օրենսդրական նյութերը և փաստաթղթերը
-          </p>
+          <p className="text-xl text-gray-300">Օգտակար նյութեր և տեղեկատվություն</p>
         </div>
 
         <div className="space-y-8">
@@ -202,11 +180,7 @@ const Archive = () => {
                 <CardHeader className="cursor-pointer hover:bg-gray-800/50 transition-colors">
                   <CardTitle className="flex items-center justify-between text-2xl text-gold-400">
                     Հարկային օրենսդրություն
-                    {openSections.tax ? (
-                      <ChevronDown className="w-6 h-6" />
-                    ) : (
-                      <ChevronRight className="w-6 h-6" />
-                    )}
+                    {openSections.tax ? <ChevronDown className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
                   </CardTitle>
                   <CardDescription className="text-gray-400">
                     Հարկային նորմերի և կանոնակարգերի ամբողջական ցանկ
@@ -216,11 +190,9 @@ const Archive = () => {
               <CollapsibleContent>
                 <CardContent className="space-y-6">
                   {renderDocumentsBySubcategory("tax")}
-                  {filterDocumentsByCategory("tax").length === 0 && (
-                    <p className="text-center text-gray-500 py-8">
+                  {filterDocumentsByCategory("tax").length === 0 && <p className="text-center text-gray-500 py-8">
                       Դեռ փաստաթղթեր չեն ավելացվել այս բաժնում
-                    </p>
-                  )}
+                    </p>}
                 </CardContent>
               </CollapsibleContent>
             </Collapsible>
@@ -233,11 +205,7 @@ const Archive = () => {
                 <CardHeader className="cursor-pointer hover:bg-gray-800/50 transition-colors">
                   <CardTitle className="flex items-center justify-between text-2xl text-gold-400">
                     Կադրային օրենսդրություն
-                    {openSections.personnel ? (
-                      <ChevronDown className="w-6 h-6" />
-                    ) : (
-                      <ChevronRight className="w-6 h-6" />
-                    )}
+                    {openSections.personnel ? <ChevronDown className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
                   </CardTitle>
                   <CardDescription className="text-gray-400">
                     Աշխատանքային հարաբերությունների կարգավորման նորմեր
@@ -247,19 +215,15 @@ const Archive = () => {
               <CollapsibleContent>
                 <CardContent className="space-y-6">
                   {renderDocumentsBySubcategory("personnel")}
-                  {filterDocumentsByCategory("personnel").length === 0 && (
-                    <p className="text-center text-gray-500 py-8">
+                  {filterDocumentsByCategory("personnel").length === 0 && <p className="text-center text-gray-500 py-8">
                       Դեռ փաստաթղթեր չեն ավելացվել այս բաժնում
-                    </p>
-                  )}
+                    </p>}
                 </CardContent>
               </CollapsibleContent>
             </Collapsible>
           </Card>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Archive;
