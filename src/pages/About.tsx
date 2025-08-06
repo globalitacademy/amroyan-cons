@@ -63,9 +63,7 @@ const About = () => {
             <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">
               <span className="gradient-text">Մեր արժեքները</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
-              Այն սկզբունքները, որոնք ղեկավարում են մեր ամենօրյա գործունեությունը
-            </p>
+            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">Աշխատանքի մեջ մենք առաջնորդվում ենք հետևյալ հիմնական սկզբունքներով</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
