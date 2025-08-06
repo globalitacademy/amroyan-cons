@@ -239,7 +239,7 @@ const Admin = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Փաստաթղթեր</CardTitle>
+              <CardTitle className="text-sm font-medium">Շտեմարան</CardTitle>
               <FileText className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -287,7 +287,7 @@ const Admin = () => {
             <TabsTrigger value="overview">Ընդհանուր</TabsTrigger>
             <TabsTrigger value="messages">Հաղորդագրություններ</TabsTrigger>
             <TabsTrigger value="blog">Բլոգ</TabsTrigger>
-            <TabsTrigger value="documents">Փաստաթղթեր</TabsTrigger>
+            <TabsTrigger value="documents">Շտեմարան</TabsTrigger>
             <TabsTrigger value="calculators">Հաշվիչներ</TabsTrigger>
             <TabsTrigger value="users">Օգտատերեր</TabsTrigger>
             <TabsTrigger value="settings">Կարգավորումներ</TabsTrigger>
@@ -326,7 +326,7 @@ const Admin = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <FileText className="h-5 w-5" />
-                    Փաստաթղթերի կառավարում
+                    Շտեմարանի կառավարում
                   </CardTitle>
                   <CardDescription>
                     Վերբեռնեք և կառավարեք PDF փաստաթղթերը
