@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import DynamicIcon from "@/components/ui/DynamicIcon";
+import { ExternalLink } from "lucide-react";
 
 interface CalculatorRow {
   id: string;
@@ -16,6 +17,8 @@ interface CalculatorRow {
   icon_name: string;
   visible: boolean;
   sort_order: number;
+  created_at?: string;
+  updated_at?: string;
 }
 
 const emptyForm: Omit<CalculatorRow, "id" | "sort_order"> & { sort_order?: number } = {
@@ -189,20 +192,31 @@ const CalculatorsManagement = () => {
               <p className="text-sm text-muted-foreground">Դեռ հաշվիչներ չկան</p>
             )}
             {!loading && items.map((row, idx) => (
-              <div key={row.id} className="flex items-center justify-between border rounded-lg p-3 bg-background/60">
-                <div className="flex items-center gap-3">
-                  <DynamicIcon name={row.icon_name as any} size={20} />
-                  <div>
-                    <div className="font-medium">{row.title} {row.visible ? '' : '(թաքնված)'}</div>
-                    <div className="text-xs text-muted-foreground">/{row.slug} • կարգ {row.sort_order}</div>
+              <div key={row.id} className="border rounded-lg p-3 bg-background/60">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <DynamicIcon name={row.icon_name} size={20} />
+                    <div>
+                      <div className="font-medium">{row.title} {row.visible ? '' : '(թաքնված)'}</div>
+                      <div className="text-xs text-muted-foreground">/{row.slug} • կարգ {row.sort_order}</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button size="sm" variant="outline" onClick={() => move(row, -1)} disabled={idx === 0}>Վերև</Button>
+                    <Button size="sm" variant="outline" onClick={() => move(row, 1)} disabled={idx === items.length - 1}>Ներքև</Button>
+                    <Button size="sm" variant="outline" onClick={() => toggleVisible(row)}>{row.visible ? 'Թաքցնել' : 'Ցույց տալ'}</Button>
+                    <Button size="sm" variant="outline" onClick={() => onEdit(row)}>Խմբագրել</Button>
+                    <Button size="sm" variant="destructive" onClick={() => remove(row)}>Ջնջել</Button>
+                    <Button size="sm" variant="outline" onClick={() => window.open(`/calculators/${row.slug}`, '_blank') } title="Դիտել էջը">
+                      <ExternalLink className="h-4 w-4" />
+                    </Button>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Button size="sm" variant="outline" onClick={() => move(row, -1)} disabled={idx === 0}>Վերև</Button>
-                  <Button size="sm" variant="outline" onClick={() => move(row, 1)} disabled={idx === items.length - 1}>Ներքև</Button>
-                  <Button size="sm" variant="outline" onClick={() => toggleVisible(row)}>{row.visible ? 'Թաքցնել' : 'Ցույց տալ'}</Button>
-                  <Button size="sm" variant="outline" onClick={() => onEdit(row)}>Խմբագրել</Button>
-                  <Button size="sm" variant="destructive" onClick={() => remove(row)}>Ջնջել</Button>
+                {row.description && (
+                  <p className="text-sm text-muted-foreground mt-2">{row.description}</p>
+                )}
+                <div className="mt-2 text-[11px] text-muted-foreground">
+                  Թարմ․ {row.updated_at ? new Date(row.updated_at).toLocaleString('hy-AM') : '—'} • Ստեղծ․ {row.created_at ? new Date(row.created_at).toLocaleString('hy-AM') : '—'}
                 </div>
               </div>
             ))}
