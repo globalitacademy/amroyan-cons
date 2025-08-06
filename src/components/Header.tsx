@@ -82,6 +82,7 @@ const Header = () => {
     { name: t('header.nav.home'), href: '/' },
     { name: t('header.nav.about'), href: '/about' },
     { name: t('header.nav.services'), href: '/services' },
+    { name: 'Հաշվիչներ', href: '/calculators' },
     { name: 'Շտեմարան', href: '/archive' },
     { name: t('header.nav.blog'), href: '/blog' },
     { name: t('header.nav.contact'), href: '/contact' },

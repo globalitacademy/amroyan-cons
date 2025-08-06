@@ -22,6 +22,12 @@ import BlogManagement from "./pages/BlogManagement";
 import NotFound from "./pages/NotFound";
 import LoadingPage from "./components/LoadingPage";
 import AdminProtectedRoute from "./components/auth/AdminProtectedRoute";
+import Calculators from "./pages/Calculators";
+import SalaryPage from "./pages/calculators/Salary";
+import VATCalculatorPage from "./pages/calculators/VAT";
+import ProfitTaxCalculatorPage from "./pages/calculators/ProfitTax";
+import BenefitCalculatorPage from "./pages/calculators/Benefit";
+import EstimateCalculatorPage from "./pages/calculators/Estimate";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +63,15 @@ const App = () => {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/contact" element={<Contact />} />
+
+                {/* Calculators */}
+                <Route path="/calculators" element={<Calculators />} />
+                <Route path="/calculators/salary" element={<SalaryPage />} />
+                <Route path="/calculators/vat" element={<VATCalculatorPage />} />
+                <Route path="/calculators/profit-tax" element={<ProfitTaxCalculatorPage />} />
+                <Route path="/calculators/benefit" element={<BenefitCalculatorPage />} />
+                <Route path="/calculators/estimate" element={<EstimateCalculatorPage />} />
+
                 <Route path="/admin" element={
                   <AdminProtectedRoute>
                     <Admin />
