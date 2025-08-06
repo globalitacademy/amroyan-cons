@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Upload, FileText } from "lucide-react";
 
-type DocumentCategory = "tax_laws" | "tax_clarifications" | "tax_discussions" | "tax_hhms" | "tax_fhms" | "personnel_laws" | "personnel_clarifications" | "personnel_discussions" | "personnel_hhms" | "personnel_fhms";
+type DocumentCategory = "standards" | "pek_notifications" | "clarifications_tax" | "clarifications_labor" | "discussions" | "tests_accounting_finance" | "tests_hr";
 
 interface DocumentUploadProps {
   onSuccess?: () => void;
@@ -26,16 +26,13 @@ const DocumentUpload = ({ onSuccess }: DocumentUploadProps) => {
   });
 
   const categories = [
-    { value: "tax_laws", label: "Հարկային օրենքներ" },
-    { value: "tax_clarifications", label: "Հարկային պարզաբանումներ" },
-    { value: "tax_discussions", label: "Հարկային քննարկումներ" },
-    { value: "tax_hhms", label: "Հարկային ՀՀՄ-ներ" },
-    { value: "tax_fhms", label: "Հարկային ՖՀՄ-ներ" },
-    { value: "personnel_laws", label: "Կադրային օրենքներ" },
-    { value: "personnel_clarifications", label: "Կադրային պարզաբանումներ" },
-    { value: "personnel_discussions", label: "Կադրային քննարկումներ" },
-    { value: "personnel_hhms", label: "Կադրային ՀՀՄ-ներ" },
-    { value: "personnel_fhms", label: "Կադրային ՖՀՄ-ներ" }
+    { value: "standards", label: "ՀՀՄՍ / ՖՀՄՍ" },
+    { value: "pek_notifications", label: "ՊԵԿ իրազեկումներ" },
+    { value: "clarifications_tax", label: "Պաշտոնական պարզաբանումներ · Հարկային օրենսդրություն" },
+    { value: "clarifications_labor", label: "Պաշտոնական պարզաբանումներ · Աշխատանքային օրենսդրություն" },
+    { value: "discussions", label: "Քննարկումներ" },
+    { value: "tests_accounting_finance", label: "Թեստեր · Հաշվապահական և ֆինանսական ոլորտ" },
+    { value: "tests_hr", label: "Թեստեր · HR, կադրային ոլորտ" }
   ] as const;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
