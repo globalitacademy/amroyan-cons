@@ -35,25 +35,9 @@ const About = () => {
       <section className="py-12 sm:py-16 lg:py-20 bg-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-stretch">
-              <div className="relative h-full text-center lg:text-left">
-                <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 to-gold-600/20 rounded-3xl blur-3xl" />
-                <Card className="relative h-full bg-gradient-to-br from-gray-900 to-black border-gold-500/20">
-                  <CardContent className="p-6 sm:p-8">
-                    <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">
-                      <span className="gradient-text">Մեր առաքելությունը</span>
-                    </h2>
-                    <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6">
-                      Մեր նպատակն է օգնել բիզնեսներին հասնել ֆինանսական կայունության և աճի՝ տրամադրելով պրոֆեսիոնալ հաշվապահական և ֆինանսական ծառայություններ:
-                    </p>
-                    <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                      Մենք հավատում ենք, որ յուրաքանչյուր բիզնես արժանի է որակյալ ֆինանսական աջակցության՝ անկախ գործունեության ոլորտից և իր մեծությունից:
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
+            <div className="grid grid-cols-1 gap-8 lg:gap-16 items-stretch">
               
-              <div className="relative h-full mt-8 lg:mt-0">
+              <div className="relative h-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-gold-500/20 to-gold-600/20 rounded-3xl blur-3xl" />
                 <Card className="relative h-full bg-gradient-to-br from-gray-900 to-black border-gold-500/20 flex items-center justify-center overflow-hidden">
                   <CardContent className="p-8 sm:p-10 flex flex-col items-center text-center gap-4">
