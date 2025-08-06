@@ -181,6 +181,23 @@ const Admin = () => {
     }
   };
 
+  const handleDeletePost = async (postId: string) => {
+    try {
+      const confirmed = window.confirm('Ջնջե՞լ գրառումը բոլորովին.');
+      if (!confirmed) return;
+      const { error } = await supabase
+        .from('blog_posts')
+        .delete()
+        .eq('id', postId);
+      if (error) throw error;
+      setBlogPosts(prev => prev.filter(p => p.id !== postId));
+      toast({ title: 'Գրառումը ջնջվեց' });
+    } catch (error) {
+      console.error('Error deleting blog post:', error);
+      toast({ title: 'Սխալ', description: 'Չհաջողվեց ջնջել գրառումը', variant: 'destructive' });
+    }
+  };
+
   const toggleDocumentStatus = async (docId: string, currentStatus: boolean) => {
     try {
       const { error } = await supabase
@@ -496,6 +513,14 @@ const Admin = () => {
                               onClick={() => toggleBlogPostStatus(post.id, post.published)}
                             >
                               {post.published ? "Թաքցնել" : "Հրապարակել"}
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="destructive"
+                              onClick={() => handleDeletePost(post.id)}
+                              title="Ջնջել գրառումը"
+                            >
+                              <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
                         </div>
