@@ -239,57 +239,6 @@ const Archive = () => {
           </div>
         </section>
 
-        <div className="space-y-8">
-          {/* Հարկային օրենսդրություն */}
-          <Card className="border-gray-800 bg-gray-900/50">
-            <Collapsible open={openSections.tax} onOpenChange={() => toggleSection("tax")}>
-              <CollapsibleTrigger asChild>
-                <CardHeader className="cursor-pointer hover:bg-gray-800/50 transition-colors">
-                  <CardTitle className="flex items-center justify-between text-2xl text-gold-400">
-                    Հարկային օրենսդրություն
-                    {openSections.tax ? <ChevronDown className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
-                  </CardTitle>
-                  <CardDescription className="text-gray-400">
-                    Հարկային նորմերի և կանոնակարգերի ամբողջական ցանկ
-                  </CardDescription>
-                </CardHeader>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <CardContent className="space-y-6">
-                  {renderDocumentsBySubcategory("tax")}
-                  {filterDocumentsByCategory("tax").length === 0 && <p className="text-center text-gray-500 py-8">
-                      Դեռ փաստաթղթեր չեն ավելացվել այս բաժնում
-                    </p>}
-                </CardContent>
-              </CollapsibleContent>
-            </Collapsible>
-          </Card>
-
-          {/* Կադրային օրենսդրություն */}
-          <Card className="border-gray-800 bg-gray-900/50">
-            <Collapsible open={openSections.personnel} onOpenChange={() => toggleSection("personnel")}>
-              <CollapsibleTrigger asChild>
-                <CardHeader className="cursor-pointer hover:bg-gray-800/50 transition-colors">
-                  <CardTitle className="flex items-center justify-between text-2xl text-gold-400">
-                    Կադրային օրենսդրություն
-                    {openSections.personnel ? <ChevronDown className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
-                  </CardTitle>
-                  <CardDescription className="text-gray-400">
-                    Աշխատանքային հարաբերությունների կարգավորման նորմեր
-                  </CardDescription>
-                </CardHeader>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <CardContent className="space-y-6">
-                  {renderDocumentsBySubcategory("personnel")}
-                  {filterDocumentsByCategory("personnel").length === 0 && <p className="text-center text-gray-500 py-8">
-                      Դեռ փաստաթղթեր չեն ավելացվել այս բաժնում
-                    </p>}
-                </CardContent>
-              </CollapsibleContent>
-            </Collapsible>
-          </Card>
-        </div>
       </div>
     </div>;
 };
