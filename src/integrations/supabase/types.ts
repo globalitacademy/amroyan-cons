@@ -240,7 +240,7 @@ export type Database = {
       }
       documents: {
         Row: {
-          category: Database["public"]["Enums"]["document_category"]
+          category: Database["public"]["Enums"]["document_category_enum"]
           created_at: string
           description: string | null
           file_name: string | null
@@ -255,7 +255,7 @@ export type Database = {
           view_count: number | null
         }
         Insert: {
-          category: Database["public"]["Enums"]["document_category"]
+          category: Database["public"]["Enums"]["document_category_enum"]
           created_at?: string
           description?: string | null
           file_name?: string | null
@@ -270,7 +270,7 @@ export type Database = {
           view_count?: number | null
         }
         Update: {
-          category?: Database["public"]["Enums"]["document_category"]
+          category?: Database["public"]["Enums"]["document_category_enum"]
           created_at?: string
           description?: string | null
           file_name?: string | null
@@ -336,6 +336,17 @@ export type Database = {
         | "discussions"
         | "tests_accounting_finance"
         | "tests_hr"
+      document_category_enum:
+        | "tax_laws"
+        | "tax_clarifications"
+        | "tax_discussions"
+        | "tax_hhms"
+        | "tax_fhms"
+        | "personnel_laws"
+        | "personnel_clarifications"
+        | "personnel_discussions"
+        | "personnel_hhms"
+        | "personnel_fhms"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -471,6 +482,18 @@ export const Constants = {
         "discussions",
         "tests_accounting_finance",
         "tests_hr",
+      ],
+      document_category_enum: [
+        "tax_laws",
+        "tax_clarifications",
+        "tax_discussions",
+        "tax_hhms",
+        "tax_fhms",
+        "personnel_laws",
+        "personnel_clarifications",
+        "personnel_discussions",
+        "personnel_hhms",
+        "personnel_fhms",
       ],
     },
   },
