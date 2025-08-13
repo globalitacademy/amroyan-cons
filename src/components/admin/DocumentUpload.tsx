@@ -10,8 +10,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Upload, FileText } from "lucide-react";
 
 type DocumentCategory = 
-  | "tax_laws" | "tax_clarifications" | "tax_discussions" | "tax_hhms" | "tax_fhms"
-  | "personnel_laws" | "personnel_clarifications" | "personnel_discussions" | "personnel_hhms" | "personnel_fhms";
+  | "standards" | "pek_notifications" | "discussions" 
+  | "clarifications_tax" | "clarifications_labor"
+  | "tests_accounting_finance" | "tests_hr";
 
 interface DocumentUploadProps {
   onSuccess?: () => void;
@@ -28,18 +29,13 @@ const DocumentUpload = ({ onSuccess }: DocumentUploadProps) => {
   });
 
   const categories = [
-    // Հարկային օրենսդրություն
-    { value: "tax_laws", label: "Հարկային օրենսդրություն › Օրենքներ" },
-    { value: "tax_clarifications", label: "Հարկային օրենսդրություն › Պարզաբանումներ" },
-    { value: "tax_discussions", label: "Հարկային օրենսդրություն › Քննարկումներ" },
-    { value: "tax_hhms", label: "Հարկային օրենսդրություն › ՀՀՄՍ" },
-    { value: "tax_fhms", label: "Հարկային օրենսդրություն › ՖՀՄՍ" },
-    // Կադրային օրենսդրություն
-    { value: "personnel_laws", label: "Կադրային օրենսդրություն › Օրենքներ" },
-    { value: "personnel_clarifications", label: "Կադրային օրենսդրություն › Պարզաբանումներ" },
-    { value: "personnel_discussions", label: "Կադրային օրենսդրություն › Քննարկումներ" },
-    { value: "personnel_hhms", label: "Կադրային օրենսդրություն › ՀՀՄՍ" },
-    { value: "personnel_fhms", label: "Կադրային օրենսդրություն › ՖՀՄՍ" },
+    { value: "standards", label: "ՀՀՄՍ / ՖՀՄՍ" },
+    { value: "pek_notifications", label: "ՊԵԿ իրազեկումներ" },
+    { value: "discussions", label: "Քննարկումներ" },
+    { value: "clarifications_tax", label: "Պաշտոնական պարզաբանումներ › Հարկային օրենսդրություն" },
+    { value: "clarifications_labor", label: "Պաշտոնական պարզաբանումներ › Աշխատանքային օրենսդրություն" },
+    { value: "tests_accounting_finance", label: "Թեստեր › Հաշվապահական և ֆինանսական ոլորտ" },
+    { value: "tests_hr", label: "Թեստեր › HR, կադրային ոլորտ" }
   ] as const;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

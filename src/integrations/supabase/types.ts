@@ -337,16 +337,13 @@ export type Database = {
         | "tests_accounting_finance"
         | "tests_hr"
       document_category_enum:
-        | "tax_laws"
-        | "tax_clarifications"
-        | "tax_discussions"
-        | "tax_hhms"
-        | "tax_fhms"
-        | "personnel_laws"
-        | "personnel_clarifications"
-        | "personnel_discussions"
-        | "personnel_hhms"
-        | "personnel_fhms"
+        | "standards"
+        | "pek_notifications"
+        | "discussions"
+        | "clarifications_tax"
+        | "clarifications_labor"
+        | "tests_accounting_finance"
+        | "tests_hr"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -484,16 +481,13 @@ export const Constants = {
         "tests_hr",
       ],
       document_category_enum: [
-        "tax_laws",
-        "tax_clarifications",
-        "tax_discussions",
-        "tax_hhms",
-        "tax_fhms",
-        "personnel_laws",
-        "personnel_clarifications",
-        "personnel_discussions",
-        "personnel_hhms",
-        "personnel_fhms",
+        "standards",
+        "pek_notifications",
+        "discussions",
+        "clarifications_tax",
+        "clarifications_labor",
+        "tests_accounting_finance",
+        "tests_hr",
       ],
     },
   },
